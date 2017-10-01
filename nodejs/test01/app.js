@@ -1,5 +1,7 @@
 var express = require('express')
 var app = express() // 반환값이 함수이기 때문이다.
+var bodyParser = require('body-parser')
+
 app.listen(3000, function() { // default가 3000 port
   console.log('start!  express server on port 3000')
 })
@@ -21,6 +23,11 @@ app.use(express.static('public'))
 // 이제 public폴더 아래의 파일들은 static파일로 자동으로 인식해준다.
 // static파일 : 변경이 되지 않는 정적파일. JavaScript, CSS, Image등
 
+// express 서버에 bodyParser쓴다고 알려주기
+app.use(bodyParser.json()) // 클라이언트에서 오는 응답이 json형태일 때
+app.use(bodyParser.urlencoded({extended:true})) // json아닌 post방식일 때
+// encoded된 url .. 아스키 형태 데이터만 주고 받을 수 있다. 한글 등은 인코딩하여 보내진다.
+
 // url routing처리
 // get요청
 app.get('/', function(req, res) { // url path, 콜백함수
@@ -32,4 +39,19 @@ app.get('/', function(req, res) { // url path, 콜백함수
 app.get('/main', function(req, res) {
   res.sendFile(__dirname + "/public/main.html")
 })
-// http://localhost:3000/main 
+// http://localhost:3000/main
+
+// form.html 에서 /email_post에 대한 라우팅 처리
+app.post('/email_post', function(req, res) {
+  // get요청일 때 데이터 받는 방법 : req.param('email')
+  // post요청일 때는 body parser라는 별도의 모듈이 필요하다.
+  // $npm install body-parser --save
+  console.log(req.body.email)
+  // res.send('post response')
+  res.send('<h1>Welcome! ' + req.body.email + '</h1>')
+})
+// req.body : cmd에 { email: '입력값'}
+// req.body.email : 입력값  (입력한 이메일 정보가 나오게 된다.)
+// 클라이언트에서 전송된 폼이 서버로 오게 되는 것이다.
+// 이 값으로 디비 조회 등 조작들을 할 수 있다.
+//

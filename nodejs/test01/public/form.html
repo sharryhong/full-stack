@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Email form</title>
+  </head>
+  <body>
+    <!-- action : 서버의 어디로 갈 것이냐. url지정
+      email_post에 대한 라우팅 처리를 해줘야한다. 
+  -->
+    <form action="/email_post" method="post">
+      email : <input type="text" name="email"><br> <!-- name은 key값 -->
+      <input type="submit">
+    </form>
+  </body>
+</html>
