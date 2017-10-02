@@ -28,6 +28,10 @@ app.use(bodyParser.json()) // 클라이언트에서 오는 응답이 json형태�
 app.use(bodyParser.urlencoded({extended:true})) // json아닌 post방식일 때
 // encoded된 url .. 아스키 형태 데이터만 주고 받을 수 있다. 한글 등은 인코딩하여 보내진다.
 
+// 뷰 엔진을 ejs로 쓴다.
+// views폴더 생성
+app.set('view engine', 'ejs')
+
 // url routing처리
 // get요청
 app.get('/', function(req, res) { // url path, 콜백함수
@@ -48,10 +52,10 @@ app.post('/email_post', function(req, res) {
   // $npm install body-parser --save
   console.log(req.body.email)
   // res.send('post response')
-  res.send('<h1>Welcome! ' + req.body.email + '</h1>')
+  // res.send('<h1>Welcome! ' + req.body.email + '</h1>')
+  res.render('email.ejs', {'email' : req.body.email}) // ejs template
 })
 // req.body : cmd에 { email: '입력값'}
 // req.body.email : 입력값  (입력한 이메일 정보가 나오게 된다.)
 // 클라이언트에서 전송된 폼이 서버로 오게 되는 것이다.
 // 이 값으로 디비 조회 등 조작들을 할 수 있다.
-//
