@@ -59,3 +59,13 @@ app.post('/email_post', function(req, res) {
 // req.body.email : 입력값  (입력한 이메일 정보가 나오게 된다.)
 // 클라이언트에서 전송된 폼이 서버로 오게 되는 것이다.
 // 이 값으로 디비 조회 등 조작들을 할 수 있다.
+
+// 서버에서 Ajax처리
+// url을 라우팅. express가 모니터링 하고 있다가
+app.post('/ajax_send_email', function(req, res) {
+  // console.log(req.body.email)
+  // 응답
+  var responseData = {'result': 'ok', 'email': req.body.email}
+  // 서버에서는 res.json()으로 바로 보내준다.
+  res.json(responseData)
+})
