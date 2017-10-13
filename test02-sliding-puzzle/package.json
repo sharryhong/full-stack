@@ -1,0 +1,15 @@
+{
+  "name": "test02-sliding-puzzle",
+  "version": "1.0.0",
+  "description": "sliding-puzzle with electron",
+  "main": "main.js",
+  "dependencies": {
+    "jquery": "^3.2.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "sharryhong",
+  "license": "ISC"
+}
