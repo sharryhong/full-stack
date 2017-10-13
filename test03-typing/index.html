@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Typing Game - SharryHong</title>
+    <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="sweetalert.css">
+    <link rel="stylesheet" href="typing.css">
+  </head>
+  <body>
+    <div class="container">
+      <div class="shows">
+        <p id="show-word">30초 타자연습!</p>
+        <span class="show-sec">30</span><span>sec</span>
+        <button type="button" id="start-btn">start!</button>
+        <div class="score-container">
+          <p>성공 : <span class="correct-num">0</span></p>
+          <p>실패 : <span class="wrong-num">0</span></p>
+          <p>득점 : <span class="score-num">0</span></p>
+        </div>
+      </div>
+      <div class="bottom">
+        <input type="text" placeholder="typing here!" id="input-text">
+
+      </div>
+    </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="sweetalert.min.js"></script>
+  <script src="typing.js"></script>
+  </body>
+</html>
