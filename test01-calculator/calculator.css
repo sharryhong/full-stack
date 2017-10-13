@@ -8,7 +8,9 @@ button {
   font-size: 40px;
   color: #333;
   border: 1px solid #bbb;
+  cursor: pointer;
 }
+
 .wrap {
   width: 410px;
   margin: 50px auto 0 auto;
@@ -51,11 +53,17 @@ button {
 button.number {
   background-color: #efefef;
 }
+button.number:hover {
+  background: #ddd;
+}
 button.number:active {
   background-color: #ccc;
 }
 button.op {
   background-color: #FF9B22;
+}
+button.op:hover {
+  background-color: #f99112;
 }
 button.op:active {
   background-color: #EB7016;
