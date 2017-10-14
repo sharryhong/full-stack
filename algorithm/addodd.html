@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>test04</title>
+  </head>
+  <style>
+    .container {
+      min-width: 360px;
+      width: 50%;
+      padding: 20px;
+      margin: 30px auto;
+      background: #eee;
+    }
+    .container > div {
+      height: 50px;
+      line-height: 50px;
+    }
+    .texts {
+      display: inline-block;
+      width: 132px;
+      text-align: right;
+    }
+    .result-sum {
+      font-weight: bold;
+      color: #ff5400;
+    }
+  </style>
+  <body>
+    <div class="container">
+      <div>
+        <span class="texts">문자열 입력: </span>
+        <input type="text" class="input-string">
+        <button type="button" class="btn">입력</button>
+      </div>
+      <div>
+        <span class="texts">홀수들 제곱의 합: </span>
+        <span class="result-sum"></span>
+      </div>
+    </div>
+  <script src="addodd.js"></script>
+  </body>
+</html>
