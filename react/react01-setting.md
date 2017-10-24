@@ -15,5 +15,14 @@
 
 ```
 $npm install -g create-react-app // 전역에 설치
-$create-react-app my-app         //리엑트 앱 만들기
+$create-react-app my-app         // 리엑트 앱 만들기
 ```
+
+- 설치 후 4개의 script : start, build, test, eject
+
+#### 실행
+```
+$yarn start
+```
+- react-scripts를 실행시킨다. 
+- http://localhost:3000 확인!
