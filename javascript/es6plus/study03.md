@@ -179,3 +179,36 @@ console.log(l);
 #### Rest ParaMeter(나머지인자)
 - 함수 선언시 사용된다.
 - 여러개의 배열이 아닌 녀석들을 배열로 만들어준다.
+```
+const test = (...arg) => console.log(arg); // rest parameter
+test(...iter); // spread
+```
+=> 더이상 apply.call 을 안해도 된다. apply.call은 생성자는 되지 않았지만 이 방법으로는 된다.
+
+### For Of문
+```
+for(const v of iter) { // iter : iterable이나 iterator 객체. 몇번 돌지 얘가 통제
+  console.log(v)
+}
+```
+
+- 메모리에 없는 상태로 계산을 하는 프로그래밍 가능
+
+## Generator
+- Iterator의 구현을 돕는 제너레이터
+```
+const generator = function*(max) {
+  let cursor = 0;
+  while(cursor < max) { // next()문을 호출하는 것과 같은 역할이다.
+    yield cursor * cursor; // yield는 value에 해당한다.
+    cursor++;
+  }
+  // done이 true 지점 
+}
+```
+- 리턴이 없다.
+- 제어문을 멈출 줄 안다.
+- 일반 함수는 들어왔다 나가지만, 이 것은 들어왔다가 멈추고, 다시 시작할 때 멈춘 시점에서 다시 시작한다.
+- 코루틴! 블럭이어서 지연실행을 할 수 있다.
+- 제너레이터는 모던언어에 거의 다 있다.
+- 즉, 진보된 loop를 js에도 채용한 것이다.
