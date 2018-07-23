@@ -1,0 +1,33 @@
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <title>css편하게 한줄로 만들자.</title>
+    <link rel="stylesheet" href="./test01.css">
+    <style>
+        .tf_css{
+            width: 98%;
+            height: 40vh;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sharry's css 편하게 작업하기 </h1>
+    <div>
+        <textarea id="cssBefore" class="tf_css" placeholder="css를 한줄로 만들자."></textarea>
+        <textarea id="cssAfter" class="tf_css" placeholder="결과"></textarea>
+    </div>
+    <button type="button" class="btn_confirm">한줄로!</button>
+</body>
+<script>
+    let cssAfter = document.querySelector('#cssAfter')
+    let btnConfirm =  document.querySelector('.btn_confirm')
+
+    btnConfirm.addEventListener('click', function() {
+        var cssBefore = document.querySelector('#cssBefore').value
+        cssBefore = cssBefore.replace(/\s/gi, "").replace(/[}]/g, "}\n")
+        cssAfter.innerHTML = cssBefore
+    })
+    
+</script>
+</html>
