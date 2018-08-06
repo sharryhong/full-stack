@@ -1,0 +1,32 @@
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <title>minify css -> 개발하기 편하게</title>
+    <style>
+        .tf_css{
+            width: 98%;
+            height: 40vh;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sharry's minify css -> 개발하기 편하게</h1>
+    <div>
+        <textarea id="cssBefore" class="tf_css" placeholder="minify css 넣기">https://www.minifier.org/ 에서 우선 minify하자.</textarea>
+        <textarea id="cssAfter" class="tf_css" placeholder="결과"></textarea>
+    </div>
+    <button type="button" class="btn_confirm">한줄로!</button>
+</body>
+<script>
+    let cssAfter = document.querySelector('#cssAfter')
+    let btnConfirm =  document.querySelector('.btn_confirm')
+
+    btnConfirm.addEventListener('click', function() {
+        var cssBefore = document.querySelector('#cssBefore').value
+        cssBefore = cssBefore.replace(/[}]/g, "}\n")
+        cssAfter.innerHTML = cssBefore
+    })
+
+</script>
+</html>
