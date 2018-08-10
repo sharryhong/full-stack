@@ -64,7 +64,7 @@ q + enter 누르면 빠져나온다.
 #### `git add .`
 - 전체를 add한다.
 
-#### `git commit ..`
+#### `git commit -m '커밋메시지'`
 - commit을 하면 log가 생성된다. 협업시 log를 확인하는 것이 중요하다.
 
 #### `git log`
