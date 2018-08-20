@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <title>dropbox</title>
+        <link rel="stylesheet" href="./css/dropbox.css">
+    </head>
+    <body>
+        <div class="drop_select"> <!-- drop_open 클래스 추가시 메뉴 펼쳐짐 -->
+          <strong class="screen_out">카테고리 선택상자</strong>
+          <em class="screen_out">선택내용 :</em>
+          <a href="#none" class="link_selected">카테고리를 선택해주세요.</a>
+          <div class="dropdown_menu">
+            <ul class="list_dropdown">
+              <li>
+                <a href="#none" class="link_tab">카테고리1</a>
+              </li>
+              <li>
+                <a href="#none" class="link_tab">카테고리2</a>
+              </li>
+              <li>
+                <a href="#none" class="link_tab">카테고리3</a>
+              </li>
+              <li>
+                <a href="#none" class="link_tab">카테고리4</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+    <script src="./jquery-1.12.1.min.js"></script>
+    <script>
+    $(function(){
+        //드롭박스(기본 class토글)
+        $('.drop_select .link_selected').click(function(){
+        $(this).parent().toggleClass('drop_open'); // 클래스로 토글 하고싶은곳 아무곳에다 써도됨.
+        });
+        });
+    </script>
+    </body>
+</html>

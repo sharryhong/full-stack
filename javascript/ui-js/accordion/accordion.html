@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>아코디언 | sharry's</title>
+</head>
+<style>
+    .item_accordion .btn_accordion{display: block;width: 100%;height: 30px;line-height: 30px;}
+    .item_accordion .cont_accordion{display: none;padding: 12px;}
+    .item_accordion .cont_accordion.is_active{display: block;}
+</style>
+<body>
+    <div class="item_accordion">
+        <div class="wrap_accordion">
+            <button type="button" class="btn_accordion">menu1</button>
+            <div class="cont_accordion test1 is_active test">
+                <strong>accordion contents1</strong>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            </div>
+        </div>
+        <div class="wrap_accordion">
+            <button type="button" class="btn_accordion">menu2</button>
+            <div class="cont_accordion">
+                <strong>accordion contents2</strong>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            </div>
+        </div>
+    </div>
+<script>
+/*** 아코디언 목표 ***
+/* 하위브라우저 대응 : 우선 ES6문법을 쓰지 않아보았다.
+/* querySelectorAll : 다행히 ie8이상?
+/* addEventListener : ie9이상 ㅜㅜ
+/* 순수 Javascrit 사용 */
+'use strict';
+
+function addClass(el, cn) {
+    el.className += " " + cn;
+}
+
+function removeClass(el, cn) {
+    var check = new RegExp("(\\s|^)" + cn + "(\\s|$)");
+    el.className = el.className.replace(check, " ").trim();
+}
+
+function toggleClass(el, cn){
+    if(el.className.indexOf(cn) > -1) {
+        removeClass(el, cn);
+    } else {
+        addClass(el, cn);
+    }
+}
+
+(function() {
+    var items = document.querySelectorAll('.wrap_accordion')
+
+    for(var i=0; i<items.length; i++) {
+        if(items[i].addEventListener) {
+            items[i].addEventListener('click', function() {
+                var targetEl = this.querySelector('.cont_accordion');
+                var targetCn = 'is_active';
+
+                toggleClass(targetEl, targetCn)
+            })
+        } else {
+            items[i].attachEvent('onclick', function() {
+                console.log(this); // 앗.. this 가 window라니... 우짤꼬 
+            })
+        }
+    }
+})();
+</script>
+</body>
+</html>

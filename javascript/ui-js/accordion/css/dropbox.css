@@ -1,0 +1,119 @@
+@charset "utf-8";
+        /* reset */
+        body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,textarea,p,blockquote,th,td,input,select,textarea,button{margin:0;padding:0}
+        fieldset,img{border:0 none}
+        dl,ul,ol,menu,li{list-style:none}
+        blockquote, q{quotes: none}
+        blockquote:before, blockquote:after,q:before, q:after{content:'';content:none}
+        input,select,textarea,button{vertical-align:middle}
+        input::-ms-clear{display:none}
+        button{border:0 none;border-radius:0;background-color:transparent;cursor:pointer}
+        body{background:#FFF}
+        table{border-collapse:collapse;border-spacing:0}
+        body,th,td,input,select,textarea,button{font-size:15px;line-height:1.5;font-family:AppleSDGothicNeo,'Malgun Gothic','맑은 고딕',sans-serif;color:#32353B}
+        a{color:#000;text-decoration:none}
+        a:active, a:hover{text-decoration:none}
+        a:active{background-color:transparent}
+        address,caption,cite,code,dfn,em,var{font-style:normal;font-weight:normal}
+        img{display:block}
+
+        /* global */
+        .ir_pm{display:block;overflow:hidden;font-size:1px;line-height:0;text-indent:-9999px}
+        .ir_wa{display:block;overflow:hidden;position:relative;width:100%;height:100%;z-index:-1}
+        .screen_out{overflow:hidden;position:absolute;width:0;height:0;line-height:0;text-indent:-9999px}
+        /* 드랍박스 */
+        @keyframes slide-down {
+            from {
+                opacity: 0;
+                transform: translate3d(0, -10px, 0);
+            }
+            to {
+                opacity: 1;
+                transform: translate3d(0, 0, 0);
+            }
+        }
+        .drop_select {
+            position:relative;
+            width:200px;
+            margin:50px
+        }
+        .drop_select.drop_open .dropdown_menu{
+            display:block;
+        }
+        .drop_select .link_selected {
+            display:block;
+            position:relative;
+            border-radius:3px;
+            padding:0 30px 0 10px;
+            box-sizing:border-box;
+            font-size:13px;
+            line-height:40px;
+            color:#848C9C;
+            background-color:transparent;
+            -webkit-transition:0.15s;
+            transition:0.15s;
+            background:#FAFAFA;
+            box-shadow:0 0 0 1px rgba(0,20,61,0.12);
+        }
+        .drop_select .link_selected:hover{
+            background:#F2F2F5
+        }
+        .drop_select .link_selected:active{
+            background:rgba(0,20,61,0.08)
+        }
+        .drop_select .link_selected:after{
+            position:absolute;
+            top:13px;
+            right:15px;
+            width:8px;
+            height:8px;
+            border-top:2px solid #848C9C;
+            border-left:2px solid #848C9C;
+            -webkit-transform:rotate(-135deg);
+            transform:rotate(-135deg);
+            -webkit-transition:.15s;
+            transition:.15s;
+            transform-origin:center center;
+            content:''
+        }
+        .drop_open .link_selected:after {
+            top:17px;
+            -webkit-transform:rotate(45deg);
+            transform:rotate(45deg);
+        }
+        .dropdown_menu {
+            display:none;
+            overflow:hidden;
+            position:absolute;
+            top:40px;
+            left:0;
+            z-index:999;
+            min-width:200px;
+            padding:12px 0;
+            background-color: #fff;
+            box-shadow:0 0 1px 0 rgba(0, 0, 0, 0.12), 0 1px 3px 0 rgba(0, 0, 0, 0.18), 0 6px 20px 0 rgba(85, 92, 107, 0.3);
+            border-radius:2px;
+            -webkit-transform-origin: top right;
+            transform-origin: top right;
+            -webkit-animation:slide-down 1.24s forwards;
+            animation:slide-down 1.24s forwards;
+        }
+        .dropdown_menu .link_tab {
+            display:block;
+            padding:9px 18px;
+            font-size:13px;
+            color:#6C727F;
+            -webkit-transition:0.15s;
+            transition:0.2s;
+        }
+        .dropdown_menu .link_tab:hover {
+            -webkit-transition: 0.15s;
+            transition: 0.15s;
+            background-color: rgba(0, 19, 60, 0.04);
+        }
+        .dropdown_menu .link_tab:active {
+            color: #41444c;
+            -webkit-transition: 0s;
+            transition: 0s;
+            background-color: rgba(0, 20, 61, 0.08);
+        }
