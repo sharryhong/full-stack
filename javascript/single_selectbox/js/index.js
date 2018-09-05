@@ -2,8 +2,9 @@
     'use strict';
 
     // dom을 먼저 잡아주자
-    var elemBtnSelect = document.querySelector('.btn_select') // querySelector: ie8지원
-    var elemLayerSelect = document.querySelector('.layer_select')
+    var elemInnerSelect = document.querySelector('.inner_select')
+    var elemBtnSelect = elemInnerSelect.querySelector('.btn_select') // querySelector: ie8지원
+    var elemLayerSelect = elemInnerSelect.querySelector('.layer_select')
     var elemItem = elemLayerSelect.querySelectorAll('li')
     var elemText = elemBtnSelect.querySelector('.txt_select')
         // querySelectorAll: return NodeList. non-live객체
@@ -32,12 +33,14 @@
     elemBtnSelect.addEventListener('click', function(e){
         // classList가 좋으나 ie10부터 된다.
         // 따라서 addClass, removeClass 기능가진 함수를 만들자.
-        if(!isOpen) { // 열리게 
-            removeClass(elemLayerSelect, 'hide');
-            isOpen = true
-        } else { // 닫히게
+        if(isOpen) { // 닫히게
             addClass(elemLayerSelect, 'hide');
+            removeClass(elemBtnSelect, 'open_select') // 화살표 처리
             isOpen = false
+        } else { // 열리게
+            removeClass(elemLayerSelect, 'hide');
+            addClass(elemBtnSelect, 'open_select') // 화살표 처리
+            isOpen = true
         }
     }, false) // false: 이벤트캡쳐링 안한다.
 
@@ -46,8 +49,22 @@
         elemItem[i].addEventListener('click', function(){
             // elemItem[i]는 마지막것만 접근된다. this로 접근해야한다.
             elemText.innerText = this.innerText
+            // 닫힘
             addClass(elemLayerSelect, 'hide');
+            removeClass(elemBtnSelect, 'open_select')
             isOpen = false
         }, false)
     }
+
+    // 다른쪽 클릭시 닫힘. 클릭시 .inner_select안에 있다면 아무동작 하지 않고, 그 외에는 닫히게 하기
+    document.addEventListener('click', function(e){
+        e.preventDefault(); // 기본 앨리먼트의 기능 막음
+        // console.log(e.target); // 클릭시 가장 깊숙한 태그
+        // console.log(e.currentTarget); // ie9부터 지원. 이벤트 바인드가 걸린 곳. 여기선 document
+        if(elemInnerSelect.contains(e.target)) return; // contains(): e.target이 있다면 true
+        // 닫힘
+        addClass(elemLayerSelect, 'hide');
+        removeClass(elemBtnSelect, 'open_select')
+        isOpen = false
+    }, false)
 })()
