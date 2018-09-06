@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>셀렉트 박스 예제</title>
+  <link rel="stylesheet" href="css/reset.css" />
+  <link rel="stylesheet" href="css/select.css" />
+
+</head>
+
+<body>
+  <div class="inner_article">
+
+    <!-- wrap_select -->
+    <h1 class="tit_ui">Single selectBox example</h1>
+    <div class="wrap_select">
+
+      <form action="">
+        <div id="selectAge" class="inner_select">
+          <!-- 얘를 클릭 -->
+          <span class="btn_select">
+            <a href="javascript:;" class="txt_select">Age</a>
+            <svg class="ico_arrow" focusable="false" aria-hidden="true"><path d="M7 10 l5 5 5-5z"></path></svg>
+          </span>
+          <!-- btn_select을 클릭시 hide 토클 -->
+          <div class="layer_select hide">
+            <ul>
+              <li>10</li>
+              <li>20</li>
+              <li>30</li>
+              <li>40</li>
+              <li>50</li>
+            </ul>
+          </div>
+        </div>
+
+        <div id="selectFood" class="inner_select">
+          <!-- 얘를 클릭 -->
+          <span class="btn_select">
+            <a href="javascript:;" class="txt_select">Food</a>
+            <svg class="ico_arrow" focusable="false" aria-hidden="true"><path d="M7 10 l5 5 5-5z"></path></svg>
+          </span>
+          <!-- btn_select을 클릭시 hide 토클 -->
+          <div class="layer_select hide">
+            <ul>
+              <li>Pizza</li>
+              <li>Chicken</li>
+              <li>Korean food</li>
+            </ul>
+          </div>
+        </div>
+      </form>
+    </div>
+
+  </div>
+  </div>
+
+  <script src="js/index.js"></script>
+</body>
+
+</html>
