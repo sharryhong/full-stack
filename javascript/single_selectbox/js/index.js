@@ -9,7 +9,7 @@
     var elemText = elemBtnSelect.querySelector('.txt_select')
         // querySelectorAll: return NodeList. non-live객체
         // nodelist중 live객체 : childNodes
-    var isOpen = false; // 트리거 변수. btnClickDone함수에서 참고하고있기 때문에 사라지지않는다. 클로저 
+    var isOpen = false; // 플래그 변수. btnClickDone함수에서 참고하고있기 때문에 사라지지않는다. 클로저 
 
     function addClass(elem, className){ // 인자로 엘리먼트, 클래스명 받음
         var classes = elem.className.split(' ');

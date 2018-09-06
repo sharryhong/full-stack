@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>셀렉트 박스 예제</title>
+  <link rel="stylesheet" href="css/reset.css" />
+  <link rel="stylesheet" href="css/select.css" />
+  <style>
+    .inner_select {
+      display: inline-block;
+      margin-right: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="inner_article">
+
+    <!-- wrap_select -->
+    <h1 class="tit_ui">multi selectBox with ajax example</h1>
+    <div class="wrap_select">
+
+      <form action="">
+        <div id="genderSelect" class="inner_select disable">
+          <span class="btn_select">
+            <a href="javascript:;" class="txt_select">Gender</a>
+            <svg class="ico_arrow" focusable="false" aria-hidden="true"><path d="M7 10 l5 5 5-5z"></path></svg>
+          </span>
+          <div class="layer_select hide">
+            <ul>
+              <li>Gender</li>
+              <li>female</li>
+              <li>male</li>
+            </ul>
+          </div>
+        </div>
+
+        <div id="nameSelect" class="inner_select disable">
+          <span class="btn_select">
+            <a href="javascript:;" class="txt_select">Name</a>
+            <svg class="ico_arrow" focusable="false" aria-hidden="true"><path d="M7 10 l5 5 5-5z"></path></svg>
+          </span>
+          <div class="layer_select hide">
+            <ul>
+
+            </ul>
+          </div>
+        </div>
+
+        <div id="resultImg" class="result_img">
+
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+
+  <script src="js/index.js"></script>
+</body>
+
+</html>
