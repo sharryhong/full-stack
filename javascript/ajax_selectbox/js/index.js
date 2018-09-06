@@ -27,6 +27,12 @@
     }
   }
 
+  function removeEventListenerLists(elems, type, fn) {
+    for (var i = 0, len = elems.length; i < len; i++) {
+      elems[i].removeEventListener(type, fn, false);
+    }
+  }
+
   function ajax(method, url, data, cb) {
       var sendData = data || null;
       var req = new XMLHttpRequest();
@@ -45,7 +51,7 @@
   }
 
   ////// multi selectBox위한 함수
-  function selectBox(context) {
+  function selectBox(context, callback) {
 
       var elemBtnSelect = context.querySelector('.btn_select');
       var elemLayerSelect = context.querySelector('.layer_select');
@@ -66,7 +72,7 @@
           isOpen = false;
       }
 
-      function btnClickDone(e) {
+      function btnClickHandler(e) {
           if (isOpen) { // 열렸으면
               closeLayer();
           } else {
@@ -74,26 +80,45 @@
           }
       }
 
-      elemBtnSelect.addEventListener('click', btnClickDone, false)
-
-      addEventListenerLists(elemItems, 'click', function (e) {
+      function elemItemsClickHandler(e) {
           e.preventDefault();
           elemText.innerText = this.innerText;
-          closeLayer();
-      })
 
-      // 다른쪽 클릭시 닫힘.
-      document.addEventListener('click', function (e) {
+          // 클릭 후 후속 행동
+          callback(this.innerText);
+
+          closeLayer();
+      }
+
+      function docClickHandler(e) {
           e.preventDefault();
           if (context.contains(e.target)) {
               return;
           }
           closeLayer();
-      }, false)
+      }
+
+      elemBtnSelect.addEventListener('click', btnClickHandler, false)
+      // removeEventListener를 해줘야 하는데, btnClickHandler를 넘겨줘야한다. 얼케해야하나?
+
+      // layer items클릭시
+      addEventListenerLists(elemItems, 'click', elemItemsClickHandler)
+
+      // 다른쪽 클릭시 닫힘.
+      document.addEventListener('click', docClickHandler, false)
 
       // 이벤트 해지와 setting된 value값을 찾기 위해
       return{
-
+          // 1. 이벤트 해지
+          unbind: function() {
+              elemBtnSelect.removeEventListener('click', btnClickHandler, false)
+              removeEventListenerLists(elemItems, 'click', elemItemsClickHandler)
+              document.removeEventListener('click', docClickHandler, false)
+          },
+          // 2. change된 value를 get. 실제 dom에 들어간 값
+          getChangeValue: function() {
+              return elemText.innerText;
+          }
       }
   }
 
@@ -101,8 +126,14 @@
   var elemGenderSelect = document.getElementById('genderSelect')
   var elemNameSelect = document.getElementById('nameSelect')
 
+  var elemNameSelectUl = elemNameSelect.querySelector('ul')
+  var elemResultImg = document.getElementById('resultImg')
+
   // selectBox(elemGenderSelect)
   // selectBox(elemNameSelect)
+
+  var nameSelect;
+  var genderSelect;
 
   // ajax함수를 만들자.
   var URL = 'https://randomuser.me/api/?results=10'; // 랜덤하게 유저 10개 가져오는 주소
@@ -130,11 +161,50 @@
           }
           console.log(resultData);
           removeClass(elemGenderSelect, 'disable')
-          selectBox(elemGenderSelect)
+          genderSelect = selectBox(elemGenderSelect, genderSelectDone)
       } else {
           throw new Error('error! responseData is noe exist.');
       }
   }
 
+
+  function genderSelectDone(value) {
+      // nameSelect에 대해 init시켜줘야한다.
+      addClass(elemNameSelect, 'disable')
+      nameSelectInit();
+
+      if(resultData[value]) { // resultData애 쿨락한 값이 있으면.. 즉 male, female일때만
+          // dom은 리페인트 등 하면 성능에 안좋다. li를 한번에 만들어서 넘기는게 가장 좋다.
+          // 배열을 만들어 li를 모두 push한다.
+          var nameListItem = [];
+          for(name in resultData[value]) { // for in문. 앞의 변수에 key값이 담긴다.
+              var itemTag = '<li>' + name + '</li>';
+              nameListItem.push(itemTag);
+          }
+          elemNameSelectUl.innerHTML = nameListItem.join('');
+          removeClass(elemNameSelect, 'disable')
+          nameSelect = selectBox(elemNameSelect, nameSelectDone)
+      }
+  }
+
+  function nameSelectDone() {
+      // 이미지를 가져오자
+      if(genderSelect && nameSelect) {
+          var genderValue = genderSelect.getChangeValue();
+          var nameValue = nameSelect.getChangeValue();
+
+          var url = resultData[genderValue][nameValue];
+          console.log(url);
+
+          elemResultImg.innerHTML = '<img src="' + url + '"/>'
+      }
+  }
+
+  function nameSelectInit() {
+      if(nameSelect) {
+          elemNameSelect.querySelector('.txt_select').innerText = 'Name'
+          nameSelect.unbind(); // 이벤트 해지
+      }
+  }
 
 })()
