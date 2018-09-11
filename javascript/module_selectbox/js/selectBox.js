@@ -1,3 +1,4 @@
+// core와 view를 합치는 부분 
 (function (UI) {
 
   var CoreSelectBox = UI.core.SelectBox;

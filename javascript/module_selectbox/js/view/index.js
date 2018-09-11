@@ -7,8 +7,14 @@
 
     UI.view = UI.view || {};
 
-    function SelectBox(context) {   // context: element
+    function SelectBox(context) {
+        this.context = context;
+        
+        this.elemBtn = context.querySelector('.btn_select');
+        this.elemText = this.elemBtn.querySelector('.txt_select');
+        this.elemLayer = context.querySelector('.layer_select');
 
+        this.isOpen = false;
     }
 
     SelectBox.prototype = {  // 행위
@@ -28,7 +34,7 @@
 
         },
         setSelectedText: function() {
-            
+
         }
     }
 
