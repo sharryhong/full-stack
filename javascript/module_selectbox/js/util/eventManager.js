@@ -1,4 +1,4 @@
-// 이벤트를 효율적으로 관리하는 관리자 
+// 이벤트를 효율적으로 관리하는 관리자
 (function (UI) {
   UI.utils = UI.utils || {};
 
@@ -6,8 +6,10 @@
     this.eventLists = [];
   }
 
+  // 이벤트 등록, 해지.. 해지시 이벤트 등록한 함수(핸들러)를 그대로 넘겨야한다.
+  // 이걸 쉽게 하자. 
   EventManager.prototype = {
-    on: function (target, type, handler) {
+    on: function (target, type, handler) { // 이벤트 등록. 핸들러를 eventLists배열에 넣는다.
 
       if (target && target.length && target[0].addEventListener) {
 

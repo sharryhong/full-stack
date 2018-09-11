@@ -1,76 +1,77 @@
-(function(){
-    'use strict';
+(function (UI) {
+  var _ = UI.utils;
+  var elmNameSelect = document.getElementById('nameSelect');
+  var elmGenderSelect = document.getElementById('genderSelect');
+  var elmResultImg = document.getElementById('resultImg');
+  var resultData = {
+    male: {},
+    female: {}
+  };
+  var REQUEST_URL = 'https://randomuser.me/api/?results=10';
 
-    var selectAge = document.getElementById('selectAge')
-    var selectFood = document.getElementById('selectFood')
+  var nameSelectBox = new UI.SelectBox({
+    context: elmNameSelect,
+    default: 'Name',
+    isDisalbe: true
+  })
 
-    function addClass(elem, className){
-        var classes = elem.className.split(' ');
-        var index = classes.indexOf(className);
-        if(index < 0){
-            classes.push(className);
+  var genderSelectBox = new UI.SelectBox({
+    context: elmGenderSelect,
+    default: 'Gender',
+    isDisalbe: true
+    // 여기에 callback함수를 넣으면 테스트가 어렵다. 
+  })
+
+  var app = (function app(genderSelector, nameSelector) {
+    return { // 싱글톤객체로 리턴
+      ajaxDone: function (responseData) {
+        if (responseData && responseData.results) {
+          var userData = responseData.results;
+          var userLength = userData.length;
+
+          for (var i = 0; i < userLength; i++) {
+            var data = userData[i]; // 캐싱처리 => 시간단축.
+            var gender = data.gender || 'male';
+            var name = data.name.first || 'merlin';
+            var picture = data.picture.large || '';
+
+
+            resultData[gender][name] = picture
+          }
+          console.log(resultData)
+          genderSelector.active();
+
+        } else {
+          throw new Error("no response user Data")
         }
-        elem.className = classes.join(' ')
+      },
+      genderSelectDone: function (value) {
+        nameSelector.inActive();
+        elmResultImg.innerHTML = '';
+        if (resultData[value]) {
+          var nameLists = [];
+          for (var name in resultData[value]) {
+            nameLists.push(name)
+          }
+          nameSelector.renderItemLists(nameLists)
+          nameSelector.active();
+        }
+      },
+      nameSelectDone: function (value) {
+        var genderValue = genderSelector.getSelectedItem();
+        if (resultData[genderValue]) {
+          // alt 값을 모르고 생략
+          var imageTag = '<img src="' + resultData[genderValue][value] + '" alt="">';
+
+          elmResultImg.innerHTML = imageTag
+        }
+      }
     }
+  })(genderSelectBox, nameSelectBox);
 
-    function removeClass(elem, className){
-        var classes = elem.className.split(' ');
-        var index = classes.indexOf(className);
-        if(index >= 0){
-            classes.splice(index, 1);
-        }
-        elem.className = classes.join(' ')
-    }
+  genderSelectBox.registerItemClickCallback(app.genderSelectDone);
+  nameSelectBox.registerItemClickCallback(app.nameSelectDone);
+  // ajax로 데이터 받아오기.
+  _.ajax('GET', REQUEST_URL, null, app.ajaxDone);
 
-    function addEventListenerLists(elems, type, fn){
-        for(var i = 0, len = elems.length; i < len; i++){
-            elems[i].addEventListener(type, fn, false)
-        }
-    }
-
-    function selectBox(el) {
-        var elemBtnSelect = el.querySelector('.btn_select')
-        var elemLayerSelect = el.querySelector('.layer_select')
-        var elemItems = elemLayerSelect.querySelectorAll('li')
-        var elemText = elemBtnSelect.querySelector('.txt_select')
-        var isOpen = false;
-
-        function closeLayer(){
-            addClass(elemLayerSelect, 'hide');
-            removeClass(elemBtnSelect, 'open_select')
-            isOpen = false
-        }
-
-        function btnClickDone(e) {
-            if(isOpen) {
-                closeLayer()
-            } else {
-                openLayer()
-            }
-        }
-
-        function openLayer(){
-            removeClass(elemLayerSelect, 'hide');
-            addClass(elemBtnSelect, 'open_select')
-            isOpen = true
-        }
-
-        elemBtnSelect.addEventListener('click', btnClickDone, false)
-
-        addEventListenerLists(elemItems, 'click', function(){
-            elemText.innerText = this.innerText
-            closeLayer()
-        })
-
-        document.addEventListener('click', function(e){
-            e.preventDefault();
-            if(el.contains(e.target)) return;
-            closeLayer()
-        }, false)
-    }
-
-    selectBox(selectAge)
-    selectBox(selectFood)
-
-
-})()
+})(window.UI = window.UI || {})
