@@ -34,3 +34,41 @@ $yarn start
  `ReactDOM.render(<App />, document.getElementById('root'));`
   : App컴포넌트를 html의 id가 root인 엘리먼트에 출력한다.
 - 리엑트네이티브는 리엑트를 모바일 앱에 render해줌
+
+#### Component 생성
+- Movie.js
+
+```
+import React, { Component } from 'react';
+import './Movie.css';
+
+class Movie extends Component {  // 컴포넌트 생성
+    render() {                   // 렌더(필수)
+        return (
+            <h1>Hello~!!</h1>
+        )
+    }
+}
+
+export default Movie;
+```
+
+- App.js에서 Movie컴포넌트 사용
+```
+import React, { Component } from 'react';
+import './App.css';
+import Movie from './Movie';
+
+class App extends Component {
+  render() {
+    return (
+      <div className="App">
+        <Movie />
+      </div>
+    );
+  }
+}
+
+export default App;
+
+```
