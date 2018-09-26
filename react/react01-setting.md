@@ -1,4 +1,4 @@
-# React! 웹서비스 만들기 우선 기초닷~!
+# React! 웹서비스 만들기 우선 기초~!
 
 ### 필요 Tool
 **Webpack**
@@ -24,5 +24,13 @@ $create-react-app my-app         // 리엑트 앱 만들기
 ```
 $yarn start
 ```
-- react-scripts를 실행시킨다. 
+- react-scripts를 실행시킨다.
 - http://localhost:3000 확인!
+
+#### React, ReactDOM, reactNative
+- 리엑트는 UI라이브러리
+- 리엑트돔은 리엑트를 웹사이트에 출력(render)하는걸 도와주는 모델
+ - 리엑트돔은 한개의 컴포넌트를 reander
+ `ReactDOM.render(<App />, document.getElementById('root'));`
+  : App컴포넌트를 html의 id가 root인 엘리먼트에 출력한다.
+- 리엑트네이티브는 리엑트를 모바일 앱에 render해줌
