@@ -4,8 +4,20 @@ import './Movie.css';
 class Movie extends Component {
     render() {
         return (
-            <h1>Hello~!!</h1>
+            <div>
+                <h2>{this.props.title}</h2>
+                <MoviePoster poster={this.props.poster}/>
+            </div>
         )
+    }
+}
+
+class MoviePoster extends Component {
+    render() {
+        return (
+            <img src={this.props.poster} />
+        )
+
     }
 }
 

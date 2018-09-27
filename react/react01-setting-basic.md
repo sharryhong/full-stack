@@ -27,7 +27,7 @@ $yarn start
 - react-scripts를 실행시킨다.
 - http://localhost:3000 확인!
 
-#### React, ReactDOM, reactNative
+## React, ReactDOM, reactNative
 - 리엑트는 UI라이브러리
 - 리엑트돔은 리엑트를 웹사이트에 출력(render)하는걸 도와주는 모델
  - 리엑트돔은 한개의 컴포넌트를 reander
@@ -35,7 +35,7 @@ $yarn start
   : App컴포넌트를 html의 id가 root인 엘리먼트에 출력한다.
 - 리엑트네이티브는 리엑트를 모바일 앱에 render해줌
 
-#### Component 생성
+## Component 생성
 - Movie.js
 
 ```
@@ -44,8 +44,8 @@ import './Movie.css';
 
 class Movie extends Component {  // 컴포넌트 생성
     render() {                   // 렌더(필수)
-        return (
-            <h1>Hello~!!</h1>
+        return (                // return
+            <h1>Hello~!!</h1>   // JSX
         )
     }
 }
@@ -72,3 +72,6 @@ class App extends Component {
 export default App;
 
 ```
+
+## props
+- 부모컴포넌트가 자식컴포넌트에게 props를 통해 정보를 준다. 
