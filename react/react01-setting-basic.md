@@ -73,5 +73,15 @@ export default App;
 
 ```
 
-## props
-- 부모컴포넌트가 자식컴포넌트에게 props를 통해 정보를 준다. 
+## Component Lifecycle 제공 functions
+#### Render시
+1. componentWillMount(): ex) api에 작업 요청
+2. render()
+3. componentDidMount(): ex) : 데이터 관련 작업
+
+#### Update시
+1. componentWillReceiveProps(): 컴포넌트가 새로운 props를 받았다.
+2. shouldComponentUpdate(): 기존의 props와 새로운 props를 비교해 다르다면 update = true
+3. componentWillUpdate(): update할 것이다. ex) spinner (돌아가는 아이콘)
+4. render()
+5. componentDidUpdate(): ex) spinner 숨기기
