@@ -2,7 +2,7 @@
 
 #### react movie_app에서 사용 예 (https://github.com/sharryhong/full-stack/blob/master/react/movie_app/src/App.js)
 
-- movies 리스트를 그대로 두고, 추가 시킨다. 
+- movies 리스트를 그대로 두고, 추가 시킨다.
 ```
 class App extends Component {
 
@@ -44,6 +44,5 @@ class App extends Component {
   }
 }
 ```
--
 
-### 참고 : https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/Spread_syntax
+#### 참고 : https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/Spread_syntax

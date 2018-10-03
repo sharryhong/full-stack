@@ -145,7 +145,7 @@ this.setState({
     ]
 })
 ```
-- 위 코드에서 es6문법: spread문법
+- 위 코드에서 es6문법: spread문법 (https://github.com/sharryhong/full-stack/blob/master/javascript/es6/es6-spread.md)
 
 #### State 사용 예
 - infinite scroll: 페이지 로딩시 스크롤을 아래로 내릴 수록 더 많은 영화가 로딩되는 효과
