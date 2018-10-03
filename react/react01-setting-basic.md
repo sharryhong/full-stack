@@ -85,3 +85,42 @@ export default App;
 3. componentWillUpdate(): update할 것이다. ex) spinner (돌아가는 아이콘)
 4. render()
 5. componentDidUpdate(): ex) spinner 숨기기
+
+## Data flow with Props, 유효성 검사
+#### App.js
+- 각 children component에게 데이터 전달
+- 아래 코드에서는 변수 movies 배열 데이터를 title, poster라는 props로 Movie 컴포넌트에 전달한다.
+```
+class App extends Component {
+  render() {
+    return (
+      <div className="App">
+        {movies.map((movie, i) => {  // movies 배열 데이터
+            return <Movie title={movie.title} poster={movie.poster} key={i}/>
+        })}
+      </div>
+    );
+  }
+}
+
+```
+#### Movie.js
+- Movie 컴포넌트에서 부모 컴포넌트로 부터 받은 props를 받아 사용한다
+```
+class Movie extends Component {
+    // 유효성검사
+    static propTypes = {
+        title: PropTypes.string.isRequired, // isRequired: 필수
+        poster: PropTypes.string.isRequired
+    }
+    render() {
+        // console.log(this.props);
+        return (
+            <div>
+                <h2>{this.props.title}</h2>
+                <MoviePoster poster={this.props.poster}/>
+            </div>
+        )
+    }
+}
+```
