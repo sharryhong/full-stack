@@ -107,6 +107,8 @@ class App extends Component {
 #### Movie.js
 - Movie 컴포넌트에서 부모 컴포넌트로 부터 받은 props를 받아 사용한다
 ```
+import PropTypes from 'prop-types';
+...
 class Movie extends Component {
     // 유효성검사
     static propTypes = {
@@ -124,3 +126,9 @@ class Movie extends Component {
     }
 }
 ```
+
+## State
+- React Component 안에 있는 Object
+#### 규칙
+- state가 바뀔 때 마다, 컴포넌트는 다시 render한다. (새로운 state와 함께)
+- this.state.greeting = 'xxx'; 처럼 state는 직접 변경은 할 수 없다. state를 업데이트 하려면 setState를 사용해야한다.

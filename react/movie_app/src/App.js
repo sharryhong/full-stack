@@ -34,19 +34,34 @@ componentWillReceiveProps(): 컴포넌트가 새로운 props를 받았다.
 **/
 
 class App extends Component {
-  componentWillMount() {
-      console.log('1.componentWillMount: api에 작업 요청');
+  // componentWillMount() {
+  //     console.log('1.componentWillMount: api에 작업 요청');
+  // }
+  //
+  // componentDidMount() {
+  //     console.log("3.componentDidMount: 데이터 관련 작업 ");
+  // }
+
+  state = {
+      greeting: "Hello!"
   }
 
-  componentDidMount() {
-      console.log("3.componentDidMount: 데이터 관련 작업 ");
+  componentDidMount() { // 컴포넌트가 mount하면 state 업데이트
+      setTimeout(() => {
+          // this.state.greeting = 'xxx'; 처럼 state는 직접 변경은 할 수 없다. state를 업데이트 하려면 setState를 사용해야한다.
+          // setState로 state가 업데이트할 때마다 render된다. 
+          this.setState({
+              greeting: "Hello again~!"
+          })
+      }, 3000)
   }
 
   render() {
-      console.log("2.render");
+      // console.log("2.render");
      // 각 children component에게 데이터 전달
     return (
       <div className="App">
+        {this.state.greeting}
         {movies.map((movie, i) => {
             return <Movie title={movie.title} poster={movie.poster} key={i}/>
         })}
