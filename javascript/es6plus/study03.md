@@ -1,4 +1,4 @@
-## Interface 인터페이스
+\## Interface 인터페이스
 1. 사양에 맞는 값과 연결된 속성키의 세트
 2. 어떤 Object라도 인터페이스의 정의를 충족시킬 수 있다.
 3. 하나의 Object는 여러개의 인터페이스를 충족시킬 수 있다.
@@ -203,7 +203,7 @@ const generator = function*(max) {
     yield cursor * cursor; // yield는 value에 해당한다.
     cursor++;
   }
-  // done이 true 지점 
+  // done이 true 지점
 }
 ```
 - 리턴이 없다.

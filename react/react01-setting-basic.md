@@ -127,8 +127,25 @@ class Movie extends Component {
 }
 ```
 
-## State
+## State, setState
 - React Component 안에 있는 Object
+
 #### 규칙
 - state가 바뀔 때 마다, 컴포넌트는 다시 render한다. (새로운 state와 함께)
-- this.state.greeting = 'xxx'; 처럼 state는 직접 변경은 할 수 없다. state를 업데이트 하려면 setState를 사용해야한다.
+- this.state.movies = 'xxx'; 처럼 state는 직접 변경은 할 수 없다. state를 업데이트 하려면 setState를 사용해야한다.
+
+```
+this.setState({
+    movies: [
+        {
+            title: "시카리오: 데이 오브 솔다도",
+            poster: "http://photo.jtbc.joins.com/news/2018/05/07/20180507173210620.jpg"
+        },
+        ...this.state.movies
+    ]
+})
+```
+- 위 코드에서 es6문법: spread문법
+
+#### State 사용 예
+- infinite scroll: 페이지 로딩시 스크롤을 아래로 내릴 수록 더 많은 영화가 로딩되는 효과
