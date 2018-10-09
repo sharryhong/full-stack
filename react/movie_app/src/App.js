@@ -49,12 +49,7 @@ class App extends Component {
     render() {
         // console.log("2.render");
         // 각 children component에게 데이터 전달
-        return ( <
-            div className = "App" > {
-                this.state.movies ? this._renderMovies() : 'Loading...'
-            } <
-            /div>
-        );
+        return (<div className = "App"> {this.state.movies ? this._renderMovies() : 'Loading...'} </div>);
     }
 }
 
