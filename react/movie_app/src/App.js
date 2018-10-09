@@ -1,4 +1,6 @@
-import React, { Component } from 'react';
+import React, {
+    Component
+} from 'react';
 import './App.css';
 import Movie from './Movie';
 
@@ -14,65 +16,46 @@ componentWillReceiveProps(): 컴포넌트가 새로운 props를 받았다.
 **/
 
 class App extends Component {
-  // componentWillMount() {
-  //     console.log('1.componentWillMount: api에 작업 요청');
-  // }
-  //
-  // componentDidMount() {
-  //     console.log("3.componentDidMount: 데이터 관련 작업 ");
-  // }
 
-  state = {
+    state = {}
 
-  }
+    componentDidMount() {
+        this._getMovies()
+    }
 
-  componentDidMount() { // 컴포넌트가 mount하면 state 업데이트
-      setTimeout(() => {
-          // this.state.greeting = 'xxx'; 처럼 state는 직접 변경은 할 수 없다. state를 업데이트 하려면 setState를 사용해야한다.
-          // setState로 state가 업데이트할 때마다 render된다.
-          this.setState({
-              movies: [
-                  {
-                      title: "반지의 제왕",
-                      poster: "https://t1.daumcdn.net/cfile/tistory/225BDC4C552B71922E"
-                  },
-                  {
-                      title: "시카리오: 데이 오브 솔다도",
-                      poster: "http://photo.jtbc.joins.com/news/2018/05/07/20180507173210620.jpg"
-                  },
-                  {
-                      title: "매트릭스",
-                      poster: "https://t1.daumcdn.net/cfile/tistory/2029EC0E4A6ADEBD97"
-                  },
-                  {
-                      title: "스타워즈",
-                      poster: "http://www.gametoc.co.kr/news/photo/201512/36031_67348_4510.jpg"
-                  },
-                  {
-                      title: "미션임파서블",
-                      poster: "https://pbs.twimg.com/media/CLp5JWCUcAAEhIk.jpg"
-                  }
-              ]
-          })
-      }, 1000)
-  }
+    _getMovies = async () => {
+        const movies = await this._callApi()  // this._callApi() 수행을 기다림. return 값을 movies 변수에
+        this.setState({
+            movies  // 위 movies변수 값을 state의 movies에
+        })
+    }
 
-  _renderMovies = () => { // 언더스코어 : 만든 함수라고 표시하기 위해
-      const movies = this.state.movies.map((movie, i) => {
-          return <Movie title={movie.title} poster={movie.poster} key={i}/>
-      })
-      return movies
-  }
+    _callApi = () => {
+        return fetch('https://yts.ag/api/v2/list_movies.json?sort_by=rating')
+        .then(response => response.json()) // response body: readable stream -> json으로 변환
+        .then(json => {                    // 원하는 json형태의 데이터 얻음
+            return json.data.movies
+        })
+        .catch(err => console.log(err))
+    }
 
-  render() {
-      // console.log("2.render");
-     // 각 children component에게 데이터 전달
-    return (
-      <div className="App">
-        {this.state.movies ? this._renderMovies() : 'Loading...'}
-      </div>
-    );
-  }
+    _renderMovies = () => { // 언더스코어 : 만든 함수라고 표시하기 위해
+        const movies = this.state.movies.map((movie) => {
+            return <Movie title={movie.title} poster={movie.medium_cover_image} key = {movie.id} />
+        })
+        return movies
+    }
+
+    render() {
+        // console.log("2.render");
+        // 각 children component에게 데이터 전달
+        return ( <
+            div className = "App" > {
+                this.state.movies ? this._renderMovies() : 'Loading...'
+            } <
+            /div>
+        );
+    }
 }
 
 export default App;

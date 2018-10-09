@@ -19,7 +19,6 @@ class MoviePoster extends Component {
         poster: PropTypes.string.isRequired
     }
     render() {
-        // console.log(this.props);
         return (
             <img src={this.props.poster} alt=""/>
         )
