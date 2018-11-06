@@ -52,3 +52,4 @@ list() {
 ```
 
 ##### 여기서 궁금! `Promise.resolve()` 와 `new Promise()` 사용시 차이점은?
+- [관련 블로그 글](http://han41858.tistory.com/11) : 요약) ajax 콜을 요청하거나 DB에서 데이터를 가져올 때와 같이 async 함수를 감싸는 경우는 new Promise()를 사용하면 됩니다.
