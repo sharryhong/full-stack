@@ -7,7 +7,7 @@
 
 - [ES6 문법정리 바로가기](https://jsdev.kr/t/es6/2944)
 
-
+<br/><br/>
 
 >  models/HistoryModel.js
 
@@ -35,6 +35,8 @@ add(keyword = '') { // 추가될 검색어 받기
   this.data = [{keyword, date}, ...this.data]
 }
 ```
+
+<br/><br/>
 
 >  models/KeywordModel.js
 
