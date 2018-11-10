@@ -60,3 +60,18 @@ list() {
 > views/FormView.js
 
 #### [Object.create()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Object/create) : 상속할때 사용. 지정된 프로토타입 개체와 속성을 갖는 새로운 개체를 반환한다.
+
+> views/TabView.js
+
+####[Array.from()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/from)
+
+```
+TabView.setActiveTab = function(tabName) {
+    Array.from(this.el.querySelectorAll('li')).forEach(li => {
+        li.className = li.innerHTML === tabName ? 'active' : ''
+    })
+}
+```
+
+- 유사배열객체인 `this.el.querySelectorAll('li')` 각 인덱스 값을 돌며
+- 매개변수 tabName과 li의 innerHTML값이 동일하다면 class="active"를 준다.

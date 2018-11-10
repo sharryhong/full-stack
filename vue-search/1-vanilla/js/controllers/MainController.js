@@ -1,5 +1,6 @@
 import FormView from '../views/FormView.js'
 import ResultView from '../views/ResultView.js'
+import TabView from '../views/TabView.js'
 
 import SearchModel from '../models/SearchModel.js'
 
@@ -12,6 +13,21 @@ export default {
             .on('@reset', e => this.onResetForm())
 
         ResultView.setup(document.querySelector('#search-result'))
+
+        this.selectedTab = '추천 검색어'
+        TabView.setup(document.querySelector('#tabs'))
+            .on('@change', e => this.onChangeTab(e.detail.tabName))
+
+        this.renderView()
+    },
+
+    renderView() {
+        TabView.setActiveTab(this.selectedTab)
+        // ResultView.hide()
+    },
+
+    onChangeTab(tabName) {
+        this.selectedTab = tabName
     },
 
     onSubmit(input) {
