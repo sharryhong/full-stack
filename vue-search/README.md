@@ -61,6 +61,8 @@ list() {
 
 #### [Object.create()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Object/create) : 상속할때 사용. 지정된 프로토타입 개체와 속성을 갖는 새로운 개체를 반환한다.
 
+<br/>
+
 > views/TabView.js
 
 #### [Array.from()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/from)

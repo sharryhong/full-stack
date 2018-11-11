@@ -8,6 +8,9 @@ ul {
 img {
   width: 100%;
 }
+a {
+    text-decoration: none;
+}
 
 .container {
   margin: 0 15px 0 15px;
@@ -53,7 +56,6 @@ ul.tabs {
 .tabs li a {
     display: block;
     padding: 15px;
-    text-decoration: none;
 }
 .list li {
   box-sizing: border-box;
@@ -61,6 +63,7 @@ ul.tabs {
   padding: 15px;
   border-bottom: 1px solid #ccc;
   position: relative;
+  cursor: pointer;
 }
 .list li:last-child {
   border-bottom: none;
