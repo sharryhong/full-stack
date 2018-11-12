@@ -15,16 +15,21 @@
 
 #### [v-if](https://kr.vuejs.org/v2/guide/conditional.html#v-if)
 - true면 엘리먼트 표시
+- 예) `v-if="selectedTab === tabs[0]"`
 
 #### [v-on](https://kr.vuejs.org/v2/guide/events.html)
 - 이벤트 핸들링 (DOM에서 일어나는 이벤트를 리슨)
 - `v-on:submit.prevent="onSubmit"` : `event.preventDefault()` 역할
+- `v-on:click.stop="onRemoveHistory(item)"` : `event.stopPropagation()` 역할 (이벤트 전파 방지)
+
+#### [v-for](https://kr.vuejs.org/v2/guide/list.html)
+- 예) `v-for="(item, index) in keywords"`
 
 ### Vue instance 인자들
 - `el` : vue 인스턴스가 html의 어느부분에 마운트될 것 인지 설정
 - `data`
 - `created` : vue 인스턴스가 생성될 때 실행 ([인스턴스 라이프사이클참고](https://kr.vuejs.org/v2/guide/instance.html#%EB%9D%BC%EC%9D%B4%ED%94%84%EC%82%AC%EC%9D%B4%ED%81%B4-%EB%8B%A4%EC%9D%B4%EC%96%B4%EA%B7%B8%EB%9E%A8))
-- `methods` : 메서드들 
+- `methods` : 메서드들
 
 ```
 // vue instance
