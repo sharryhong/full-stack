@@ -1,5 +1,10 @@
 ## [인프런강의-Vuejs](https://www.inflearn.com/course/%EC%88%9C%EC%88%98js-vuejs-%EA%B0%9C%EB%B0%9C-%EA%B0%95%EC%A2%8C/)
 
+### Vue.js사용의 장점
+- 코드의 간결함
+- 데이터 변경에 따라 DOM이 처리(Vue.js가 담당)되므로 데이터 처리에 집중
+- 이벤트처리도 간단하다.
+
 ### 디렉티브
 #### [v-model](https://kr.vuejs.org/v2/guide/forms.html)
 - 양방향 데이터 바인딩 지원
