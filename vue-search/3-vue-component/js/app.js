@@ -3,6 +3,9 @@ import KeywordModel from './models/KeywordModel.js'
 import HistoryModel from './models/HistoryModel.js'
 
 import FormComponent from './Components/FormComponent.js'
+import ResultComponent from './Components/ResultComponent.js'
+import ListComponent from './Components/ListComponent.js'
+import TabComponent from './Components/TabComponent.js'
 
 // vue instance
 new Vue({       // 인자들 el, data
@@ -18,7 +21,10 @@ new Vue({       // 인자들 el, data
         historyKeywords: []  // 최근 검색
     },
     components: {
-        'search-form': FormComponent
+        'search-form': FormComponent,
+        'search-result': ResultComponent,
+        'list': ListComponent,
+        'tabs': TabComponent
     },
     created() { // vue 인스턴스가 생성될 때 실행
         this.selectedTab = this.tabs[0]
@@ -58,8 +64,8 @@ new Vue({       // 인자들 el, data
                 this.keywords = data
             })
         },
-        // 추천 검색어 클릭시
-        onClickKeyword(keyword) {
+        // 검색어 클릭시
+        onClickList(keyword) {
             this.query = keyword
             this.search()
         },
@@ -70,7 +76,7 @@ new Vue({       // 인자들 el, data
             })
         },
         // 최근 검색에서 삭제
-        onRemoveHistory(keyword) {
+        onRemoveList(keyword) {
             // this.historyKeywords = HistoryModel.remove(keyword)
             HistoryModel.remove(keyword)
             this.fetchHistory()

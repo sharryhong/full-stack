@@ -115,3 +115,7 @@ form {
   width: 30%;
   height: 30%;
 }
+
+[v-cloak] {
+    display: none;
+}

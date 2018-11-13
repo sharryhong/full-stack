@@ -47,7 +47,7 @@ export default {
 ```
 // 컴포넌트 사용시
 <search-form v-bind:value="query"
-    v-on:@submit="onSubmit"  // @submit 이벤트 발생시 부모컴포넌트의 onSubmit메서드 실행 
+    v-on:@submit="onSubmit"  // @submit 이벤트 발생시 부모컴포넌트의 onSubmit메서드 실행
     v-on:@reset="onReset"></search-form>
 
 // child component
@@ -58,4 +58,36 @@ onReset() {
     this.inputValue = ''
     this.$emit('@reset')
 },
+```
+
+#### watch
+
+```
+watch: { // view model을 감시하다가 값이 변경되면 행동하는 함수
+    value(newVal, oldVal) {   // value 값 감시. 값이 변경되면 이 함수 실행. 파라미터로 new, old value
+        this.inputValue = newVal
+    }
+}
+```
+
+#### computed
+
+- 사용시
+
+```
+<span v-if="keywordType" class="number">{{index + 1}}</span> // this.type === 'keywords'
+<span v-if="historyType" class="date">{{item.date}}</span>   // this.type === 'history'
+```
+
+- 선언시
+
+```
+computed: {
+    keywordType() {
+        return this.type === 'keywords'
+    },
+    historyType() {
+        return this.type === 'history'
+    }
+}
 ```
