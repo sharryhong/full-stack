@@ -37,7 +37,7 @@ export default {
         }
     },
     created() {
-        // this.rPath = this.$route.query.rPath || '/'
+        this.rPath = this.$route.query.rPath || '/'
     },
     methods: {
         onSubmit() {

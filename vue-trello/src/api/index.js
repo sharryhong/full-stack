@@ -15,11 +15,10 @@ const request = (method, url, data) => {
         url: DOMAIN + url,
         data
       }).then(result => {
-          console.log("!!");
           return result.data // body data넘겨주기
       }).catch(result => {
           const {status} = result.response
-          // if(status === UNAUTHORIZED) return onUnauthorized()
+          if(status === UNAUTHORIZED) return onUnauthorized()
           throw result.response
       })
 }
