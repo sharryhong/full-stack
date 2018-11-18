@@ -14,16 +14,31 @@ const request = (method, url, data) => {
         method,
         url: DOMAIN + url,
         data
-    }).then(result => result.data) // body data넘겨주기
-      .catch(result => {
+      }).then(result => {
+          console.log("!!");
+          return result.data // body data넘겨주기
+      }).catch(result => {
           const {status} = result.response
-          if(status === UNAUTHORIZED) return onUnauthorized()
-          throw Error(result)
+          // if(status === UNAUTHORIZED) return onUnauthorized()
+          throw result.response
       })
 }
 
+// axios호출시 header값에 token값 전달
+export const setAuthInHeader = token => {
+    axios.defaults.headers.common['Authorization'] = token ? `Bearer ${token}` : null
+}
+
+// 보드
 export const board = {
     fetch() {
         return request('get', '/boards')
+    }
+}
+
+// 로그인 인증
+export const auth = {
+    login(email, password) {
+        return request('post', '/login', {email, password})
     }
 }
