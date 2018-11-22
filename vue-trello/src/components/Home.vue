@@ -2,7 +2,7 @@
     <div>
         <div class="home-title">Personal Boards</div>
         <div class="board-list" ref="boardList">
-            <div class="board-item" v-for="b in boards" :key="b.id" :data-bgcolor="b.bgColor">
+            <div class="board-item" v-for="b in boards" :key="b.id" :data-bgcolor="b.bgColor" ref="boardItem">
                 <router-link :to="`/b/${b.id}`">
                     <div class="board-item-title">{{b.title}}</div>
                 </router-link>
@@ -13,26 +13,35 @@
                 </a>
             </div>
         </div>
+        <AddBoard v-if="isAddBoard" @close="isAddBoard=false" @submit="onAddBoard"/>
     </div>
 </template>
 
 <script>
 import {board} from '../api'
+import AddBoard from './AddBoard.vue'
 
 export default {
     data() {
         return {
             loading: false,
             boards: [],
-            error: ''
+            error: '',
+            isAddBoard: false
         }
+    },
+    components: {
+        AddBoard
     },
     created() {
         this.fetchData()
     },
     updated() { // created다음에 호출, 데이터객체에 변화가 감지되면 호출됨
-        Array.from(document.querySelectorAll('.board-item')).forEach(el => {
-          el.style.backgroundColor = el.dataset.bgcolor || '#ddd'
+        // Array.from(document.querySelectorAll('.board-item')).forEach(el => {
+        //   el.style.backgroundColor = el.dataset.bgcolor || '#ddd'
+        // })
+        this.$refs.boardItem.forEach( el => {
+            el.style.backgroundColor = el.dataset.bgcolor
         })
     },
     methods: {
@@ -42,11 +51,20 @@ export default {
                 .then(data => {
                     this.boards = data.list
                 })
-                .finally(() => {
+                .finally( _ => {
                     this.loading = false
                 })
+        },
+        addBoard() {
+            this.isAddBoard = true
+        },
+        onAddBoard(title) {
+            board.create(title)
+                .then(() => {
+                    this.fetchData()
+                })
         }
-    },
+    }
 
 }
 </script>

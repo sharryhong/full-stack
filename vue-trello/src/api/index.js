@@ -5,8 +5,9 @@ import router from '../router'
 const DOMAIN = 'http://localhost:3000'
 
 const UNAUTHORIZED = 401
-const onUnauthorized = () => { // 401에러시 처리해주는 함수
+const onUnauthorized = (err) => { // 401에러시 처리해주는 함수
     router.push('/login')
+    throw err
 }
 
 const request = (method, url, data) => {
@@ -18,8 +19,9 @@ const request = (method, url, data) => {
           return result.data // body data넘겨주기
       }).catch(result => {
           const {status} = result.response
-          if(status === UNAUTHORIZED) return onUnauthorized()
-          throw result.response
+          // console.log(result.response);
+          if(status === UNAUTHORIZED) return onUnauthorized(result)
+          throw result
       })
 }
 
@@ -32,6 +34,9 @@ export const setAuthInHeader = token => {
 export const board = {
     fetch() {
         return request('get', '/boards')
+    },
+    create(title) {
+        return request('post', '/boards', {title})
     }
 }
 
