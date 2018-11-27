@@ -4,7 +4,7 @@
       <h2>
         Create new board
         <a href="" class="modal-default-button"
-          @click.prevent="close">&times;</a>
+          @click.prevent="SET_IS_ADD_BOARD(false)">&times;</a>
       </h2>
     </div>
     <div slot="body">
@@ -23,6 +23,8 @@
 
 <script>
 import Modal from './Modal.vue'
+import {mapMutations} from 'vuex'
+
 export default {
   components: {
     Modal
@@ -42,11 +44,11 @@ export default {
     this.$refs.input.focus()
   },
   methods: {
-    close() {
-      this.$emit('close')
-    },
+    ...mapMutations([
+      'SET_IS_ADD_BOARD'
+    ]),
     addBoard() {
-      this.$emit('close')
+      this.SET_IS_ADD_BOARD(false)
       this.$emit('submit', this.input)
     }
   }
