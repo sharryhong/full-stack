@@ -5,17 +5,29 @@
                 {{data.title}}
             </div>
         </div>
-        <div>
-            <AddCard />
+        <div class="card-list">
+          <CardItem v-for="card in data.cards" :key="card.id" :data="card" />
+        </div>
+        <div v-if="isAddCard">
+            <AddCard :list-id="data.id" @close="isAddCard=false" />
+        </div>
+        <div v-else>
+            <a href="" class="add-card-btn" @click.prevent="isAddCard=true">&plus; Add a Card..</a>
         </div>
     </div>
 </template>
 
 <script>
 import AddCard from './AddCard.vue'
+import CardItem from './CardItem.vue'
 export default {
-  components: {AddCard},
-  props: ['data']
+  components: {AddCard, CardItem},
+  props: ['data'],
+  data() {
+      return {
+          isAddCard: false
+      }
+  }
 }
 </script>
 

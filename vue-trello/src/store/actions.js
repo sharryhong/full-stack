@@ -20,11 +20,23 @@ const actions = {
                 commit('SET_BOARD', data.item)
             })
     },
-    LOGIN({commit}, {email, password}) {
+    LOGIN({commit}, {email, password}) { // commit : context 객체의 속성
         return api.auth.login(email, password)
             .then(({accessToken}) => {
                 commit('LOGIN', accessToken)
             })
+    },
+    ADD_CARD(context, {title, listId, pos}) {
+      return api.card.create(title, listId, pos)
+        .then(() => {
+          context.dispatch('FETCH_BOARD', {id: context.state.board.id})
+        })
+    },
+    FETCH_CARD({commit}, id) {
+      return api.card.fetch(id)
+        .then(data => {
+          commit('SET_CARD', data.item)
+        })
     }
 }
 
