@@ -53,10 +53,11 @@ export default {
     ]),
     addBoard() {
       this.SET_IS_ADD_BOARD(false)
-      // 상위 컴포넌트인 Home.vue에 이벤트를 전달(emit)하지 않고 vuex의 actions사용 
-      this.ADD_BOARD({title: this.input}).then(() => {
-          this.FETCH_BOARDS()
-      })
+      // 상위 컴포넌트인 Home.vue에 이벤트를 전달(emit)하지 않고 vuex의 actions사용
+      this.ADD_BOARD({title: this.input})
+        .then(({id}) => {
+            this.$router.push(`/b/${id}`) // 보드 생성 뒤 해당 보드로 이동
+        })
     }
   }
 }

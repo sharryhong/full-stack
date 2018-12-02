@@ -32,8 +32,9 @@ export const setAuthInHeader = token => {
 
 // 보드
 export const board = {
-    fetch() {
-        return request('get', '/boards')
+    fetch(id) {
+        // id가 있으면 선택한 보드, 없으면 보드들 목록
+        return id ? request('get', `/boards/${id}`) : request('get', '/boards')
     },
     create(title) {
         return request('post', '/boards', {title})
