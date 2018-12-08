@@ -25,3 +25,57 @@ const router = new VueRouter({
   ]
 })
 ```
+
+### vuex를 사용하는 패턴
+1. api/index.js에서 api를 만든다.
+2. actions에서 액션함수로 등록한다.
+3. 필요시 mutation과 state를 만든다.
+
+예) card를 수정(update)
+1. api/index.js에서 백엔드 api에 따라 만든다.
+- 백엔드 api :
+```
+Edit card
+curl -X PUT localhost:3000/cards/1 -H 'Authorization: Bearer token' -d "title=string&description=string&listId=number&pos=number"
+```
+- api/index.js
+```
+export const card = {
+  update(id, payload) {
+    return request('put', `/cards/${id}`, payload)
+  }
+}
+```
+
+2. actions.js에서 액션함수로 등록
+```
+UPDATE_CARD(context, {id, title, description, pos, listId}) {
+  return api.card.update(id, {title, description, pos, listId})
+    .then(() => { // 카드 수정 후 보드 새로 불러오기
+      context.dispatch('FETCH_BOARD', {id: context.state.board.id})
+    })
+}
+```
+
+3. 사용) 카드 title 수정하기
+- Card.vue
+```
+<template>
+  <input class="form-control" type="text"
+    :value="card.title" :readonly="!toggleTitle"
+    @click="toggleTitle=true" @blur="onBlurTitle" ref="inputTitle">
+</template>
+<script>
+methods: {
+  ...mapActions([
+    'UPDATE_CARD'
+  ]),
+  onBlurTitle() { // title input 벗어날 때 실행
+    this.toggleTitle = false;
+    const title = this.$refs.inputTitle.value.trim()
+    if(!title) return
+    this.UPDATE_CARD({id: this.card.id, title})
+      .then(() => this.fetchCard()) // card update후 다시 불러오기
+  }
+</script>
+```

@@ -37,6 +37,12 @@ const actions = {
         .then(data => {
           commit('SET_CARD', data.item)
         })
+    },
+    UPDATE_CARD(context, {id, title, description, pos, listId}) {
+      return api.card.update(id, {title, description, pos, listId})
+        .then(() => { // 카드 수정 후 보드 새로 불러오기
+          context.dispatch('FETCH_BOARD', {id: context.state.board.id})
+        })
     }
 }
 
