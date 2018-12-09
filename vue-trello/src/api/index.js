@@ -5,9 +5,15 @@ import router from '../router'
 const DOMAIN = 'http://localhost:3000'
 
 const UNAUTHORIZED = 401
+const NOTFOUND = 404
+
 const onUnauthorized = (err) => { // 401에러시 처리해주는 함수
     router.push('/login')
     throw err
+}
+
+const onNotfound = () => {
+  router.push('/')
 }
 
 const request = (method, url, data) => {
@@ -21,6 +27,7 @@ const request = (method, url, data) => {
           const {status} = result.response
           // console.log(result.response);
           if(status === UNAUTHORIZED) return onUnauthorized(result)
+          if(status === NOTFOUND) return onNotfound()
           throw result
       })
 }
@@ -38,6 +45,9 @@ export const board = {
     },
     create(title) {
         return request('post', '/boards', {title})
+    },
+    destroy(id) {
+      return request('delete', `/boards/${id}`)
     }
 }
 
@@ -57,5 +67,8 @@ export const card = {
   },
   update(id, payload) {
     return request('put', `/cards/${id}`, payload)
+  },
+  destroy(id) {
+    return request('delete', `/cards/${id}`)
   }
 }

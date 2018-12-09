@@ -40,6 +40,7 @@ export default {
     },
     created() {
         this.fetchData()
+        this.SET_THEME()
     },
     updated() { // created다음에 호출, 데이터객체에 변화가 감지되면 호출됨
         // Array.from(document.querySelectorAll('.board-item')).forEach(el => {
@@ -51,7 +52,8 @@ export default {
     },
     methods: {
         ...mapMutations([
-            'SET_IS_ADD_BOARD'
+            'SET_IS_ADD_BOARD',
+            'SET_THEME'
         ]),
         ...mapActions([
             'FETCH_BOARDS'

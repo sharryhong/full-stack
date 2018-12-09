@@ -12,7 +12,7 @@
 
 <script>
 // import {setAuthInHeader} from '../api'
-import {mapMutations, mapGetters} from 'vuex'
+import {mapState, mapMutations, mapGetters} from 'vuex'
 
 export default {
     data() {
@@ -23,7 +23,17 @@ export default {
     computed: {
         ...mapGetters([
             'isAuth'
-        ])
+        ]),
+        ...mapState({
+          bodyColor: 'bodyColor',
+          navbarColor: 'navbarColor'
+        })
+    },
+    watch: {
+      'bodyColor': 'updateTheme'
+    },
+    mounted() {
+      this.updateTheme()
     },
     methods: {
         ...mapMutations([
@@ -32,6 +42,13 @@ export default {
         logout() {
             this.LOGOUT()
             this.$router.push('/login')
+        },
+        updateTheme() {
+          this.$el.style.backgroundColor = this.navbarColor // this.$el = Navbar element
+          const body = document.querySelector('body')
+          const container = document.querySelector('.container')
+          if(body) body.style.backgroundColor = this.bodyColor
+          if(container) container.style.backgroundColor = this.bodyColor
         }
     }
 }

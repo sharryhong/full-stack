@@ -20,6 +20,9 @@ const actions = {
                 commit('SET_BOARD', data.item)
             })
     },
+    DELETE_BOARD(_, {id}) {
+      return api.board.destroy(id)
+    },
     LOGIN({commit}, {email, password}) { // commit : context 객체의 속성
         return api.auth.login(email, password)
             .then(({accessToken}) => {
@@ -43,6 +46,10 @@ const actions = {
         .then(() => { // 카드 수정 후 보드 새로 불러오기
           context.dispatch('FETCH_BOARD', {id: context.state.board.id})
         })
+    },
+    DELETE_CARD(context, {id}) {
+      return api.card.destroy(id)
+        .then(() => context.dispatch('FETCH_BOARD', {id: context.state.board.id}))
     }
 }
 
