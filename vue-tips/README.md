@@ -21,4 +21,4 @@ module.exports = {
   },
 };
 ```
-> @는 src폴더 경로를 말하며, 각 vue파일에서 import fileName from '@/views/components/fileName'; 이렇게 사용하면 편하다.
+> @는 src폴더 경로를 말하며, 각 vue파일에서 import abc from '@/views/components/abc'; 이렇게 사용하면 편하다.
