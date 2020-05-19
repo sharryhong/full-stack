@@ -1,2 +1,7 @@
+.DS_Store
 node_modules/
 etc/
+lecture-vue-trello-server/
+react/
+vue/
+vue-til-server/
