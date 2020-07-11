@@ -1,16 +1,16 @@
 <template>
   <div class="container">
-    <nuxt-link to="/user" class="link_menu">user</nuxt-link>
-    <nuxt-link to="/products" class="link_menu">products</nuxt-link>
+    Home
   </div>
 </template>
 
 <script>
-export default {}
+
+export default {
+  
+}
 </script>
 
 <style>
-.link_menu {
-  display: block;
-}
+
 </style>

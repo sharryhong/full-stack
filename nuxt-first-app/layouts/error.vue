@@ -1,12 +1,10 @@
 <template>
-  <div>
-    Find User
-  </div>
+  <h1>Error! 다시 시도해주세요</h1>
 </template>
 
 <script>
   export default {
-    layout: 'user',
+    
   }
 </script>
 

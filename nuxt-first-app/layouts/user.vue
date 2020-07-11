@@ -1,12 +1,13 @@
 <template>
   <div>
     <Header />
-    <Nuxt />
+    <h1>User Section</h1>
+    <nuxt />
   </div>
 </template>
 
 <script>
-import Header from '@/components/Header.vue';
+import Header from '@/components/Header';
 
 export default {
   components: {
@@ -15,6 +16,6 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
 
 </style>

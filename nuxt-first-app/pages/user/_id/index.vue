@@ -6,6 +6,7 @@
 
 <script>
   export default {
+    layout: 'user',
     validate ({ params }) {
       // Must be a number
       return /^\d+$/.test(params.id)
