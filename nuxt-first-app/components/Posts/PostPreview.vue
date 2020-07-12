@@ -1,15 +1,14 @@
+import PostList from '@/components/Posts/PostList';
 <template>
   <nuxt-link
-    :to="`/posts/${id}`"
+    :to="PostLink"
     class="post-preview"
   >
     <article>
-      <div
+      <img
         class="post-thumbnail"
         :style="`background-image: url(${thumbnail})`"
       >
-        >
-      </div>
       <div class="post-content">
         <h2>{{ title }}</h2>
         <p>{{ previewText }}</p>
@@ -26,6 +25,9 @@ export default {
       type: String,
       required: true,
     },
+    isAdmin: {
+      type: Boolean,
+    },
     title: {
       type: String,
       required: true,
@@ -39,6 +41,11 @@ export default {
       required: true,
     },
   },
+  computed: {
+    PostLink() {
+      return this.isAdmin ? '/admin/' + this.id : '/posts/' + this.id;
+    }
+  }
 };
 </script>
 

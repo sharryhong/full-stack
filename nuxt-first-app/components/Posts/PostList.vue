@@ -2,12 +2,14 @@
   <section class="featured-posts">
     <PostPreview
       id="1"
+      :is-admin="isAdmin"
       thumbnail="https://specialhelps.com/wp-content/uploads/2020/05/Tech.jpg"
       title="Hello!"
       preview-text="This is my first post"
     />
     <PostPreview
       id="2"
+      :is-admin="isAdmin"
       thumbnail="https://www.eurocontrol.int/sites/default/files/styles/16_9_1920x1080/public/2019-11/event-banner-women-tech.jpg?h=ba793b4a&itok=3IoYQ5sI"
       title="HaHa!"
       preview-text="This is my second post"
@@ -20,6 +22,12 @@ import PostPreview from "@/components/Posts/PostPreview";
 export default {
   components: {
     PostPreview,
+  },
+  props: {
+    isAdmin: {
+      type: Boolean,
+      default: false,
+    }
   },
 };
 </script>
