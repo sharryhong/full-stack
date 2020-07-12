@@ -1,4 +1,3 @@
-
 export default {
   /*
    ** Nuxt rendering mode
@@ -22,16 +21,16 @@ export default {
       {
         hid: "description",
         name: "description",
-        content: process.env.npm_package_description || ""
-      }
+        content: process.env.npm_package_description || "",
+      },
     ],
     link: [
       { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Open+Sans"
-      }
-    ]
+        href: "https://fonts.googleapis.com/css2?family=Open+Sans",
+      },
+    ],
   },
   /*
    ** Global CSS
@@ -59,5 +58,17 @@ export default {
    ** Build configuration
    ** See https://nuxtjs.org/api/configuration-build/
    */
-  build: {}
+  build: {
+    // extend(config, ctx) {
+    //   // Run ESLint on save
+    //   if (ctx.isDev && ctx.isClient) {
+    //     config.module.rules.push({
+    //       enforce: "pre",
+    //       test: /\.(js|vue)$/,
+    //       loader: "eslint-loader",
+    //       exclude: /(node_modules)/,
+    //     });
+    //   }
+    // },
+  },
 };

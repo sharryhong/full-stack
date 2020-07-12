@@ -1,42 +1,34 @@
 <template>
   <div class="container">
     <section class="intro">
-      <h1 class="intro-title">Get the news!</h1>
+      <h1 class="intro-title">
+        Get the news!
+      </h1>
     </section>
-    <section class="featured-posts">
-      <nuxt-link to="/posts/1" class="post-preview">
-        <article >
-          <div class="post-thumbnail" style="background-image: url('https://specialhelps.com/wp-content/uploads/2020/05/Tech.jpg')">
-
-          </div>
-          <div class="post-content">
-            <h2>Post Title</h2>
-            <p>Preview Text</p>
-          </div>
-        </article>
-      </nuxt-link>
-      <nuxt-link to="/posts/2" class="post-preview">
-        <article >
-          <div class="post-thumbnail" style="background-image: url('https://specialhelps.com/wp-content/uploads/2020/05/Tech.jpg')">
-
-          </div>
-          <div class="post-content">
-            <h2>Post Title</h2>
-            <p>Preview Text</p>
-          </div>
-        </article>
-      </nuxt-link>
-    </section>
+    <PostList />
   </div>
 </template>
 
 <script>
+import PostList from "@/components/Posts/PostList";
 
 export default {
-  
-}
+  components: {
+    PostList,
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/styles/main';
+.intro {
+  height: 120px;
+  background-image: url("~assets/images/background-img.jpeg");
+  background-position: center;
+  background-size: cover;
+}
+.intro-title {
+  background-color: rgba(222, 222, 222, 0.5);
+  padding: 10px;
+  box-sizing: border-box;
+}
 </style>
