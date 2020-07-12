@@ -11,7 +11,10 @@
       <h3 class="title-posts">
         Existing Posts
       </h3>
-      <PostList is-admin />
+      <PostList
+        is-admin
+        :posts="loadedPosts"
+      />
     </section>
   </div>
 </template>
@@ -25,6 +28,11 @@ export default {
   components: {
     PostList,
     AppButton,
+  },
+  computed: {
+    loadedPosts() {
+      return this.$store.getters.loadedPosts;
+    }
   }
 };
 </script>

@@ -4,7 +4,7 @@
       v-for="post in posts"
       :id="post.id"
       :key="post.id"
-      :is-admin="post.isAdmin"
+      :is-admin="isAdmin"
       :thumbnail="post.thumbnail"
       :title="post.title"
       :preview-text="post.previewText"

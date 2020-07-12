@@ -1,4 +1,3 @@
-import PostList from '@/components/Posts/PostList';
 <template>
   <nuxt-link
     :to="PostLink"
@@ -18,11 +17,12 @@ import PostList from '@/components/Posts/PostList';
 </template>
 
 <script>
+import PostList from '@/components/Posts/PostList';
 export default {
   name: "PostPreview",
   props: {
     id: {
-      type: Number,
+      type: String,
       required: true,
     },
     isAdmin: {

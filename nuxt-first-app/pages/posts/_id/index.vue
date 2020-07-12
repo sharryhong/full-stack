@@ -20,20 +20,17 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
-  asyncData(context, callback) {
-    setTimeout(() => {
-      callback(null, {
-        loadedPost: {
-            id: 1,
-            title: `First Post (ID: ${context.params.id})`,
-            author: 'Sharry',
-            updateDate: new Date(),
-            thumbnail: 'https://specialhelps.com/wp-content/uploads/2020/05/Tech.jpg',
-            content: 'okokok'
-        }
-      });
-    }, 1000);
+  asyncData(context) {
+    return axios.get('https://nuxt-blog-120dd.firebaseio.com/posts/' + context.params.id + '.json')
+      .then(res => {
+        return {
+          loadedPost: res.data
+        };
+      })
+      .catch(e => context.error(e));
   },
 };
 </script>

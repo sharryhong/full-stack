@@ -1,13 +1,17 @@
 <template>
   <div class="page-new-post">
     <section class="new-form">
-      <AdminPostForm :post="editedPost" />
+      <AdminPostForm
+        :post="editedPost"
+        @submit="onSubmit"
+      />
     </section>
     </section>
   </div>
 </template>
 
 <script>
+  import axios from 'axios';
   import AdminPostForm from '@/components/Admin/AdminPostForm';
 
   export default {
@@ -20,18 +24,17 @@
         editedPost: {
           author: '',
           title: '',
-          thumbnailLink: '',
+          thumbnail: '',
           content: '',
         },
       };
     },
     methods: {
-      onCancel() {
-        this.$router.push('/admin');
-      },
-      onSave() {
-        console.log('onSave');
-      },
+      onSubmit(postData) {
+        axios.post('https://nuxt-blog-120dd.firebaseio.com/posts.json', { ...postData, updatedDate: new Date() })
+          .then(result => console.log(result))
+          .catch(e => console.log(e));
+      }
     }
   };
 </script>
