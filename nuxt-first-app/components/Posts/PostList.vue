@@ -1,18 +1,13 @@
 <template>
   <section class="featured-posts">
     <PostPreview
-      id="1"
-      :is-admin="isAdmin"
-      thumbnail="https://specialhelps.com/wp-content/uploads/2020/05/Tech.jpg"
-      title="Hello!"
-      preview-text="This is my first post"
-    />
-    <PostPreview
-      id="2"
-      :is-admin="isAdmin"
-      thumbnail="https://www.eurocontrol.int/sites/default/files/styles/16_9_1920x1080/public/2019-11/event-banner-women-tech.jpg?h=ba793b4a&itok=3IoYQ5sI"
-      title="HaHa!"
-      preview-text="This is my second post"
+      v-for="post in posts"
+      :id="post.id"
+      :key="post.id"
+      :is-admin="post.isAdmin"
+      :thumbnail="post.thumbnail"
+      :title="post.title"
+      :preview-text="post.previewText"
     />
   </section>
 </template>
@@ -27,6 +22,10 @@ export default {
     isAdmin: {
       type: Boolean,
       default: false,
+    },
+    posts: {
+      type: Array,
+      required: true,
     }
   },
 };

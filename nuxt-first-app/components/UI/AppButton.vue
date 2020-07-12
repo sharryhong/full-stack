@@ -1,5 +1,6 @@
 <template>
   <button
+    type="button"
     class="button"
     :class="btnStyle"
     v-bind="$attrs"

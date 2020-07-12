@@ -5,17 +5,45 @@
         Get the news!
       </h1>
     </section>
-    <PostList />
+    <PostList :posts="loadedPosts" />
   </div>
 </template>
 
 <script>
 import PostList from "@/components/Posts/PostList";
+import PostPreview from '@/components/Posts/PostPreview';
 
 export default {
   components: {
     PostList,
   },
+  asyncData(context, callback) {
+    setTimeout(() => {
+      callback(null, {
+        loadedPosts: [
+        {
+          id: 1,
+          title: 'First Post',
+          previewText: 'First PostPreview',
+          thumbnail: 'https://specialhelps.com/wp-content/uploads/2020/05/Tech.jpg',
+        },
+        {
+          id: 2,
+          title: 'Second Post',
+          previewText: 'Second PostPreview',
+          thumbnail: 'https://specialhelps.com/wp-content/uploads/2020/05/Tech.jpg',
+        }
+      ]});
+    }, 1500);
+  },
+  data() {
+    return {
+      loadedPosts: []
+    };
+  },
+  created() {
+    
+  }
 };
 </script>
 
