@@ -71,4 +71,11 @@ export default {
     //   }
     // },
   },
+  env: {
+    baseUrl: process.env.BASE_URL || 'https://nuxt-blog-120dd.firebaseio.com'
+  },
+  transition: {
+    name: 'fade',
+    mode: 'out-in'
+  }
 };
