@@ -40,10 +40,7 @@ export default {
    ** Plugins to load before mounting the App
    ** https://nuxtjs.org/guide/plugins
    */
-  plugins: [
-    '@/plugins/core-components.js',
-    '@/plugins/date-filter.js'
-  ],
+  plugins: ['@/plugins/core-components.js', '@/plugins/date-filter.js'],
   /*
    ** Auto import components
    ** See https://nuxtjs.org/api/configuration-components
@@ -56,7 +53,6 @@ export default {
   /*
    ** Nuxt.js modules
    */
-  modules: [],
   /*
    ** Build configuration
    ** See https://nuxtjs.org/api/configuration-build/
@@ -75,10 +71,10 @@ export default {
     // },
   },
   env: {
-    baseUrl: process.env.BASE_URL || 'https://nuxt-blog-120dd.firebaseio.com'
+    baseUrl: process.env.BASE_URL || 'https://nuxt-blog-120dd.firebaseio.com',
   },
   transition: {
     name: 'fade',
-    mode: 'out-in'
-  }
+    mode: 'out-in',
+  },
 };
