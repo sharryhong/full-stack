@@ -41,6 +41,10 @@ export default {
    ** https://nuxtjs.org/guide/plugins
    */
   plugins: ['@/plugins/core-components.js', '@/plugins/date-filter.js'],
+  modules: ['@nuxtjs/axios'],
+  axios: {
+    baseURL: process.env.BASE_URL || 'https://nuxt-blog-120dd.firebaseio.com',
+  },
   /*
    ** Auto import components
    ** See https://nuxtjs.org/api/configuration-components
@@ -70,9 +74,9 @@ export default {
     //   }
     // },
   },
-  env: {
-    baseUrl: process.env.BASE_URL || 'https://nuxt-blog-120dd.firebaseio.com',
-  },
+  // env: {
+  //   baseUrl: process.env.BASE_URL || 'https://nuxt-blog-120dd.firebaseio.com',
+  // },
   transition: {
     name: 'fade',
     mode: 'out-in',
