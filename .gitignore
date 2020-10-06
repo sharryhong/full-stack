@@ -6,4 +6,5 @@ react/
 vue/
 vue-til-server/
 vue-til/
-nuxt-first-app/.env.development
+nuxt-first-app/
+typescript-basic/
