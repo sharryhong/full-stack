@@ -6,7 +6,18 @@
 
 <script>
   export default {
-    
+    head() {
+    return {
+      title: 'Create Event',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'Create Event description',
+        }
+      ]
+    }
+  }
   }
 </script>
 

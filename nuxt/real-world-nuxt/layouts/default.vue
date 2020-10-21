@@ -10,6 +10,18 @@ import NavBar from '~/components/NavBar';
 export default {
   compononets: {
     NavBar
+  },
+  head() {
+    return {
+      titleTemplate: '%s - Real Word Events',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'nuxtjs Real Word',
+        }
+      ]
+    }
   }
 }
 </script>
