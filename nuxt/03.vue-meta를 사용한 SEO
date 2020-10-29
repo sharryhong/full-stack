@@ -20,11 +20,11 @@ Universal mode는 초기에 적절한 SEO 태그가 사용되도록 한다.
 
 head() {
     return {
-      titleTemplate: '%s - Real Word Events',
+      titleTemplate: '%s - Nuxt',
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: 'nuxtjs Real Word',
+          content: 'nuxt',
         }
       ]
