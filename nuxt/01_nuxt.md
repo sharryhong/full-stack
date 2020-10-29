@@ -3,8 +3,8 @@
 - https://nuxtjs.org/guide 
 - https://github.com/nuxt/create-nuxt-app 
 
-강의 https://www.vuemastery.com/courses/scaling-vue-with-nuxt-js/why-use-nuxt
-강의 https://www.udemy.com/course/nuxtjs-vuejs-on-steroids
+- 강의 https://www.vuemastery.com/courses/scaling-vue-with-nuxt-js/why-use-nuxt
+- 강의 https://www.udemy.com/course/nuxtjs-vuejs-on-steroids
 
 | Universal App  |  Single Page App | Static App  |  
 |---|---|---|
