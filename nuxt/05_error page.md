@@ -1,7 +1,7 @@
 ## 자체 오류 페이지
 
 - SPA는 404 status code를 보내지 않는다.
-- Nuxt는 Universal Rendering을 사용하기 때문에이 404 상태 코드를 반환 할 수 있다.
+- Nuxt는 Universal Rendering을 사용하기 때문에 404 상태 코드를 반환 할 수 있다.
 - 페이지가 서버 측에 존재하지 않는다는 것을 알고 있으므로, 적절한 상태 코드를 반환 할 수 있다. 
 
 > layouts/error.vue 오류 페이지 예
