@@ -1,7 +1,9 @@
+## Nuxt.js 장점
+
 1. Nuxt는 Vuex, Vue Router 및 Vue-Meta 등이 기본으로 프로젝트가 설정되어 있다.
 2. Vue는 표준 폴더 구조가 없다. 
 3. Vue는 라우팅 구성이 길어질 수 있다. 
- - nuxt 에서는 pages폴더 구조에 따라 자동적으로 라우터 구성을 만들어준다.
+- nuxt 에서는 pages폴더 구조에 따라 자동적으로 라우터 구성을 만들어준다.
 4. Vue는 표준 구성 방법이 없다. 
 - nuxt에서는 nuxt.config.js 에 모든 옵션을 적을 수 있다. 
 5. Vue는 SEO 친화적이지 않다. 
