@@ -5,37 +5,35 @@
 </template>
 
 <script>
-import EventService from '~/services/EventService.js';
+import EventService from "~/services/EventService.js";
 
 export default {
+  async asyncData({ error, params }) {
+    try {
+      const { data } = await EventService.getEvent(params.id);
+      return {
+        event: data,
+      };
+    } catch (e) {
+      error({
+        statusCode: 503,
+        message: `Unable to fetch even #${params.id}`,
+      });
+    }
+  },
   head() {
     return {
       title: `Event ${this.event.title}`,
       meta: [
         {
-          hid: 'description',
-          name: 'description',
-          content: `Event description ${ this.event.title}`,
-        }
-      ]
-    }
+          hid: "description",
+          name: "description",
+          content: `Event description ${this.event.title}`,
+        },
+      ],
+    };
   },
-  async asyncData({ error, params }) {
-    try {
-      const { data } = await EventService.getEvent(params.id);
-      return {
-        event: data
-      }
-    } catch (e) {
-      error({
-        statusCode: 503,
-        message: `Unable to fetch even #${params.id}`
-      })
-    }
-  },
-}
+};
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

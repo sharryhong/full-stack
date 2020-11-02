@@ -5,39 +5,38 @@
       v-for="(event, index) in events"
       :key="index"
       :event="event"
-      :data-index="index" />
+      :data-index="index"
+    />
   </div>
 </template>
 
 <script>
-import EventCard from '~/components/EventCard';
-import EventService from '~/services/EventService.js';
+import EventCard from "~/components/EventCard";
+import EventService from "~/services/EventService.js";
 
 export default {
-  head() {
-    return {
-      title: 'Event List',
-    }
+  components: {
+    EventCard,
   },
   async asyncData({ error }) {
     try {
-      const { data } = await EventService.getEvents()
+      const { data } = await EventService.getEvents();
       return {
-        events: data
-      }
+        events: data,
+      };
     } catch (e) {
       error({
         statusCode: 503,
-        message: 'Unable to fetch events at this time. Please try again.'
-      })
+        message: "Unable to fetch events at this time. Please try again.",
+      });
     }
   },
-  components: {
-    EventCard
-  }
-}
+  head() {
+    return {
+      title: "Event List",
+    };
+  },
+};
 </script>
 
-<style>
-
-</style>
+<style></style>

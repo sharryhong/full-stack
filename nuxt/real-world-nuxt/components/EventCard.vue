@@ -1,9 +1,7 @@
 <template>
   <nuxt-link :to="`/event/${event.id}`">
     <div class="-shadow">
-      <span class="eyebrow">
-        @{{ event.time }} on {{ parsedDate }}
-      </span>
+      <span class="eyebrow"> @{{ event.time }} on {{ parsedDate }} </span>
       <h4 class="title">
         {{ event.title }}
       </h4>
@@ -13,17 +11,17 @@
 </template>
 <script>
 export default {
-  name: 'EventCard',
+  name: "EventCard",
   props: {
-    event: Object
+    event: Object,
   },
   computed: {
     parsedDate() {
-      const eventDate = new Date(this.event.date)
-      return eventDate.toDateString()
-    }
-  }
-}
+      const eventDate = new Date(this.event.date);
+      return eventDate.toDateString();
+    },
+  },
+};
 </script>
 <style scoped>
 div {
