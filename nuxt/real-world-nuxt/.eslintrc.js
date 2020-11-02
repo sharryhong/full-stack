@@ -45,9 +45,4 @@ module.exports = {
   parserOptions: {
     parser: "babel-eslint",
   },
-  globals: {
-    Kakao: true,
-    TiaraTracker: true,
-    tinymce: true,
-  },
 };
