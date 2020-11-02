@@ -5,33 +5,35 @@
 </template>
 
 <script>
-  export default {
-    head() {
-      return {
-        title: `Event ${ this.event.title }`,
-        meta: [
-          {
-            hid: 'description',
-            name: 'description',
-            content: `Event description ${ this.event.title }`,
-          }
-        ]
-      }
-    },
-    async asyncData({ $axios, error, params }) {
-      try {
-        const { data } = await $axios.get(`http://localhost:3000/events/${ params.id }`);
-        return {
-          event: data
+import EventService from '~/services/EventService.js';
+
+export default {
+  head() {
+    return {
+      title: `Event ${this.event.title}`,
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: `Event description ${ this.event.title}`,
         }
-      } catch (e) {
-        error({
-          statusCode: 503,
-          message: `Unable to fetch even #${ params.id }`
-        })
+      ]
+    }
+  },
+  async asyncData({ error, params }) {
+    try {
+      const { data } = await EventService.getEvent(params.id);
+      return {
+        event: data
       }
-    },
-  }
+    } catch (e) {
+      error({
+        statusCode: 503,
+        message: `Unable to fetch even #${params.id}`
+      })
+    }
+  },
+}
 </script>
 
 <style lang="scss" scoped>
