@@ -39,6 +39,7 @@ vscode setting (command + ,) > Eslint: Validata의 Edit in setting.json 클릭 �
     }
 ],
 ```
+이제 저장시 자동으로 린트 적용된다. 
 
 #### Prettier 플러그인 확인 및 설정할 때 주의 사항
 prettier가 설치되어있다면, disable (workspace) 해주기 
