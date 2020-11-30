@@ -1,7 +1,7 @@
 <template>
-  <form>
-    <input type="text" v-model="name">
-    <button type="button" @click="onSubmit">Login</button>
+  <form @submit.prevent="onSubmit">
+    <input data-testid="name-input" type="text" v-model="name">
+    <button type="submit">Login</button>
   </form>
 </template>
 
@@ -14,7 +14,7 @@
     },
     methods: {
       onSubmit() {
-        this.$emit('loginSubmitted', { name: this.name })
+        this.$emit('formSubmitted', { name: this.name })
       }
     }
   }
