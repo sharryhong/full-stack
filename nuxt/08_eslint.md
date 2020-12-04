@@ -40,6 +40,9 @@ vscode setting (command + ,키) > Eslint: Validata의 Edit in setting.json 클�
         "autoFix": true
     }
 ],
+"editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true,
+    },
 ```
 이제 저장시 자동으로 린트 적용된다. 
 
