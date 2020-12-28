@@ -6,7 +6,7 @@
 </template>
 
 <script>
-  import { getMessage } from '@/service/axios.js'
+  import { getMessage } from '@/services/axios.js'
 
   export default {
     data() {
