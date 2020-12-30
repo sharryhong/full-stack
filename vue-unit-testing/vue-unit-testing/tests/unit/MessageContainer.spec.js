@@ -5,8 +5,10 @@ describe("MessageContainer", () => {
   it("Wraps the MessageDisplay component", () => {
     const wrapper = mount(MessageContainer, {
       stubs: {
-        MessageDisplay: '<p data-testId="message">Hello from the db!</p>',
-      }
+        MessageDisplay: {
+          template: '<p data-testid="message">Hello from the db!</p>',
+        },
+      },
     });
     
     const message = wrapper.find('[data-testId="message"]').element.textContent;
