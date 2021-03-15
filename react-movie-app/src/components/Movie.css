@@ -1,6 +1,7 @@
 .movies .movie {
   background-color: white;
-  margin-bottom: 70px;
+  margin: 15px;
+  margin-bottom: 30px;
   font-weight: 300;
   padding: 20px;
   border-radius: 5px;
@@ -19,7 +20,6 @@
 
 .movie img {
   position: relative;
-  top: -50px;
   max-width: 150px;
   width: 100%;
   margin-right: 30px;
