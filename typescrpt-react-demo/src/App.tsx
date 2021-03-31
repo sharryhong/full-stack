@@ -18,7 +18,7 @@ class App extends Component<{}, IState> {
     return (
       <div>
         <Form onFormSubmit={this.onFormSubmit}>
-          <Input value={name} onChange={this.onchange} />
+          <Input value={name} onChange={this.onChange} />
         </Form>
         <Number count={counter} />
         <button onClick={this.add}>Add</button>
@@ -32,7 +32,7 @@ class App extends Component<{}, IState> {
       }
     })
   }
-  onchange = (event: any) => {
+  onChange = (event: any) => {
     this.setState({
         name: event.target.value
     })
