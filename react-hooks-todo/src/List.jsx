@@ -1,10 +1,11 @@
 import React from 'react'
 
-const List = ({todos}) => {
-const todosList = todos.map((todo, index) => <li key={index}>{todo}</li>)
+const List = ({todos, loading}) => {
+  let todoList = <div>loading...</div>
+  if (!loading) todoList = todos.map((todo) => <li key={todo.id}>{todo.title}</li>);
   return (
     <ul>
-      {todosList}
+      {todoList}
     </ul>
   )
 }
