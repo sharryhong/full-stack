@@ -12,3 +12,5 @@ react-movie-app/yarn.lock
 react-movie-app/package-lock.json
 .DS_Store
 typescrpt-react-demo/yarn.lock
+.DS_Store
+react-hooks-todo/yarn.lock
