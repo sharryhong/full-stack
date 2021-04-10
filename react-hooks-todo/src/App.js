@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import List from "./List";
 
 const App = () => {
@@ -13,6 +13,10 @@ const App = () => {
     e.preventDefault();
     setTodos([...todos, newTodo])
   }
+
+  useEffect(() => {
+    console.log('할일 추가')
+  }, [todos])
 
   return (
     <>
