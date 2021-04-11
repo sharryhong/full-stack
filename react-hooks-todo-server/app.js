@@ -6,16 +6,19 @@ const port = 9000;
 const todos = [
   {
     id: 1,
-    title: "React Hooks 익히기"
+    title: "React Hooks 익히기",
+    status: "todo",
   },
   {
     id: 2,
-    title: "GraphQL 익히기"
+    title: "GraphQL 익히기",
+    status: "todo",
   },
   {
     id: 3,
-    title: "Apollo 익히기"
-  }
+    title: "Apollo 익히기",
+    status: "todo",
+  },
 ];
 
 app.use(cors());
