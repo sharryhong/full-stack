@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import TodoStore from "./TodoStore";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <TodoStore />
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 

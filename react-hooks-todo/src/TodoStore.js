@@ -7,7 +7,7 @@ import useFetch from "./useFetch";
 // 상위 store역할 
 export const TodoContext = React.createContext()
 
-const App = () => {
+const TodoStore = () => {
   const [todos, setTodos] = useState([]);
   const [newTodo, setNewTodo] = useState('');
 
@@ -45,22 +45,21 @@ const App = () => {
   }, [todos]);
 
   return (
-    <TodoContext.Provider value={{ todos }}>
+    <TodoContext.Provider
+      value={{
+        todos,
+        newTodo,
+        isLoaded,
+        changeInputData,
+        addTodo,
+        changeTodoStatus,
+      }}
+    >
       <Header />
-
-      <Form
-        newTodo={newTodo}
-        changeInputData={changeInputData}
-        addTodo={addTodo}
-      />
-
-      <List
-        todos={todos}
-        isLoaded={isLoaded}
-        changeTodoStatus={changeTodoStatus}
-      />
+      <Form />
+      <List />
     </TodoContext.Provider>
   );
 };
 
-export default App;
+export default TodoStore;
