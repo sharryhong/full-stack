@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import List from "./List";
 import Header from './Header';
+import Form from './Form';
 import useFetch from "./useFetch";
 
 const App = () => {
@@ -15,7 +16,12 @@ const App = () => {
 
   const addTodo = (e) => {
     e.preventDefault();
-    setTodos([...todos, {title: newTodo, id: todos.length + 1, 'status':'todo'}]) // 임의
+    if (!newTodo.trim()) return;
+
+    setTodos([
+      ...todos,
+      { title: newTodo, id: todos.length + 1, status: "todo" },
+    ]); // 임의
     setNewTodo('');
   }
 
@@ -38,10 +44,11 @@ const App = () => {
   return (
     <>
       <Header todos={todos} />
-      <form action="">
-        <input type="text" value={newTodo} onChange={changeInputData} />
-        <button onClick={addTodo}>할일 추가</button>
-      </form>
+      <Form
+        newTodo={newTodo}
+        changeInputData={changeInputData}
+        addTodo={addTodo}
+      />
 
       <List
         todos={todos}
