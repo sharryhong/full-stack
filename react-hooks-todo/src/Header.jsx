@@ -1,11 +1,18 @@
 import React from "react";
+import { TodoContext } from './App'
 
-const Header = ({ todos }) => {
+const Header = () => {
   return (
-    <>
-      <h1>Todo</h1>
-      <div>{todos.filter(todo => todo.status === 'todo').length}개 </div>
-    </>
+    <TodoContext.Consumer>
+      {
+        ({todos}) => (
+          <>
+            <h1>Todo</h1>
+            <div>{todos.filter(todo => todo.status === 'todo').length}개 </div>
+          </>
+        )
+      }
+    </TodoContext.Consumer>
   );
 };
 export default Header;
