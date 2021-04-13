@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useReducer } from "react";
+import React, { useEffect, useReducer } from "react";
 import List from "./List";
 import Header from './Header';
 import Form from './Form';
@@ -10,7 +10,10 @@ export const TodoContext = React.createContext();
 const todoReducer = (todos, {type, payload}) => { // parameter: state, action {type, payload}
   switch (type) {
     case 'ADD_TODO':
-      return;
+      return [
+        ...todos,
+        { title: payload, id: todos.length + 1, status: "todo" },
+      ];
     case 'SET_INIT_DATA':
       return payload;
     case 'CHANGE_TODO_STATUS':
@@ -30,13 +33,6 @@ const TodoStore = () => {
 
   const isLoaded = useFetch(setInitData, "http://localhost:9000/todo");
 
-  const addTodo = (newTodo) => {
-    setTodos([
-      ...todos,
-      { title: newTodo, id: todos.length + 1, status: "todo" },
-    ]);
-  };
-
   const changeTodoStatus = (id) => {
     const updateTodos = todos.map((todo) => {
       if (todo.id === id) {
@@ -46,7 +42,7 @@ const TodoStore = () => {
       return todo;
     });
 
-    setTodos(updateTodos);
+    // setTodos(updateTodos);
   };
 
   useEffect(() => {
@@ -58,8 +54,8 @@ const TodoStore = () => {
       value={{
         todos,
         isLoaded,
-        addTodo,
         changeTodoStatus,
+        dispatch
       }}
     >
       <Header />
