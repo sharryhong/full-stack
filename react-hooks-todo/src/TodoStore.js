@@ -9,23 +9,14 @@ export const TodoContext = React.createContext()
 
 const TodoStore = () => {
   const [todos, setTodos] = useState([]);
-  const [newTodo, setNewTodo] = useState('');
 
   const isLoaded = useFetch(setTodos, "http://localhost:9000/todo"); 
   
-  const changeInputData = (e) => {
-    setNewTodo(e.target.value);
-  }
-
-  const addTodo = (e) => {
-    e.preventDefault();
-    if (!newTodo.trim()) return;
-
+  const addTodo = (newTodo) => {
     setTodos([
       ...todos,
       { title: newTodo, id: todos.length + 1, status: "todo" },
-    ]); // 임의
-    setNewTodo('');
+    ]); 
   }
 
   const changeTodoStatus = (id) => {
@@ -48,9 +39,7 @@ const TodoStore = () => {
     <TodoContext.Provider
       value={{
         todos,
-        newTodo,
         isLoaded,
-        changeInputData,
         addTodo,
         changeTodoStatus,
       }}
