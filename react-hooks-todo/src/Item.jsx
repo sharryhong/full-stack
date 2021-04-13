@@ -1,9 +1,11 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import './Item.css'
+import { TodoContext } from "./TodoStore";
 
-const Item = ({ todo, changeTodoStatus }) => {
-  const toggleItem = () => {
-    changeTodoStatus(todo.id)
+const Item = ({ todo }) => {
+  const { dispatch } = useContext(TodoContext);
+  const toggleItem = (e) => {
+    dispatch({ type: "CHANGE_TODO_STATUS", payload: e.target.dataset.id });
   }
 
   const itemClassName = todo.status === 'done' ? 'done' : ''

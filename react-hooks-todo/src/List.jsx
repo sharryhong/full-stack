@@ -3,11 +3,11 @@ import Item from './Item'
 import {TodoContext} from './TodoStore'
 
 const List = () => {
-  const { todos, isLoaded, changeTodoStatus } = useContext(TodoContext);
+  const { todos, isLoaded } = useContext(TodoContext);
   let todoList = <div>loading...</div>;
   if (isLoaded)
     todoList = todos.map((todo) => (
-      <Item key={todo.id} todo={todo} changeTodoStatus={changeTodoStatus} />
+      <Item key={todo.id} todo={todo} />
     ));
   return <ul>{todoList}</ul>;
 };
