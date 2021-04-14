@@ -9,14 +9,17 @@ export const todoReducer = (todos, { type, payload }) => {
     case "SET_INIT_DATA":
       return payload;
     case "CHANGE_TODO_STATUS":
-      return (todos = todos.map((todo) => {
+      return todos.map((todo) => {
         if (todo.id === +payload) {
-          if (todo.status === "done") todo.status = "todo";
-          else todo.status = "done";
+          if (todo.status === "todo") {
+            return { ...todo, status: "done" }
+          } else {
+            return {...todo, status: "todo"}
+          }
+        } else {
+          return todo
         }
-        console.log("?", todo);
-        return todo;
-      }));
+      });
     default:
       break;
   }
