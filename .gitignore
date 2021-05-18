@@ -8,10 +8,7 @@ vue-til-server/
 vue-til/
 nuxt-first-app/
 typescript-basic/
-react-movie-app/yarn.lock
-react-movie-app/package-lock.json
-.DS_Store
-typescrpt-react-demo/yarn.lock
-.DS_Store
-react-hooks-todo/yarn.lock
-react-hooks-todo-server/package-lock.json
+yarn.lock
+package-lock.json
+.next/
+package-lock.json
