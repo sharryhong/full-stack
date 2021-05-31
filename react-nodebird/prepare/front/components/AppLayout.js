@@ -1,14 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 import { Menu, Input, Row, Col } from "antd";
-import Styled from 'styled-components';
-
-const SearchEl = Styled(Input.Search)`
-  vertical-align: middle;
-`
+import UserProfile from '../components/UserProfile';
+import LoginForm from '../components/LoginForm';
 
 const AppLayout = ({ children }) => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const onSearch = value => console.log(value);
+
   return (
     <>
       <Menu mode="horizontal">
@@ -23,7 +24,7 @@ const AppLayout = ({ children }) => {
           </Link>
         </Menu.Item>
         <Menu.Item key="search">
-          <SearchEl />
+          <Input.Search onSearch={onSearch} />
         </Menu.Item>
         <Menu.Item key="signup">
           <Link href="/signup">
@@ -32,7 +33,9 @@ const AppLayout = ({ children }) => {
         </Menu.Item>
       </Menu>
       <Row gutter={8}>
-        <Col xs={24} md={6}>왼쪽메뉴</Col>
+        <Col xs={24} md={6}>
+          { isLoggedIn ? <UserProfile /> : <LoginForm /> }
+        </Col>
         <Col xs={24} md={12}>{children}</Col>
         <Col xs={24} md={6}>
           <a href="https://github.com/sharryhong" target="_blank" rel="noreferrer noopener">Made by SharryHong</a>
