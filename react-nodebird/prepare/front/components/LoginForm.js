@@ -6,8 +6,11 @@ import { Form, Input, Button } from 'antd';
 const ButtonWrapper = Styled.div`
   margin-top: 10px;
 `
+const FormWrapper = Styled(Form)`
+  padding: 10px;
+`
 
-const LoginForm = () => {
+const LoginForm = ({ setIsLoggedIn }) => {
   const [id, setId] = useState('');
   const [password, setPassword] = useState('');
 
@@ -19,8 +22,13 @@ const LoginForm = () => {
     setPassword(e.target.value);
   }, [password])
 
+  const onSubmitForm = useCallback(() => {
+    console.log(id, password);
+    setIsLoggedIn(true);
+  }, [id, password])
+
   return (
-    <Form>
+    <FormWrapper onFinish={onSubmitForm}>
       <div>
         <label htmlFor="user-id">아이디</label>
         <br />
@@ -35,7 +43,7 @@ const LoginForm = () => {
         <Button type="primary" htmlType="submit">로그인</Button>
         <Link href="/signup"><a>회원가입</a></Link>
       </ButtonWrapper>
-    </Form>
+    </FormWrapper>
   )
 }
 
