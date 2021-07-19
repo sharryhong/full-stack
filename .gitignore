@@ -12,3 +12,4 @@ yarn.lock
 package-lock.json
 .next/
 package-lock.json
+.DS_Store
