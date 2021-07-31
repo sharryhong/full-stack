@@ -1,4 +1,6 @@
 .DS_Store
+yarn.lock
+package-lock.json
 node_modules/
 etc/
 lecture-vue-trello-server/
@@ -8,8 +10,5 @@ vue-til-server/
 vue-til/
 nuxt-first-app/
 typescript-basic/
-yarn.lock
-package-lock.json
 .next/
-package-lock.json
-.DS_Store
+vue-advanced/

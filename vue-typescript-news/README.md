@@ -1,5 +1,5 @@
-# vue-typescript-todo
-인프런강의 : https://www.inflearn.com/course/vue-ts 
+# vue-typescript-news
+인프런 강의 : https://www.inflearn.com/course/vue-ts
 
 ## Project setup
 ```
