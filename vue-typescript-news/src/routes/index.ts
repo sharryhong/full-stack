@@ -18,16 +18,19 @@ export default new VueRouter({
       path: "/news",
       name: "news",
       component: createListView("NewsView"),
-      beforeEnter(
+      async beforeEnter(
         routeTo: Route,
         routeFrom: Route,
         next: NavigationGuardNext<Vue>
       ) {
         bus.$emit("on:progress");
-        store
-          .dispatch("FETCH_LIST", routeTo.name)
-          .then(() => next())
-          .catch(() => new Error("failed to fetch news items"));
+        try {
+          await store.dispatch("FETCH_LIST", routeTo.name);
+          next();
+        } catch (error) {
+          new Error("failed to fetch news items");
+          next("/error");
+        }
       },
     },
     {

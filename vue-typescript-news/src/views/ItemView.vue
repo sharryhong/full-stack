@@ -18,23 +18,28 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
-import UserProfile from '../components/UserProfile.vue';
-import bus from '../utils/bus';
+import { mapGetters } from "vuex";
+import UserProfile from "../components/UserProfile.vue";
+import bus from "../utils/bus";
 
 export default {
   components: {
     UserProfile,
   },
   created() {
-    bus.$emit('off:progress');
+    bus.$emit("off:progress");
   },
   computed: {
     ...mapGetters([
-      'fetchedItem', 'userName', 'userTimeAgo', 
-      'userQuestion', 'userContent', 'contentPoints']),
+      "fetchedItem",
+      "userName",
+      "userTimeAgo",
+      "userQuestion",
+      "userContent",
+      "contentPoints",
+    ]),
   },
-}
+};
 </script>
 
 <style scoped>
