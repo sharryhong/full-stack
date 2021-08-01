@@ -24,4 +24,4 @@ export default {
   contentPoints(state) {
     return state.item.points;
   },
-}
+};

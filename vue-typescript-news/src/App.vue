@@ -8,13 +8,13 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import Vue from "vue";
 import ToolBar from "./components/ToolBar.vue";
-import ProgressBar from "./components/ProgressBar.vue";
 import Spinner from "./components/Spinner.vue";
-import bus from "./utils/bus.js";
+import bus from "./utils/bus";
 
-export default {
+export default Vue.extend({
   components: {
     ToolBar,
     Spinner,
@@ -36,7 +36,7 @@ export default {
     bus.$on("on:progress", this.onProgress);
     bus.$on("off:progress", this.offProgress);
   },
-};
+});
 </script>
 
 <style>
