@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+
+<body>
+  <script>
+    // 1: 가위, 2: 바위, 3: 보
+    // 내꺼 
+    function rockPaperScissors(a, b) {
+      if(a === b) return 'D';
+      if (a === 1) {
+        if (b === 2) return 'B';
+        else return 'A';
+      } else if (a === 2) {
+        if (b === 3) return 'B';
+        else return 'A';
+      } else {
+        if (b === 1) return 'B';
+        else return 'A';
+      }
+    }
+
+    function solution(aArray, bArray) {
+      let answer = [];
+      
+      for(let i = 0; i < aArray.length; i++) {
+        console.log('aArray[i], bArray[i]', aArray[i], bArray[i]);
+        answer.push(rockPaperScissors(aArray[i], bArray[i]));
+      }
+      
+      return answer;
+    }
+
+    // 쌤꺼 : a가 이기는경우를 기준으로 잡아서 
+    function solution2(a, b) {
+      let answer = [];
+
+      for(let i = 0; i < a.length; i++) {
+        if (a[i] === b[i]) answer += 'D';
+        else if (a[i] === 1 && b[i] === 3) answer += 'A';
+        else if (a[i] === 2 && b[i] === 1) answer += 'A';
+        else if (a[i] === 3 && b[i] === 2) answer += 'A';
+        else answer += 'B';
+      }
+
+      return answer;
+    }
+
+
+    console.log(solution2([2,3,3,1,3], [1,1,2,2,3]));
+  </script>
+</body>
+
+</html>

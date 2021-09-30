@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+
+<body>
+  <script>
+    // 재귀함수 1~100까지 합 
+    function f(n) {
+      if (n <= 1) { return 1; }
+      return n + f(n - 1)
+    }
+
+    console.log(f(100));
+
+    // 재귀함수 1~5까지 곱 
+    function f2(n) {
+      if (n <= 1) { return 1; }
+      return n * f2(n - 1)
+    }
+
+    console.log(f2(5));
+  </script>
+</body>
+
+</html>

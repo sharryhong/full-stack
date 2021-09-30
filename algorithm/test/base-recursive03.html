@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+
+<body>
+  <script>
+    // 문자열 뒤집기 - 반복문으로 해보기 (내꺼)
+    function f(x) {
+      let resultArray = [];
+      const xArray = x.split("");
+      for (let i = xArray.length - 1; i >= 0; i--) {
+        resultArray.push(xArray[i]);
+      }
+      return resultArray.join('');
+    }
+
+    console.log(f('SharryHong'));
+
+
+    // 쌤꺼
+    function t(x) {
+      let result = '';
+      while (true) {
+        if (x.length === 1) {
+          result += x;
+          return result;
+        }
+        let y = x.split('');
+        result += String(y.pop());
+        x = y.join('');
+      }
+    }
+
+    console.log(t('SharryHong'));
+
+    // 재귀함수 (내꺼)
+    function 문자뒤집기(x) {
+      let result = '';
+      if (x.length === 1) {
+        return result += x;
+      }
+      result += x.slice(x.length - 1)
+      return result + 문자뒤집기(x.slice(0, x.length - 1))
+    }
+
+    console.log('재귀함수 (내꺼)', 문자뒤집기('SharryHong'));
+
+    // 재귀함수 (쌤꺼)
+    function 문자열역순(문자) {
+      if (문자.length === 1) {
+        return 문자;
+      }
+      return 문자[문자.length - 1] + 문자열역순(문자.slice(0, 문자.length - 1));
+    }
+
+    console.log('재귀함수 (강사꺼)', 문자열역순('SharryHong'));
+
+
+  </script>
+</body>
+
+</html>

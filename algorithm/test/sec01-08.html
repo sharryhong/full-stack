@@ -1,0 +1,53 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>출력결과</title>
+</head>
+
+<body>
+  <script>
+    // 일곱 난쟁이의 키의 합이 100
+    // 아홉 난쟁이의 키가 주어졌을 때, 백설공주를 도와 일곱 난쟁이를 찾는 프로그램
+    // !! 2개씩 뽑아서 가짜인지 밝혀내자. 
+    // 내꺼  
+    function solution(arr) {
+      let answer = arr, sum = 0;
+      arr.forEach(item => sum += item);
+
+      for(let i = 0; i < arr.length; i++) {
+        let newArr = arr.filter(item => item !== arr[i]);
+        for(let j = 0; j < newArr.length; j++) {
+          if (sum - (arr[i] + newArr[j]) === 100) {
+            answer.splice(i, 1);
+            let targetIndex = answer.findIndex(item => item === newArr[j]);
+            answer.splice(targetIndex, 1);
+            return answer;
+          }
+        }
+      }
+    }
+
+    // 쌤꺼 
+    function solution2(arr) {
+      let answer = arr;
+      let sum = arr.reduce((a, b) => a + b, 0); // a를 0으로 초기화 
+      for(let i = 0; i < arr.length - 1; i++) {
+        for (let j = i + 1; j < arr.length; j++) {
+          if(sum - (arr[i] + arr[j]) === 100) {
+            arr.splice(j, 1);
+            arr.splice(i, 1);
+          }
+        }
+      }
+
+      return answer;
+    }
+
+
+    let arr = [20, 7, 23, 19, 10, 15, 25, 8, 13];
+    console.log(solution2(arr));
+  </script>
+</body>
+
+</html>

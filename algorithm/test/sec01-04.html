@@ -1,0 +1,37 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>출력결과</title>
+</head>
+
+<body>
+  <script>
+    // 자연수 N이 입력되면 1부터 N까지의 합을 출력
+    // 내꺼 
+    let result = 0;
+    function solution(n) {
+      if (n >= 1) {
+        result += n;
+        n--;
+        solution(n);
+      }
+      return result;
+    }
+
+    console.log(solution(10));
+
+    // 쌤꺼
+    function solution2(n) {
+      let answer = 0;
+      for(let i = 0; i < n; i++) {
+        answer += i;
+      }
+      return result;
+    }
+
+    console.log(solution2(10));
+  </script>
+</body>
+
+</html>

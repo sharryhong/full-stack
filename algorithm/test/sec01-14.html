@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+
+<body>
+  <script>
+    // 가장 긴 문자열을 출력하는 프로그램
+    // 내꺼 
+    function solution(s) {
+      let answer = '';
+      for (let x of s) {
+        if(x.length > answer.length) {
+          answer = x;
+        }
+      }
+      return answer;
+    }
+
+    // 쌤꺼
+    function solution2(s) {
+      let answer = '';
+      let max = Number.MIN_SAFE_INTEGER;
+      for (let x of s) {
+        if(x.length > max) {
+          max = x.length;
+          answer = x;
+        }
+      }
+      return answer;
+    }
+
+    console.log(solution2(['5',
+'teacher',
+'time',
+'student', 'beautiful', 'good']));
+  </script>
+</body>
+
+</html>

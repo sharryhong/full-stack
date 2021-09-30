@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+
+<body>
+  <script>
+    // 자신의 바로 앞 수보다 큰 수만 출력하는 프로그램(첫 번째 수는 무조건 출력한다)
+    // 내꺼 
+    function solution(s) {
+      let answer = [];
+      answer.push(s[0]);
+      for(let i = 1; i < s.length; i++) {
+        if(s[i] > s[i - 1]) answer.push(s[i]);
+      }
+      return answer;
+    }
+
+    // 다른풀이 
+    function solution2(s) {
+      let answer = [];
+      s.reduce((prev, curr) => {
+        if(prev < curr) answer.push(curr);
+        return curr;
+      }, 0)
+      return answer;
+    }
+
+    console.log(solution2([7, 3, 9, 5, 6, 12]));
+  </script>
+</body>
+
+</html>

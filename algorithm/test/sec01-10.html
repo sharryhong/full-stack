@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+
+<body>
+  <script>
+    // 특정문자가 문자열에 몇 개 존재하는지 알아내는 프로그램
+    // 내꺼
+    function solution(str, char) {
+      let answer = 0;
+      for(let i = 0; i < str.length; i++) {
+        if(str[i] === char) answer++;
+      }
+      return answer;
+    }
+
+    console.log(solution('COMPUTERPROGRAMMING', 'R'));
+
+    // 쌤꺼 1
+    function solution2(s, t) {
+      let answer = 0;
+      for(let x of s) {
+        if(x===t) answer++;
+      }
+      return answer;
+    }
+
+    console.log(solution2('COMPUTERPROGRAMMING', 'R'));
+
+    // 쌤꺼 2
+    function solution2(s, t) {
+      // split(t)기준으로 나눠서 배열로 만듬 
+      let answer = s.split(t).length - 1; 
+      return answer;
+    }
+
+    console.log(solution2('COMPUTERPROGRAMMING', 'R'));
+  </script>
+</body>
+
+</html>

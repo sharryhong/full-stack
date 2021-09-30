@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+
+<body>
+  <script>
+    // ‘A'를 모두 ’#‘으로 바꾸어 출력
+    // 내꺼 
+    function solution(s) {
+      let answer;
+      let regex = /A/gi;
+      answer = s.replace(regex, '#')
+     
+      return answer;
+    }
+
+    console.log(solution('BANANA'));
+
+    // 쌤꺼 1
+    function solution2(s) {
+        let answer = '';
+        for(let x of s) {
+          if(x === 'A') answer += '#';
+          else answer += x;
+        }
+        return answer;
+      }
+
+      console.log(solution2('BANANA'));
+
+    // 쌤꺼 2
+    function solution3(s) {
+        let answer = '';
+        answer = s.replace(/A/g, '#');
+        return answer;
+      }
+
+      console.log(solution3('BANANA'));
+  </script>
+</body>
+
+</html>

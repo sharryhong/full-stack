@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+
+<body>
+  <script>
+    // 단어의 가운데 문자를 출력하는 프로그램을 
+    // 단 단어의 길이가 짝수일 경우 가운데 2개의 문자를 출력
+    // 내꺼 
+    function solution(s) {
+      let answer = '';
+      let len = s.length;
+      if (len % 2 === 0) {
+        answer += s[(len / 2) - 1];
+        answer += s[len / 2];
+      } else {
+        answer += s[Math.floor(len / 2)];
+      }
+      
+      return answer;
+    }
+
+    // 쌤꺼 
+    function solution2(s) {
+      let answer = '';
+      let mid = Math.floor(s.length / 2);
+      if(s.length % 2 === 1) {
+        answer = s.substr(mid, 1);
+      } else {
+        answer = s.substr(mid - 1, 2);
+      }
+      
+      return answer;
+    }
+
+    console.log(solution2('study'));
+    console.log(solution2('good'));
+    console.log(solution2('abcdefghijklmn'));
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>출력결과</title>
+</head>
+
+<body>
+  <script>
+    // 삼각형 만들 수 있는지 판별 프로그램
+    function solution(a, b, c) {
+      // 내꺼 
+      // let biggest;
+      // let others = [];
+      // if (a > b) biggest = a;
+      // else biggest = b;
+      // if (c > biggest) biggest = c;
+
+      // if (a !== biggest) others.push(a);
+      // if (b !== biggest) others.push(b);
+      // if (c !== biggest) others.push(c);
+
+      // if (biggest < others[0] + others[1]) return 'Yes';
+      // else return 'NO';
+
+      // 쌤꺼 
+      let answer = 'Yes';
+      let max;
+      let sum = a + b + c;
+
+      if (a > b) max = a;
+      else max = b;
+      if (c > max) max = c;
+
+      if ((sum - max) <= max) answer = 'No';
+
+      return answer;
+    }
+
+    console.log(solution(13, 33, 17));
+  </script>
+</body>
+
+</html>

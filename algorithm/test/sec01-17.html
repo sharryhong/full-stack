@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+
+<body>
+  <script>
+    // N개의 문자열이 입력되면 중복된 문자열은 제거하고 출력하는 프로그램
+    // 내꺼 
+    function solution(arr) {
+      let answer = [];
+      let newArr = [ ...new Set(arr) ];
+      for(let x of newArr) {
+        if(typeof x === 'string') answer.push(x);
+      }
+      return answer;
+    }
+
+    // 쌤꺼 
+    function solution2(s) {
+      let answer;
+
+      answer = s.filter((v, i) => {
+        console.log(s.indexOf(v), i);
+        return s.indexOf(v) === i;
+      });
+      
+      return answer;
+    }
+
+    console.log(solution2([
+      5,
+      'good',
+      'time',
+      'good', 'time', 'student'
+    ]));
+  </script>
+</body>
+
+</html>

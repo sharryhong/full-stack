@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+
+<body>
+  <script>
+    // OX퀴즈 연속 맞출시 가산점 주는 프로그램 
+    // 내꺼 
+    function solution(arr) {
+      let answer = [];
+      let extraPoint = 0;
+      let result = 0;
+
+      for (let i = 0; i < arr.length; i++) {
+        if(i === 0) answer.push(arr[i]);
+        else {
+          if (arr[i - 1] === 1 && arr[i] === 1) {
+            extraPoint++; 
+          } else {
+            extraPoint = 0;
+          }
+          answer.push(arr[i] + extraPoint);
+        }
+      }
+
+      result = answer.reduce((a, b) => a + b)
+      
+      return result;
+    }
+
+    console.log(solution([1,0,1,1,1,0,0,1,1,0]));
+  </script>
+</body>
+
+</html>
+
+<!-- item이 1이면 + 1, 
+가산체크하는 변수 extraPoint 하나 두고, prev가 1이고 item이 1이면 extraPoint + 1  -->

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+
+<body>
+  <script>
+    // 맨 앞에 서 있는 선생님이 볼 수 있는 학생의 수를 구하는 프로그램
+    // (앞에 서 있는 사람들보다 크면 보이고, 작거나 같으면 보이지 않습니다.)
+
+    // 내꺼 
+    function solution(s) {
+      let answer = 0;
+      let maxHeight = 0;
+
+      for(let x of s) {
+        if(maxHeight < x) {
+          maxHeight = x;
+          answer++;
+          console.log('x', x);
+        }
+      }
+      
+      return answer;
+    }
+
+    // 쌤꺼 
+    function solution2(arr) {
+      let answer = 1, max = arr[0];
+
+      for(let i = 1; i < arr.length; i++) {
+        if(arr[i] > max) {
+          answer++; 
+          max = arr[i];
+        }
+      }
+      
+      return answer;
+    }
+
+    console.log(solution2([130, 135, 148, 140, 145, 150, 150, 153]));
+  </script>
+</body>
+
+</html>
