@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+
+<body>
+  <script>
+    // n*n 각 행, 열, 대각선의 합 중 가장 큰 수 구하기 
+    // 내꺼 
+    function solution(arr) {
+      let answer = 0;
+      let n = arr.length;
+      let row = Array.from({ length: n }, () => 0);
+      let column = Array.from({ length: n }, () => 0);
+      let diagonal1 = 0, diagonal2 = 0; 
+
+      for(let i = 0; i < n; i++) {
+        for(let j = 0; j < n; j++) {
+          // 행 더하기 
+          row[i] += arr[i][j];
+          // 열 더하기 
+          column[i] += arr[j][i];
+          // 대각선1 더하기 
+          if(i === j) {
+            diagonal1 += arr[i][j];
+          }
+          // 대각선2 더하기
+          if (i + j === (n - 1)) {
+            diagonal2 += arr[i][j];
+          }
+        }
+        
+        if(answer < row[i]) answer = row[i];
+        if(answer < column[i]) answer = column[i];
+        if(answer < diagonal1) answer = diagonal1;
+        if(answer < diagonal2) answer = diagonal2;
+      }
+
+      return answer;
+    }
+
+    // 쌤꺼
+    function solution2(arr) {
+      let answer = Number.MIN_SAFE_INTEGER;
+      let n = arr.length;
+      let sum1 = sum2 = 0;
+
+      for (let i = 0; i < n; i++) {
+        sum1 = sum2 = 0;
+        for (let j = 0; j < n; j++) {
+          // 행 더하기
+          sum1 += arr[i][j];
+          // 열 더하기 
+          sum2 += arr[j][i];
+        }
+        // 3개 값 중 최대값 
+        answer = Math.max(answer, sum1, sum2);
+      }
+
+      sum1 = sum2 = 0;
+      for (let i = 0; i < n; i++) {
+        // 대각선1 더하기 
+        sum1 += arr[i][i];
+        // 대각선2 더하기
+        sum2 += arr[i][n-i-1];
+      }
+      answer = Math.max(answer, sum1, sum2);
+
+      return answer;
+    }
+
+    console.log(solution([
+      [10, 13, 10, 12, 15],
+      [12, 39, 30, 23, 11],
+      [11, 25, 50, 53, 15],
+      [19, 27, 29, 37, 27],
+      [19, 13, 30, 13, 19]
+    ]));
+  </script>
+</body>
+
+</html>
+
+
