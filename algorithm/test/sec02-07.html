@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+
+<body>
+  <script>
+    // n*n 상하좌우 수 보다 큰 수가 몇개인지 알아내는 프로그램 
+    // 내꺼 
+    function solution(arr) {
+      let answer = 0;
+      let n = arr.length;
+
+      for(let i = 0; i < n; i++) {
+        for(let j = 0; j < n; j++) {
+          let isBigger = false;
+          if(arr[i][j - 1] && (arr[i][j] < arr[i][j - 1])) isBigger = true;
+          if(arr[i][j + 1] && (arr[i][j] < arr[i][j + 1])) isBigger = true;
+          if((i > 0) && arr[i - 1][j] && (arr[i][j] < arr[i - 1][j])) isBigger = true;
+          if((i < n-1) && arr[i + 1][j] && (arr[i][j] < arr[i + 1][j])) isBigger = true;
+          if(!isBigger) {
+            console.log(i, j, arr[i][j]);
+            answer++;
+          }
+        }
+      }
+      
+      return answer;
+    }
+
+    // 쌤꺼 
+    function solution2(arr) {
+      let answer = 0;
+      let n = arr.length;
+      let dx = [-1, 0 , 1, 0];
+      let dy = [0, 1, 0, -1];
+
+      for(let i = 0; i < n; i++) {
+        for(let j = 0; j < n; j++) {
+          let flag = 1;
+          for(let k = 0; k < 4; k++) {
+            let nx = i + dx[k];
+            let ny = j + dy[k];
+            if(nx >= 0 && nx < n && ny >= 0 && ny < n && arr[nx][ny] >= arr[i][j]) {
+              flag = 0;
+              break;
+            }
+          }
+          if(flag) answer++;
+        }
+      }
+      return answer;
+    }
+
+    console.log(solution2([
+      [5,3,7,2,3],
+      [3,7,1,6,1],
+      [7,2,5,3,4],
+      [4,3,6,4,1],
+      [8,7,3,5,2],
+    ]));
+  </script>
+</body>
+
+</html>
+
+<!-- arr[i][j]가 있을때 
+상 arr[i][j-1]
+하 arr[i][j+1]
+좌 arr[i-1][j]
+우 arr[i+1][j] -->
