@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+
+<body>
+  <script>
+    // 알파벳 아닌 문자는 무시, 앞에서 읽을때나 뒤에서 읽을때 같은 문자열인지 알아내는 프로그램 (대소문자 구별하지 않는다.)
+    // 내꺼 
+    function solution(s) {
+      let answer = 'YES';
+      let arr = [];
+      s = s.toLowerCase();
+
+      for(let x of s) {
+        if(/[a-zA-Z]/.test(x)) arr.push(x);
+      }
+
+      if(arr.join('') !== arr.reverse().join('')) answer = 'NO';
+      return answer;
+    }
+
+    // 쌤꺼
+    function solution2(s) {
+      let answer = 'YES';
+      s = s.toLowerCase().replace(/[^a-z]/g, '')
+      if(s.split('').reverse().join('') !== s) answer = 'NO';
+      
+      return answer;
+    }
+
+    console.log(solution2('found7, time: study; Yduts; emit, 7Dnuof'));
+  </script>
+</body>
+
+</html>
