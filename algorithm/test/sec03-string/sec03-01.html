@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+
+<body>
+  <script>
+    // 앞에서 읽을때나 뒤에서 읽을때 같은 문자열인지 알아내는 프로그램 (대소문자 구별하지 않는다.)
+    // 내꺼 
+    function solution(s) {
+      let answer = 'YES';
+      let n = s.length / 2;
+
+      for(let i = 0; i < n; i++) {
+        let x = s.charAt(i);
+        let y = s.charAt(s.length - (i + 1));
+        console.log(x.toUpperCase(), y.toUpperCase());
+        if(x.toUpperCase() !== y.toUpperCase()) return answer = 'NO';
+      }
+      
+      return answer;
+    }
+
+    // 쌤꺼 1
+    function solution2(s) {
+      let answer = 'YES';
+      s = s.toLowerCase();
+      let len = s.length;
+
+      for(let i = 0; i < Math.floor(len / 2); i++) {
+        if(s[i] !== s[[len - i - 1]]) return answer = 'NO';
+      }
+
+      return answer;
+    }
+
+    // 쌤꺼 2
+    function solution3(s) {
+      let answer = 'YES';
+      s = s.toLowerCase();
+      let len = s.length;
+
+      if(s.split('').reverse().join('') !== s) answer = 'NO';
+      return answer;
+    }
+
+    console.log(solution3('gkogeKgokG'));
+    console.log(solution3('gkogegokG'));
+  </script>
+</body>
+
+</html>
