@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+
+<body>
+  <script>
+    // 숫자만 추출하여 자연수 만들기 
+    // 내꺼 
+    function solution(s) {
+      let answer = '';
+
+      for(let x of s) {
+        if(/[0-9]/.test(x)) answer += x;
+      }
+      
+      return Number(answer);
+    }
+
+    // 쌤꺼
+    function solution2(s) {
+      let answer = 0;
+
+      for(let x of s) {
+        if(!isNaN(x)) answer = answer * 10 + Number(x);
+      }
+
+      return Number(answer);
+    }
+
+    console.log(solution2('g0en2T0s8eSoft'));
+  </script>
+</body>
+
+</html>
