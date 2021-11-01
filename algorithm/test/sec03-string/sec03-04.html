@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+
+<body>
+  <script>
+    // 대문자는 소문자로 소문자는 대문자로 변환하여 출력하는 프로그램
+    // 내꺼 
+    function solution(str, char) {
+      let answer = [];
+      let distance = 0;
+      let length = str.length;
+
+      for(let i = 0; i < length; i++) {
+        distance = 0;
+        for(let j = 0; j < length; j++) {
+          if(str[i+j] === char) {
+            answer[i] = distance;
+            break;
+          } else {
+            distance++;
+          }
+        }
+
+        distance = 0;
+        for(let j = 0; j < length; j++) {
+          if((i - j) < 0) break;
+          if(str[i - j] === char) {
+            if(answer[i] > distance) answer[i] = distance;
+            break;
+          } else {
+            distance++;
+          }
+        }
+      }
+      
+      return answer;
+    }
+
+    // 쌤꺼
+    function solution2(s, t) {
+      let answer = [];
+      let p = 1000;
+
+      for(let x of s) {
+        if(x === t) {
+          p = 0;
+          answer.push(p);
+        } else {
+          p++;
+          answer.push(p);
+        }
+      }
+
+      p = 1000;
+      for(let i = s.length - 1; i >= 0; i--) {
+        if(s[i] === t) {
+          p = 0;
+        } else {
+          p++; 
+          answer[i] = Math.min(answer[i], p);
+        }
+      }
+
+      return answer;
+    }
+
+    console.log(solution2('teachermode', 'e'));
+  </script>
+</body>
+
+</html>
