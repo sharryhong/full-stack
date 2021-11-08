@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+
+<body>
+  <script>
+    // 같은 문자가 연속으로 반복되는 경우 문자 오른쪽에 횟수표시하기 
+    // 내꺼 
+    function solution(s) {
+      let answer = '';
+      let n = 1;
+
+      for (let i = 0; i < s.length; i++) {
+        if(s[i] === s[i+1]) {
+          n++;
+        } else {
+          answer += s[i];
+          if(n > 1) answer += n;
+          n = 1;
+        }
+      }
+      
+      return answer;
+    }
+
+    // 쌤꺼
+    function solution2(s) {
+      let answer = '';
+      let cnt = 1; 
+      s = s + " ";
+      
+      for(let i = 0; i < s.length - 1; i++) {
+        if(s[i] === s[i+1]) {
+          cnt++;
+        } else {
+          answer += s[i];
+          if(cnt > 1) answer += String(cnt);
+          cnt = 1;
+        }
+      }
+
+      return answer;
+    }
+
+    console.log(solution2('KKHSSSSSSSE'));
+    console.log(solution2('HAABBBCDDDDD'));
+  </script>
+</body>
+
+</html>
