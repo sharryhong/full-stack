@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+
+<body>
+  <script>
+    // 자릿수의 합이 최대인 수 구하기. 같은 경우 원래 숫자가 큰 숫자 
+    // 내꺼 
+    function solution(arr) {
+      let temporary = { num: 0, sum: 0 };
+
+      arr.forEach(item => {
+        let str = String(item);
+        let sum = 0;
+        for(let i = 0; i < str.length; i++) {
+          sum += Number(str[i])
+        }
+        if(temporary.sum === sum && temporary.num < item) {
+          temporary = { num: item, sum: sum };
+        } else if(temporary.sum < sum) {
+          temporary = { num: item, sum: sum };
+        }
+      })
+      
+      return temporary.num;
+    }
+
+    // 쌤꺼
+    function solution2(arr) {
+      let answer, max = Number.MIN_SAFE_INTEGER;
+
+      for(let x of arr) {
+        // 방법 1
+        // let sum = 0, tmp = x;
+        // while(tmp) {
+        //   sum += tmp % 10;
+        //   tmp = Math.floor(tmp / 10);
+        // }
+
+        // 방법 2
+        let sum = x.toString().split('').reduce((a, b) => a + Number(b), 0);
+        if(sum > max) {
+          max = sum;
+          answer = x;
+        } else if(sum === max) {
+          if(x > answer) answer = x;
+        }
+      }
+
+      return answer;
+    }
+
+    console.log(solution2([128, 460, 603, 40, 521, 137, 123]));
+  </script>
+</body>
+
+</html>
