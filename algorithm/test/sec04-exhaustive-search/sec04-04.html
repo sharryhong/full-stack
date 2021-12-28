@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+
+<body>
+  <script>
+    // 예산 m, 학생 수 n, 각 학생의 상품 가격과 배송비가 주어질 때 예산으로 최대 몇명의 상품구입이 가능한가. 단 상품은 50%할인이 된다. 
+    // 내꺼 
+    function solution(m, arr) {
+      let answer = 0;
+      let n = arr.length;
+      let sum = 0;
+      
+      arr.sort((a, b) => {
+        if((a[0] + a[1]) > (b[0] + b[1])) return 1;  // ! 상품가격 + 배송비가 최저인 순서 정렬
+        else return -1;
+      })
+
+      for(let i = 0; i < n; i++) {
+        sum = sum + (arr[i][0] / 2) + arr[i][1];
+        if(m > sum) {
+          answer++;
+        } else {
+          break;
+        }
+        console.log(arr[i], 'sum', sum, 'answer', answer);
+      }
+
+      return answer;
+    }
+
+    // 쌤꺼
+    function solution2(m, product) {
+      let answer = 0;
+      let n = product.length;
+      
+      product.sort((a, b) => (a[0]+a[1]) - (b[0]+b[1]));
+
+      for (let i = 0; i < n; i++) {
+        let money = m - (product[i][0] / 2 + product[i][1]); // 구매하고 남은 예산
+        let cnt = 1;
+        for(let j = 0; j < n; j++) {
+          if(j !== i && (product[j][0] + product[j][1]) > money) break;
+          if(j !== i && (product[j][0] + product[j][1]) <= money) {
+            money -= product[j][0] + product[j][1]
+            cnt++;
+          }
+        }
+        answer = Math.max(answer, cnt);
+      }
+
+      return answer;
+    }
+
+    console.log(solution(28, [
+      [6, 6],
+      [2, 2],
+      [4, 3],
+      [4, 5],
+      [10, 3], [2,1], [2,3]]));
+
+    console.log(solution(41, [
+      [8,6],
+      [2, 2],
+      [4, 3],
+      [4, 5],
+      [12,1]]));
+
+    console.log(solution(596, [[6, 331], [4, 251], [8, 675], [5, 214], [10, 735], [5, 996], [9, 609], [9, 371], [8, 377], [5, 707], [7, 907], [6, 433], [9, 737], [8, 796], [4, 265], [3, 484], [8, 488], [8, 191], [9, 232], [4, 195]]));
+  </script>
+</body>
+
+</html>
