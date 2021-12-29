@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+
+<body>
+  <script>
+    // 숫자가 적힌 카드(중복허용) n장 중 3장을 뽑아 숫자를 합한다. 큰 수대로 기록하여 k번째로 큰 값 구하는 프로그램 
+    // 내꺼 : for문 돌면서 합 구한뒤 배열에 push후 Set 자료구조를 사용하여 중복제거 
+    // 쌤 코드 : Set 자료구조로 tmp 변수 초기화 하여, for문 돌면서 중복제거하고 add 
+    function solution(arr, k) {
+      let answer = 0;
+      let n = arr.length;
+      let addResult = [];
+
+      for(let a = 0; a < n; a++) {
+        for(let b = 0; b < n; b++) {
+          for(let c = 0; c < n; c++) {
+            if(a !== b && b !== c && a !== c) { // 모두 돌기때문에 쌤 코드가 더 좋음 
+              addResult.push(arr[a] + arr[b] + arr[c]);
+            }
+          }
+        }
+      }
+      addResult.sort((a, b) => b - a);
+      const addResultSet = new Set(addResult);
+      addResult = [ ...addResultSet ];
+
+      answer = addResult[k - 1];
+      
+      return answer;
+    }
+
+    // 쌤꺼
+    function solution2(card, k) {
+      let answer;
+      let n = card.length;
+      let tmp = new Set();
+
+      for(let i = 0; i < n; i++) {
+        for(let j = i + 1; j < n; j++) {
+          for(let k = j + 1; k < n; k++) {
+            tmp.add(card[i] + card[j] + card[k]); // 중복제거하고 add 
+          }
+        }
+      }
+
+      let arr = Array.from(tmp).sort((a , b) => b - a); 
+      // Array.from() : 유사 배열 객체나 반복 가능한 객체(Map, Set)를 얕게 복사해 새로운Array 객체를 만듭니다.
+      answer = arr[k - 1];
+
+      return answer;
+    }
+
+    console.log(solution2([13, 15, 34, 23, 45, 65, 33, 11, 26, 42], 3));
+    console.log(solution2([5, 5, 5, 4, 4, 3, 3, 2, 1], 4))
+  </script>
+</body>
+
+</html>
