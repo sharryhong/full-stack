@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title></title>
+  </head>
+
+  <body>
+    <script>
+      // Sliding Window
+      // 매출기록 배열이 있다. 연속 k일 동안의 최대 매출액을 구하는 프로그램
+
+      // 내꺼 : O(n^2) Sliding Window로 수정하기
+      function solution(arr, k) {
+        let answer = 0;
+        const n = arr.length;
+
+        for (let i = 0; i < n - (k - 1); i++) {
+          let amount = 0;
+          for (let p1 = i; p1 < i + k; p1++) {
+            amount += arr[p1];
+          }
+          if (amount > answer) answer = amount;
+          amount = 0;
+        }
+
+        return answer;
+      }
+
+      // 쌤꺼
+      // Sliding Window: O(n). k개 담은 창문을 옆으로 밀고 나간다.
+      // 이중 for문 도는게 아니라, 기존 더한 값 + 창문에 속한 맨오른쪽원소 - 기존 원소
+      function solution2(arr, k) {
+        let answer,
+          sum = 0;
+
+        for (let i = 0; i < k; i++) {
+          sum += arr[i];
+        }
+        answer = sum;
+
+        for (let i = k; i < arr.length; i++) {
+          sum += arr[i] - arr[i - k];
+          console.log("i", i, "sum", sum);
+          answer = Math.max(answer, sum);
+        }
+
+        return answer;
+      }
+
+      // 쌤코드 복습
+      function solution3(arr, k) {
+        let answer = 0,
+          sum = 0;
+        const n = arr.length;
+
+        for (let i = 0; i < k; i++) {
+          sum += arr[i];
+        }
+        answer = sum;
+
+        for (let i = k; i < n; i++) {
+          sum = sum + arr[i] - arr[i - k];
+          console.log("i", i, "sum", sum);
+          if (answer < sum) answer = sum;
+        }
+
+        return answer;
+      }
+
+      console.log(solution3([12, 15, 11, 20, 25, 10, 20, 19, 13, 15], 3));
+      console.log(solution3([62, 15, 11, 20, 25, 10, 20, 19, 13, 15], 3));
+    </script>
+  </body>
+</html>
