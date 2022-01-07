@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title></title>
+  </head>
+
+  <body>
+    <script>
+      // Hash Map
+      // 아나그램인지 판별하기
+      // 내꺼
+      function solution(str1, str2) {
+        let answer = "";
+        let isValid = true;
+
+        const mapData1 = mapSetter(str1);
+        const mapData2 = mapSetter(str2);
+
+        for (let [key, value] of mapData1) {
+          if (!mapData2.has(key)) isValid = false;
+          if (mapData2.has(key) && mapData2.get(key) !== value) isValid = false;
+        }
+
+        answer = isValid ? "YES" : "NO";
+
+        return answer;
+      }
+      function mapSetter(str) {
+        const mapData = new Map();
+        for (let item of str) {
+          if (mapData.has(item)) {
+            mapData.set(item, mapData.get(item) + 1);
+          } else {
+            mapData.set(item, 1);
+          }
+        }
+        return mapData;
+      }
+
+      // 쌤꺼
+      function solution2(str1, str2) {
+        let answer = "YES";
+        let sH = new Map();
+
+        for (let x of str1) {
+          if (sH.has(x)) sH.set(x, sH.get(x) + 1);
+          else sH.set(x, 1);
+        }
+
+        for (let x of str2) {
+          if (!sH.has(x) || sH.get(x) === 0) return "NO";
+          sH.set(x, sH.get(x) - 1); // 상쇄시킴
+          console.log(x, sH);
+        }
+
+        return answer;
+      }
+
+      console.log(solution2("AbaAeCe", "baeeACA"));
+      console.log(solution2("abaCC", "Caaab"));
+    </script>
+  </body>
+</html>

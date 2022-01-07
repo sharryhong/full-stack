@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title></title>
+  </head>
+
+  <body>
+    <script>
+      // Hash, Sliding Window, Two Pointers Algorithm
+      // 모든 아나그램 찾기
+      // 내꺼1: O(n^2). 수정해보기
+      function solution(sStr, tStr) {
+        let answer = 0;
+        let sLength = sStr.length;
+        let tLength = tStr.length;
+        let sH = new Map();
+
+        // tStr을 해시맵으로
+        for (let x of tStr) {
+          if (sH.has(x)) sH.set(x, sH.get(x) + 1);
+          else sH.set(x, 1);
+        }
+
+        // sStr을 tLength만큼 자르고 sH와 비교
+        for (let i = 0; i <= sLength - tLength; i++) {
+          const temStr = sStr.slice(i, i + tLength);
+          const _sH = new Map(sH);
+          let isValid = true;
+
+          for (let x of temStr) {
+            if (!_sH.has(x) || _sH.get(x) === 0) {
+              isValid = false;
+              break;
+            }
+            _sH.set(x, _sH.get(x) - 1);
+            console.log(i, x, _sH);
+          }
+          if (isValid) answer++;
+        }
+
+        return answer;
+      }
+
+      // 쌤꺼
+      function solution2(s, t) {
+        let answer = 0;
+        let sH = new Map();
+
+        for (let x of t) {
+          sH.set(x, (sH.get(x) || 0) - 1);
+        }
+
+        let len = t.length - 1;
+        for (let i = 0; i < len; i++) {
+          sH.set(s[i], (sH.get(s[i]) || 0) + 1);
+          if (sH.get(s[i]) === 0) sH.delete(s[i]);
+        }
+
+        let lt = 0;
+        for (let rt = len; rt < s.length; rt++) {
+          sH.set(s[rt], (sH.get(s[rt]) || 0) + 1);
+          if (sH.get(s[rt]) === 0) sH.delete(s[rt]);
+          console.log(rt, sH, sH.size);
+          if (sH.size === 0) answer++;
+          sH.set(s[lt], (sH.get(s[lt]) || 0) - 1);
+          if (sH.get(s[lt]) === 0) sH.delete(s[lt]);
+          lt++;
+        }
+        return answer;
+      }
+
+      console.log(solution2("bacaAacba", "abc"));
+    </script>
+  </body>
+</html>
