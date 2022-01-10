@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title></title>
+  </head>
+
+  <body>
+    <script>
+      // Stack
+      // 괄호 안에 있는 문자를 제거하는 프로그램
+      // for문 안의 while문 총 반복횟수가 입력되는 문자열의 '('괄호 개수만큼 반복하므로 크게 의미있지는 않습니다.
+      // 입력되는 문자열의 길이가 N이라면 시간복잡도는 O(N)
+      // 내꺼
+      function solution(s) {
+        let answer = "";
+        let stack = [];
+
+        for (let x of s) {
+          if (x !== ")") stack.push(x);
+          else {
+            for (let i = stack.length - 1; i >= 0; i--) {
+              if (stack[i] === "(") {
+                stack.pop();
+                break;
+              }
+              stack.pop();
+            }
+          }
+        }
+        answer = stack.join("");
+
+        return answer;
+      }
+
+      // 쌤꺼
+      function solution2(s) {
+        let answer = "";
+        let stack = [];
+
+        for (let x of s) {
+          if (x === ")") {
+            while (stack.pop() !== "(");
+          } else {
+            stack.push(x);
+          }
+        }
+        answer = stack.join("");
+
+        return answer;
+      }
+
+      console.log(solution2("(A(BC)D)EF(G(H)(IJ)K)LM(N)"));
+    </script>
+  </body>
+</html>

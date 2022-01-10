@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title></title>
+  </head>
+
+  <body>
+    <script>
+      // Stack
+      // 올바른 괄호인지 알아내는 프로그램
+      // 내꺼
+      function solution(s) {
+        let answer = "YES";
+        const sArr = [];
+
+        for (let i = 0; i < s.length; i++) {
+          if (s[i] === "(") sArr.push(s[i]);
+          else {
+            if (!sArr[sArr.length - 1]) return "NO";
+              sArr.pop();
+            }
+          }
+        }
+        if (sArr.length > 0) return "NO";
+
+        return answer;
+      }
+
+      // 쌤꺼
+      function solution2(s) {
+        let answer = "YES";
+        let stack = [];
+
+        for (let x of s) {
+          if (x === "(") stack.push(x);
+          else {
+            if (!stack.length) return "NO";
+            stack.pop();
+          }
+        }
+        if (stack.length > 0) return "NO";
+
+        return answer;
+      }
+
+      console.log(solution(")())"));
+      console.log(solution("(())()"));
+      console.log(solution("(()(()))(()"));
+    </script>
+  </body>
+</html>
