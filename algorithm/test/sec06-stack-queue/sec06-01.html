@@ -18,6 +18,7 @@
           if (s[i] === "(") sArr.push(s[i]);
           else {
             if (!sArr[sArr.length - 1]) return "NO";
+            if (sArr[sArr.length - 1] === "(") {
               sArr.pop();
             }
           }
