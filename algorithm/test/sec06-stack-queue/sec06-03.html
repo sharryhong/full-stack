@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title></title>
+  </head>
+
+  <body>
+    <script>
+      // Stack
+      // 크레인 인형뽑기
+      // 내꺼
+      function solution(board, moves) {
+        let answer = 0;
+        let stack = [];
+        let newArr = [];
+
+        board.forEach((boardItems) => {
+          newArr.push(boardItems.filter((item) => item > 0));
+        });
+
+        moves.forEach((move) => {
+          if (newArr[move - 1]?.length) {
+            const doll = newArr[move - 1].pop();
+            if (stack[stack.length - 1] === doll) {
+              stack.pop();
+              answer = answer + 2;
+            } else {
+              stack.push(doll);
+            }
+          }
+          console.log(move, stack);
+        });
+
+        return answer;
+      }
+
+      // 쌤꺼
+      function solution2(board, moves) {
+        let answer = 0;
+        let stack = [];
+
+        moves.forEach((pos) => {
+          for (let i = 0; i < board.length; i++) {
+            if (board[i][pos - 1] !== 0) {
+              let tmp = board[i][pos - 1];
+              board[i][pos - 1] = 0;
+              if (tmp === stack[stack.length - 1]) {
+                stack.pop();
+                answer += 2;
+              } else stack.push(tmp);
+
+              break;
+            }
+          }
+        });
+
+        return answer;
+      }
+
+      // console.log(
+      //   solution2(
+      //     [
+      //       [0, 0, 0, 0, 0],
+      //       [0, 0, 1, 0, 3],
+      //       [0, 2, 5, 0, 1],
+      //       [4, 2, 4, 4, 2],
+      //       [3, 5, 1, 3, 1],
+      //     ],
+      //     [1, 5, 3, 5, 1, 2, 1, 4]
+      //   )
+      // );
+      // console.log(
+      //   solution2(
+      //     [
+      //       [0, 0, 0, 0, 0],
+      //       [2, 0, 1, 0, 3],
+      //       [2, 2, 5, 0, 1],
+      //       [4, 2, 4, 4, 2],
+      //       [4, 5, 1, 3, 1],
+      //     ],
+      //     [2, 3, 5, 1, 5, 3]
+      //   )
+      // );
+      console.log(
+        solution2(
+          [
+            [3, 4, 0, 0, 0],
+            [5, 2, 2, 0, 0],
+            [1, 4, 5, 1, 0],
+            [3, 4, 0, 0, 0],
+            [1, 2, 1, 3, 0],
+          ],
+          [1, 5, 3, 5, 1, 2, 1, 4]
+        )
+      );
+    </script>
+  </body>
+</html>
