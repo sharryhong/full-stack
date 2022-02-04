@@ -1,0 +1,44 @@
+@value makerLightGrey, makerPink, makerLightPink from "common/colors.css";
+
+.container {
+  flex: 1 1 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.input {
+  display: none;
+}
+.button {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  border: 0;
+}
+.button.grey {
+  background-color: makerLightGrey;
+}
+.button.pink {
+  background-color: makerLightPink;
+}
+.button:hover {
+  opacity: 0.8;
+}
+
+.loading {
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 50%;
+  border: 2px solid makerLightGrey;
+  border-top: 2px solid makerPink;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
