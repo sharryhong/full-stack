@@ -1,0 +1,13 @@
+@value primaryLightColor from 'styles/colors.css';
+
+.count {
+  width: 25px;
+  height: 25px;
+  margin-right: 10px;
+  color: #fff;
+  font-size: 25px;
+  background-color: primaryLightColor;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 25px;
+}

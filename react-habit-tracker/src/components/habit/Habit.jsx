@@ -1,11 +1,12 @@
 import React from "react";
+import Count from "../count/Count";
 import styles from "./habit.module.css";
 
 const Habit = ({ habit }) => {
   return (
     <li className={styles.habit}>
       <h3 className={styles.title}>{habit.title}</h3>
-      <span className={styles.count}>{habit.count}</span>
+      <Count count={habit.count} />
       <button className={styles.button}>
         <i className="fas fa-plus-square"></i>
       </button>

@@ -3,6 +3,7 @@
 .header {
   display: flex;
   justify-content: center;
+  align-items: center;
   height: 70px;
   line-height: 70px;
   background-color: backgroundColor;
@@ -10,4 +11,5 @@
 }
 .title {
   font-size: 30px;
+  margin-right: 10px;
 }
