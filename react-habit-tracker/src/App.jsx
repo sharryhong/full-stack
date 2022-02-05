@@ -34,12 +34,37 @@ function App() {
     setHabits(newHabits);
   };
 
+  const onIncrease = (id) => {
+    const newHabits = habits.map((habit) => {
+      if (habit.id === id) {
+        return { ...habit, count: habit.count + 1 };
+      }
+      return habit;
+    });
+    setHabits(newHabits);
+  };
+
+  const onDecrease = (id) => {
+    const newHabits = habits.map((habit) => {
+      if (habit.id === id) {
+        return { ...habit, count: habit.count === 0 ? 0 : habit.count - 1 };
+      }
+      return habit;
+    });
+    setHabits(newHabits);
+  };
+
   return (
     <>
       <Header totalCount={totalCount} />
       <section className={styles.main}>
         <HabitAddForm onAdd={onAdd} />
-        <Habits habits={habits} onDelete={onDelete} />
+        <Habits
+          habits={habits}
+          onDelete={onDelete}
+          onIncrease={onIncrease}
+          onDecrease={onDecrease}
+        />
         <Button name="Reset All" />
       </section>
     </>
