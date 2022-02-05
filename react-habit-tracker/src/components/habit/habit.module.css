@@ -1,4 +1,4 @@
-@value primaryLightColor, buttonColor, buttonLightColor, borderColor  from 'styles/colors.css';
+@value primaryLightColor, primaryDarkColor, secondaryColor, borderColor  from 'styles/colors.css';
 
 .habit {
   display: flex;
@@ -14,9 +14,9 @@
 .button {
   margin: 3px;
   font-size: 25px;
-  color: buttonLightColor;
+  color: secondaryColor;
 }
 .trash {
   margin-left: 10px;
-  color: buttonColor;
+  color: primaryDarkColor;
 }

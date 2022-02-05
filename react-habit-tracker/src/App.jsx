@@ -20,11 +20,20 @@ function App() {
   ]);
   const [totalCount, setTotalCount] = useState(0);
 
+  const onAdd = (title) => {
+    const habit = {
+      id: Date.now(),
+      title,
+      count: 0,
+    };
+    setHabits([habit, ...habits]);
+  };
+
   return (
     <>
       <Header totalCount={totalCount} />
       <section className={styles.main}>
-        <HabitAddForm />
+        <HabitAddForm onAdd={onAdd} />
         <Habits habits={habits} />
         <Button name="Reset All" />
       </section>

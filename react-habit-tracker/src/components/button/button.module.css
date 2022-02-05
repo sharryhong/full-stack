@@ -1,8 +1,9 @@
-@value buttonColor from 'styles/colors.css';
+@value primaryColor from 'styles/colors.css';
 
 .button {
   padding: 5px 10px;
   color: #fff;
   font-size: 17px;
-  background-color: buttonColor;
+  background-color: primaryColor;
+  border-radius: 3px;
 }

@@ -1,6 +1,5 @@
-@value primaryColor: #2596be;
+@value primaryColor: #1d9b95;
 @value primaryLightColor: #abdbe3;
-@value buttonColor: #053e73;
-@value buttonLightColor: #f2c375;
-@value backgroundColor: #fbffd4;
+@value primaryDarkColor: #125a57;
+@value secondaryColor: #f2c375;
 @value borderColor: #e1e1e1;

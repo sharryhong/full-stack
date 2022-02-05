@@ -1,4 +1,4 @@
-@value backgroundColor, borderColor from 'styles/colors.css';
+@value secondaryColor, borderColor from 'styles/colors.css';
 
 .header {
   display: flex;
@@ -6,7 +6,7 @@
   align-items: center;
   height: 70px;
   line-height: 70px;
-  background-color: backgroundColor;
+  background-color: secondaryColor;
   border-bottom: 1px solid borderColor;
 }
 .title {
