@@ -1,0 +1,13 @@
+@value backgroundColor, borderColor from 'styles/colors.css';
+
+.header {
+  display: flex;
+  justify-content: center;
+  height: 70px;
+  line-height: 70px;
+  background-color: backgroundColor;
+  border-bottom: 1px solid borderColor;
+}
+.title {
+  font-size: 30px;
+}

@@ -1,0 +1,32 @@
+@value primaryLightColor, buttonColor, buttonLightColor, borderColor  from 'styles/colors.css';
+
+.habit {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid borderColor;
+}
+.title {
+  margin-right: 10px;
+  font-size: 30px;
+  font-weight: normal;
+}
+.count {
+  width: 25px;
+  height: 25px;
+  margin-right: 10px;
+  color: #fff;
+  font-size: 25px;
+  background-color: primaryLightColor;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 25px;
+}
+.button {
+  margin: 3px;
+  font-size: 25px;
+  color: buttonLightColor;
+}
+.trash {
+  color: buttonColor;
+}
