@@ -29,12 +29,17 @@ function App() {
     setHabits([habit, ...habits]);
   };
 
+  const onDelete = (id) => {
+    const newHabits = habits.filter((habit) => habit.id !== id);
+    setHabits(newHabits);
+  };
+
   return (
     <>
       <Header totalCount={totalCount} />
       <section className={styles.main}>
         <HabitAddForm onAdd={onAdd} />
-        <Habits habits={habits} />
+        <Habits habits={habits} onDelete={onDelete} />
         <Button name="Reset All" />
       </section>
     </>
