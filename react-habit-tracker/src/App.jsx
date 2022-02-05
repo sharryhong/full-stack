@@ -18,7 +18,6 @@ function App() {
       count: 0,
     },
   ]);
-  const [totalCount, setTotalCount] = useState(0);
 
   const onAdd = (title) => {
     const habit = {
@@ -54,9 +53,20 @@ function App() {
     setHabits(newHabits);
   };
 
+  const onResetAll = () => {
+    const newHabits = habits.map((habit) => {
+      return { ...habit, count: 0 };
+    });
+    setHabits(newHabits);
+  };
+
+  const setTotalCount = () => {
+    return habits.filter((habit) => habit.count > 0).length;
+  };
+
   return (
     <>
-      <Header totalCount={totalCount} />
+      <Header totalCount={setTotalCount()} />
       <section className={styles.main}>
         <HabitAddForm onAdd={onAdd} />
         <Habits
@@ -65,7 +75,7 @@ function App() {
           onIncrease={onIncrease}
           onDecrease={onDecrease}
         />
-        <Button name="Reset All" />
+        <Button name="Reset All" onClick={onResetAll} />
       </section>
     </>
   );
