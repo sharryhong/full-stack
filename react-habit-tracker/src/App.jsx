@@ -28,34 +28,35 @@ function App() {
     setHabits([habit, ...habits]);
   };
 
-  const onDelete = (id) => {
-    const newHabits = habits.filter((habit) => habit.id !== id);
+  const onDelete = (habit) => {
+    const newHabits = habits.filter((item) => item.id !== habit.id);
     setHabits(newHabits);
   };
 
-  const onIncrease = (id) => {
-    const newHabits = habits.map((habit) => {
-      if (habit.id === id) {
+  const onIncrease = (habit) => {
+    const newHabits = habits.map((item) => {
+      if (item.id === habit.id) {
         return { ...habit, count: habit.count + 1 };
       }
-      return habit;
+      return item;
     });
     setHabits(newHabits);
   };
 
-  const onDecrease = (id) => {
-    const newHabits = habits.map((habit) => {
-      if (habit.id === id) {
+  const onDecrease = (habit) => {
+    const newHabits = habits.map((item) => {
+      if (item.id === habit.id) {
         return { ...habit, count: habit.count === 0 ? 0 : habit.count - 1 };
       }
-      return habit;
+      return item;
     });
     setHabits(newHabits);
   };
 
   const onResetAll = () => {
     const newHabits = habits.map((habit) => {
-      return { ...habit, count: 0 };
+      if (habit.count !== 0) return { ...habit, count: 0 };
+      return habit;
     });
     setHabits(newHabits);
   };

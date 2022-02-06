@@ -1,16 +1,17 @@
-import React from "react";
+import React, { memo } from "react";
 import Count from "../count/Count";
 import styles from "./habit.module.css";
 
-const Habit = ({ habit, onDelete, onIncrease, onDecrease }) => {
+const Habit = memo(({ habit, onDelete, onIncrease, onDecrease }) => {
+  console.log("habit", habit.id);
   const handleDelete = () => {
-    onDelete(habit.id);
+    onDelete(habit);
   };
   const handleIncrease = () => {
-    onIncrease(habit.id);
+    onIncrease(habit);
   };
   const handleDecrease = () => {
-    onDecrease(habit.id);
+    onDecrease(habit);
   };
 
   return (
@@ -31,6 +32,6 @@ const Habit = ({ habit, onDelete, onIncrease, onDecrease }) => {
       </button>
     </li>
   );
-};
+});
 
 export default Habit;

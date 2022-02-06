@@ -1,8 +1,8 @@
-import React from "react";
+import React, { memo } from "react";
 import styles from "./count.module.css";
 
-const Count = ({ count }) => {
+const Count = memo(({ count }) => {
   return <span className={styles.count}>{count}</span>;
-};
+});
 
 export default Count;
