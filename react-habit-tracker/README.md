@@ -24,4 +24,4 @@ Habit Tracker 다시 스스로 만들기
 
 10. 쌤 코드와 비교
 
-11. useContext 적용해보기
+11. (공부용) state 관리 리팩토링 : useContext, useReducer 사용

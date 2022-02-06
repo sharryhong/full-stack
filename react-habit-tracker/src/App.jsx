@@ -5,6 +5,8 @@ import Habits from "./components/habits/Habits";
 import Header from "./components/header/Header";
 import styles from "./app.module.css";
 
+export const HabitContext = React.createContext();
+
 function App() {
   const [habits, setHabits] = useState([
     {
@@ -61,13 +63,9 @@ function App() {
     setHabits(newHabits);
   };
 
-  const setTotalCount = () => {
-    return habits.filter((habit) => habit.count > 0).length;
-  };
-
   return (
-    <>
-      <Header totalCount={setTotalCount()} />
+    <HabitContext.Provider value={{ habits }}>
+      <Header />
       <section className={styles.main}>
         <HabitAddForm onAdd={onAdd} />
         <Habits
@@ -78,7 +76,7 @@ function App() {
         />
         <Button name="Reset All" onClick={onResetAll} />
       </section>
-    </>
+    </HabitContext.Provider>
   );
 }
 

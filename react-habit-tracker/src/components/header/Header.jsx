@@ -1,12 +1,19 @@
-import React, { memo } from "react";
+import React, { memo, useContext } from "react";
 import Count from "../count/Count";
 import styles from "./header.module.css";
+import { HabitContext } from "App.jsx";
 
-const Header = memo(({ totalCount }) => {
+const Header = memo(() => {
+  const { habits } = useContext(HabitContext);
+
+  const setTotalCount = () => {
+    return habits.filter((habit) => habit.count > 0).length;
+  };
+
   return (
     <header className={styles.header}>
       <h1 className={styles.title}>Habit Tracker</h1>
-      <Count count={totalCount} />
+      <Count count={setTotalCount()} />
     </header>
   );
 });
