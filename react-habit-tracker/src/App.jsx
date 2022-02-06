@@ -63,17 +63,18 @@ function App() {
     setHabits(newHabits);
   };
 
+  const setTotalCount = () => {
+    return habits.filter((habit) => habit.count > 0).length;
+  };
+
   return (
-    <HabitContext.Provider value={{ habits }}>
+    <HabitContext.Provider
+      value={{ habits, setTotalCount, onAdd, onDelete, onIncrease, onDecrease }}
+    >
       <Header />
       <section className={styles.main}>
-        <HabitAddForm onAdd={onAdd} />
-        <Habits
-          habits={habits}
-          onDelete={onDelete}
-          onIncrease={onIncrease}
-          onDecrease={onDecrease}
-        />
+        <HabitAddForm />
+        <Habits />
         <Button name="Reset All" onClick={onResetAll} />
       </section>
     </HabitContext.Provider>

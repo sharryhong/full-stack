@@ -1,8 +1,11 @@
-import React, { useRef } from "react";
+import React, { useRef, useContext } from "react";
 import Button from "../button/Button";
 import styles from "./habit-add-form.module.css";
+import { HabitContext } from "App.jsx";
 
-const HabitAddForm = ({ onAdd }) => {
+const HabitAddForm = () => {
+  const { onAdd } = useContext(HabitContext);
+
   const formRef = useRef(null);
   const inputRef = useRef(null);
 

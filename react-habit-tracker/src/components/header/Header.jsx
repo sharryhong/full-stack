@@ -4,11 +4,7 @@ import styles from "./header.module.css";
 import { HabitContext } from "App.jsx";
 
 const Header = memo(() => {
-  const { habits } = useContext(HabitContext);
-
-  const setTotalCount = () => {
-    return habits.filter((habit) => habit.count > 0).length;
-  };
+  const { setTotalCount } = useContext(HabitContext);
 
   return (
     <header className={styles.header}>
