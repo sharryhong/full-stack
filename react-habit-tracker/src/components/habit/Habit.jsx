@@ -1,17 +1,19 @@
-import React, { memo } from "react";
+import React, { memo, useContext } from "react";
 import Count from "../count/Count";
 import styles from "./habit.module.css";
+import { HabitContext } from "App";
 
-const Habit = memo(({ habit, onDelete, onIncrease, onDecrease }) => {
-  console.log("habit", habit.id);
+const Habit = memo(({ habit }) => {
+  const { dispatch } = useContext(HabitContext);
+
   const handleDelete = () => {
-    onDelete(habit);
+    dispatch({ type: "DELETE_HABIT", payload: habit });
   };
   const handleIncrease = () => {
-    onIncrease(habit);
+    dispatch({ type: "COUNT_INCREASE", payload: habit });
   };
   const handleDecrease = () => {
-    onDecrease(habit);
+    dispatch({ type: "COUNT_DECREASE", payload: habit });
   };
 
   return (
