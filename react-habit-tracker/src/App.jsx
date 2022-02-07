@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useReducer } from "react";
 import Button from "./components/button/Button";
 import HabitAddForm from "./components/habit-add-form/HabitAddForm";
 import Habits from "./components/habits/Habits";
@@ -7,8 +7,17 @@ import styles from "./app.module.css";
 
 export const HabitContext = React.createContext();
 
+const habitReducer = (habits, { type, payload }) => {
+  switch (type) {
+    case "ADD_HABIT":
+      return [{ id: Date.now(), title: payload, count: 0 }, ...habits];
+    default:
+      throw new Error();
+  }
+};
+
 function App() {
-  const [habits, setHabits] = useState([
+  const [habits, dispatch] = useReducer(habitReducer, [
     {
       id: 1,
       title: "Coding",
@@ -21,18 +30,9 @@ function App() {
     },
   ]);
 
-  const onAdd = (title) => {
-    const habit = {
-      id: Date.now(),
-      title,
-      count: 0,
-    };
-    setHabits([habit, ...habits]);
-  };
-
   const onDelete = (habit) => {
     const newHabits = habits.filter((item) => item.id !== habit.id);
-    setHabits(newHabits);
+    // setHabits(newHabits);
   };
 
   const onIncrease = (habit) => {
@@ -42,7 +42,7 @@ function App() {
       }
       return item;
     });
-    setHabits(newHabits);
+    // setHabits(newHabits);
   };
 
   const onDecrease = (habit) => {
@@ -52,7 +52,7 @@ function App() {
       }
       return item;
     });
-    setHabits(newHabits);
+    // setHabits(newHabits);
   };
 
   const onResetAll = () => {
@@ -60,7 +60,7 @@ function App() {
       if (habit.count !== 0) return { ...habit, count: 0 };
       return habit;
     });
-    setHabits(newHabits);
+    // setHabits(newHabits);
   };
 
   const setTotalCount = () => {
@@ -69,7 +69,14 @@ function App() {
 
   return (
     <HabitContext.Provider
-      value={{ habits, setTotalCount, onAdd, onDelete, onIncrease, onDecrease }}
+      value={{
+        habits,
+        dispatch,
+        setTotalCount,
+        onDelete,
+        onIncrease,
+        onDecrease,
+      }}
     >
       <Header />
       <section className={styles.main}>

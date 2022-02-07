@@ -4,7 +4,7 @@ import styles from "./habit-add-form.module.css";
 import { HabitContext } from "App.jsx";
 
 const HabitAddForm = () => {
-  const { onAdd } = useContext(HabitContext);
+  const { dispatch } = useContext(HabitContext);
 
   const formRef = useRef(null);
   const inputRef = useRef(null);
@@ -12,7 +12,7 @@ const HabitAddForm = () => {
   const handleAdd = (event) => {
     event.preventDefault();
     if (!inputRef.current.value.trim()) return;
-    onAdd(inputRef.current.value);
+    dispatch({ type: "ADD_HABIT", payload: inputRef.current.value });
     formRef.current.reset();
   };
 
