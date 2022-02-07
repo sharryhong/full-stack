@@ -1,10 +1,14 @@
 import React, { memo, useContext } from "react";
 import Count from "../count/Count";
 import styles from "./header.module.css";
-import { HabitContext } from "App.jsx";
+import { HabitContext } from "HabitStore";
 
 const Header = memo(() => {
-  const { setTotalCount } = useContext(HabitContext);
+  const { habits } = useContext(HabitContext);
+
+  const setTotalCount = () => {
+    return habits.filter((habit) => habit.count > 0).length;
+  };
 
   return (
     <header className={styles.header}>

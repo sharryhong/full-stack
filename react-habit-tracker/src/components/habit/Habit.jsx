@@ -1,7 +1,7 @@
 import React, { memo, useContext } from "react";
 import Count from "../count/Count";
 import styles from "./habit.module.css";
-import { HabitContext } from "App";
+import { HabitContext } from "HabitStore";
 
 const Habit = memo(({ habit }) => {
   const { dispatch } = useContext(HabitContext);

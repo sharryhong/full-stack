@@ -1,7 +1,7 @@
 import React, { useRef, useContext } from "react";
 import Button from "../button/Button";
 import styles from "./habit-add-form.module.css";
-import { HabitContext } from "App.jsx";
+import { HabitContext } from "HabitStore";
 
 const HabitAddForm = () => {
   const { dispatch } = useContext(HabitContext);
