@@ -7,16 +7,33 @@ class Items extends Component {
   template() {
     const { items } = this.$state;
     return `
-      <button id="append">Add</button>
+      <button class="add-btn">Add</button>
       <ul>
-        ${items.map((item) => `<li>${item}</li>`).join("")}
+        ${items
+          .map(
+            (item, index) => `
+          <li>
+            ${item}
+            <button class="delete-btn" data-index="${index}">삭제</button>
+          </li>
+        `
+          )
+          .join("")}
       </ul>
     `;
   }
   setEvent() {
-    this.$target.querySelector("#append").addEventListener("click", () => {
+    this.$target.addEventListener("click", (event) => {
       const { items } = this.$state;
-      this.setState({ items: [...items, `Good${items.length + 1}`] });
+
+      if (event.target.classList.contains("add-btn")) {
+        this.setState({ items: [...items, `Good${items.length + 1}`] });
+      }
+
+      if (event.target.classList.contains("delete-btn")) {
+        items.splice(event.target.dataset.index, 1);
+        this.setState({ items });
+      }
     });
   }
 }

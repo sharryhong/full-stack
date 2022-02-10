@@ -5,6 +5,7 @@ class Component {
     this.$target = $target;
     this.setup();
     this.render();
+    this.setEvent();
   }
   setup() {}
   template() {}
@@ -15,7 +16,6 @@ class Component {
   }
   render() {
     this.$target.innerHTML = this.template();
-    this.setEvent();
   }
 }
 
