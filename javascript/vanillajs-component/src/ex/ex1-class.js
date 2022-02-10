@@ -7,15 +7,15 @@ class Component {
     this.render();
   }
   setup() {}
-  template() {}
-  render() {
-    this.$target.innerHTML = this.template();
-    this.setEvent();
-  }
-  setEvent() {}
   setState(newState) {
     this.$state = { ...this.$state, ...newState };
     this.render();
+  }
+  template() {}
+  setEvent() {}
+  render() {
+    this.$target.innerHTML = this.template();
+    this.setEvent();
   }
 }
 
@@ -26,7 +26,7 @@ class App extends Component {
   template() {
     const { items } = this.$state;
     return `
-      <button id="append">ADD</button>
+      <button id="append">Add</button>
       <ul>
         ${items.map((item) => `<li>${item}</li>`).join("")}
       </ul>
@@ -35,7 +35,7 @@ class App extends Component {
   setEvent() {
     document.querySelector("#append").addEventListener("click", () => {
       const { items } = this.$state;
-      this.setState({ items: [...items, `item${items.length + 1}`] });
+      this.setState({ items: [...items, `good${items.length + 1}`] });
     });
   }
 }
