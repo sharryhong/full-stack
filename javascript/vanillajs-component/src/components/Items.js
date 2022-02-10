@@ -7,16 +7,16 @@ class Items extends Component {
   template() {
     const { items } = this.$state;
     return `
-      <button id="append">ADD</button>
+      <button id="append">Add</button>
       <ul>
         ${items.map((item) => `<li>${item}</li>`).join("")}
       </ul>
     `;
   }
   setEvent() {
-    document.querySelector("#append").addEventListener("click", () => {
+    this.$target.querySelector("#append").addEventListener("click", () => {
       const { items } = this.$state;
-      this.setState({ items: [...items, `item${items.length + 1}`] });
+      this.setState({ items: [...items, `Good${items.length + 1}`] });
     });
   }
 }

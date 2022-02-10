@@ -7,17 +7,15 @@ class Component {
     this.render();
   }
   setup() {}
-  template() {
-    return "";
-  }
-  render() {
-    this.$target.innerHTML = this.template();
-    this.setEvent();
-  }
+  template() {}
   setEvent() {}
   setState(newState) {
     this.$state = { ...this.$state, ...newState };
     this.render();
+  }
+  render() {
+    this.$target.innerHTML = this.template();
+    this.setEvent();
   }
 }
 
