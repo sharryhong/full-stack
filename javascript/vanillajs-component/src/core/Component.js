@@ -1,8 +1,10 @@
 class Component {
   $target;
+  $props;
   $state;
-  constructor($target) {
+  constructor($target, $props) {
     this.$target = $target;
+    this.$props = $props;
     this.setup();
     this.render();
     this.setEvent();
@@ -10,6 +12,7 @@ class Component {
   setup() {}
   template() {}
   setEvent() {}
+  mounted() {}
   addEvent(eventType, selector, callback) {
     const children = [...this.$target.querySelectorAll(selector)];
     const isTarget = (target) =>
@@ -25,6 +28,7 @@ class Component {
   }
   render() {
     this.$target.innerHTML = this.template();
+    this.mounted();
   }
 }
 
