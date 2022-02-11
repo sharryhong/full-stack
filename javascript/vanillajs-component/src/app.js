@@ -1,5 +1,7 @@
 import Component from "./core/Component.js";
 import ItemAppender from "./components/ItemAppender.js";
+import Items from "./components/Items.js";
+import ItemFilter from "./components/ItemFilter.js";
 
 class App extends Component {
   setup() {
@@ -28,12 +30,31 @@ class App extends Component {
     `;
   }
   mounted() {
-    const { addItem } = this;
     const $itemAppender = this.$target.querySelector(
       '[data-component="item-appender"]'
     );
+    const $items = this.$target.querySelector('[data-component="items"]');
+    const $itemFilter = this.$target.querySelector(
+      '[data-component="item-filter"]'
+    );
 
-    new ItemAppender($itemAppender, { addItem: addItem.bind(this) });
+    new ItemAppender($itemAppender, { addItem: this.addItem.bind(this) });
+    new Items($items, {
+      filteredItems: this.filteredItems,
+      toggleItem: this.toggleItem.bind(this),
+      deleteItem: this.deleteItem.bind(this),
+    });
+    new ItemFilter($itemFilter, { filterItem: this.filterItem.bind(this) });
+  }
+
+  get filteredItems() {
+    const { filterName, items } = this.$state;
+    return items.filter(
+      ({ active }) =>
+        (filterName === "active" && active) ||
+        (filterName === "inactive" && !active) ||
+        filterName === "all"
+    );
   }
 
   addItem(contents) {
@@ -42,6 +63,26 @@ class App extends Component {
     this.setState({
       items: [...items, { id, contents, active: false }],
     });
+  }
+
+  toggleItem(id) {
+    const { items } = this.$state;
+    const index = items.findIndex((item) => item.id === id);
+    items[index].active = !items[index].active;
+    this.setState({ items });
+  }
+
+  deleteItem(id) {
+    const { items } = this.$state;
+    items.splice(
+      items.findIndex((item) => item.id === id),
+      1
+    );
+    this.setState({ items });
+  }
+
+  filterItem(filter) {
+    this.setState({ filterName: filter });
   }
 }
 
