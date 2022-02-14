@@ -4,12 +4,13 @@ class App extends Component {
   setup() {
     this.$state = {
       songs: [
+        "Falling Slowly",
         "Juice WRLD Ft Benny Blanco - Real Shit",
         "Lil Baby, Lil Durk ft Rodwave - Rich Off Pain",
-        "Polo G – I Know",
       ],
-      songIndex: 2,
+      songIndex: 0,
       isPlaying: false,
+      $playEl: null,
     };
   }
   template() {
@@ -37,7 +38,11 @@ class App extends Component {
           <i class="fas fa-backward"></i>
         </button>
         <button id="play" class="action-btn action-btn-big">
-          <i class="fas fa-play"></i>
+          ${
+            isPlaying
+              ? `<i class="fas fa-pause"></i>`
+              : `<i class="fas fa-play"></i>`
+          }
         </button>
         <button id="next" class="action-btn">
           <i class="fas fa-forward"></i>
@@ -46,11 +51,61 @@ class App extends Component {
     </div>`;
   }
   mounted() {}
+  playSong() {
+    this.$target.querySelector("#audio").play();
+  }
+  pauseSong() {
+    this.$target.querySelector("#audio").pause();
+  }
   setEvent() {
     this.addEvent("click", "#play", () => {
       const { isPlaying } = this.$state;
       this.setState({ isPlaying: !isPlaying });
-      console.log(this.$state);
+      if (this.$state.isPlaying) {
+        this.playSong();
+      } else {
+        this.pauseSong();
+      }
+    });
+
+    this.addEvent("click", "#next", () => {
+      const { songIndex, songs } = this.$state;
+      let newSongindex = songIndex + 1;
+
+      if (newSongindex > songs.length - 1) {
+        newSongindex = 0;
+      }
+
+      this.setState({ songIndex: newSongindex });
+      this.playSong();
+    });
+
+    this.addEvent("click", "#prev", () => {
+      const { songIndex, songs } = this.$state;
+      let newSongindex = songIndex - 1;
+
+      if (newSongindex < 0) {
+        newSongindex = songs.length - 1;
+      }
+
+      this.setState({ songIndex: newSongindex });
+      this.playSong();
+    });
+
+    this.addEvent("timeupdate", "#audio", (event) => {
+      const { duration, currentTime } = event.srcElement;
+      console.log("?");
+    });
+
+    this.addEvent("click", "#progress-container", (event) => {
+      const width = this.$target.querySelector(
+        "#progress-container"
+      ).clientWidth;
+      const clickX = event.offsetX;
+      const duration = this.$target.querySelector("#audio").duration;
+
+      this.$target.querySelector("#audio").currentTime =
+        (clickX / width) * duration;
     });
   }
 }
