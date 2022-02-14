@@ -4,24 +4,33 @@ class App extends Component {
   setup() {
     this.$state = {
       songs: [
-        "Juice WRLD Ft Benny Blanco - Real Shit.jpeg",
-        "Lil Baby, Lil Durk ft Rodwave - Rich Off Pain.jpeg",
-        "Polo G – I Know.jpeg",
+        "Juice WRLD Ft Benny Blanco - Real Shit",
+        "Lil Baby, Lil Durk ft Rodwave - Rich Off Pain",
+        "Polo G – I Know",
       ],
       songIndex: 2,
+      isPlaying: false,
     };
   }
   template() {
-    return `<div class="music-container" id="music-container">
+    const { songs, songIndex, isPlaying } = this.$state;
+
+    return `<div class="music-container ${
+      isPlaying ? "play" : ""
+    }" id="music-container">
       <div class="music-info">
         <h4 id="title"></h4>
         <div class="progress-container" id="progress-container">
           <div class="progress" id="progress"></div>
         </div>
       </div>
-      <audio src="../src/assets/music/Polo G – I Know.mp3" id="audio"></audio>
+      <audio src="../src/assets/music/${
+        songs[songIndex]
+      }.mp3" id="audio"></audio>
       <div class="img-container">
-        <img src="../src/assets/images/Polo G – I Know.jpeg" alt="music-cover" id="cover" />
+        <img src="../src/assets/images/${
+          songs[songIndex]
+        }.jpeg" alt="music-cover" id="cover" />
       </div>
       <div class="navigation">
         <button id="prev" class="action-btn">
@@ -36,17 +45,13 @@ class App extends Component {
       </div>
     </div>`;
   }
-  mounted() {
-    const $musicContainer = document.getElementById("music-container");
-    const $playBtn = document.getElementById("play");
-    const $prevBtn = document.getElementById("prev");
-    const $nextBtn = document.getElementById("next");
-
-    const $audio = document.getElementById("audio");
-    const $progress = document.getElementById("progress");
-    const $progressContainer = document.getElementById("progress-container");
-    const $title = document.getElementById("title");
-    const $cover = document.getElementById("cover");
+  mounted() {}
+  setEvent() {
+    this.addEvent("click", "#play", () => {
+      const { isPlaying } = this.$state;
+      this.setState({ isPlaying: !isPlaying });
+      console.log(this.$state);
+    });
   }
 }
 
