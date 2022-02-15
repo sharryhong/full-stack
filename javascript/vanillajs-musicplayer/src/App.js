@@ -1,4 +1,5 @@
 import Component from "./core/Component.js";
+import Audio from "./components/Audio.js";
 
 class App extends Component {
   setup() {
@@ -10,28 +11,24 @@ class App extends Component {
       ],
       songIndex: 0,
       isPlaying: false,
-      $playEl: null,
     };
   }
   template() {
     const { songs, songIndex, isPlaying } = this.$state;
+    const song = songs[songIndex];
 
     return `<div class="music-container ${
       isPlaying ? "play" : ""
     }" id="music-container">
       <div class="music-info">
-        <h4 id="title"></h4>
+        <h4 id="title">${song}</h4>
         <div class="progress-container" id="progress-container">
           <div class="progress" id="progress"></div>
         </div>
       </div>
-      <audio src="../src/assets/music/${
-        songs[songIndex]
-      }.mp3" id="audio"></audio>
+      <section data-component="audio"></section>
       <div class="img-container">
-        <img src="../src/assets/images/${
-          songs[songIndex]
-        }.jpeg" alt="music-cover" id="cover" />
+        <img src="../src/assets/images/${song}.jpeg" alt="music-cover" id="cover" />
       </div>
       <div class="navigation">
         <button id="prev" class="action-btn">
@@ -50,22 +47,20 @@ class App extends Component {
       </div>
     </div>`;
   }
-  mounted() {}
-  playSong() {
-    this.$target.querySelector("#audio").play();
-  }
-  pauseSong() {
-    this.$target.querySelector("#audio").pause();
+  mounted() {
+    const { songs, songIndex, isPlaying } = this.$state;
+    const $audio = this.$target.querySelector('[data-component="audio"]');
+
+    new Audio($audio, {
+      songs,
+      songIndex,
+      isPlaying,
+    });
   }
   setEvent() {
     this.addEvent("click", "#play", () => {
       const { isPlaying } = this.$state;
       this.setState({ isPlaying: !isPlaying });
-      if (this.$state.isPlaying) {
-        this.playSong();
-      } else {
-        this.pauseSong();
-      }
     });
 
     this.addEvent("click", "#next", () => {
@@ -77,7 +72,6 @@ class App extends Component {
       }
 
       this.setState({ songIndex: newSongindex });
-      this.playSong();
     });
 
     this.addEvent("click", "#prev", () => {
@@ -89,12 +83,6 @@ class App extends Component {
       }
 
       this.setState({ songIndex: newSongindex });
-      this.playSong();
-    });
-
-    this.addEvent("timeupdate", "#audio", (event) => {
-      const { duration, currentTime } = event.srcElement;
-      console.log("?");
     });
 
     this.addEvent("click", "#progress-container", (event) => {
