@@ -20,12 +20,7 @@ class App extends Component {
     return `<div class="music-container ${
       isPlaying ? "play" : ""
     }" id="music-container">
-      <div class="music-info">
-        <h4 id="title">${song}</h4>
-        <div class="progress-container" id="progress-container">
-          <div class="progress" id="progress"></div>
-        </div>
-      </div>
+      
       <section data-component="audio"></section>
       <div class="img-container">
         <img src="../src/assets/images/${song}.jpeg" alt="music-cover" id="cover" />
