@@ -1,5 +1,6 @@
 import Component from "./core/Component.js";
 import Audio from "./components/Audio.js";
+import AudioControls from "./components/AudioControls.js";
 
 class App extends Component {
   setup() {
@@ -15,36 +16,25 @@ class App extends Component {
   }
   template() {
     const { songs, songIndex, isPlaying } = this.$state;
-    const song = songs[songIndex];
 
     return `<div class="music-container ${
       isPlaying ? "play" : ""
     }" id="music-container">
-      
-      <section data-component="audio"></section>
+      <section data-component="audio" class="music-info"></section>
       <div class="img-container">
-        <img src="../src/assets/images/${song}.jpeg" alt="music-cover" id="cover" />
+        <img src="../src/assets/images/${
+          songs[songIndex]
+        }.jpeg" alt="music-cover" id="cover" />
       </div>
-      <div class="navigation">
-        <button id="prev" class="action-btn">
-          <i class="fas fa-backward"></i>
-        </button>
-        <button id="play" class="action-btn action-btn-big">
-          ${
-            isPlaying
-              ? `<i class="fas fa-pause"></i>`
-              : `<i class="fas fa-play"></i>`
-          }
-        </button>
-        <button id="next" class="action-btn">
-          <i class="fas fa-forward"></i>
-        </button>
-      </div>
+      <section data-component="audio-controls" class="navigation"></section>
     </div>`;
   }
   mounted() {
     const { songs, songIndex, isPlaying } = this.$state;
     const $audio = this.$target.querySelector('[data-component="audio"]');
+    const $audioControls = this.$target.querySelector(
+      '[data-component="audio-controls"]'
+    );
 
     new Audio($audio, {
       songs,
@@ -52,6 +42,16 @@ class App extends Component {
       isPlaying,
       nextSong: this.nextSong.bind(this),
     });
+    new AudioControls($audioControls, {
+      isPlaying,
+      togglePlay: this.togglePlay.bind(this),
+      nextSong: this.nextSong.bind(this),
+      prevSong: this.prevSong.bind(this),
+    });
+  }
+  togglePlay() {
+    const { isPlaying } = this.$state;
+    this.setState({ isPlaying: !isPlaying });
   }
   nextSong() {
     const { songIndex, songs } = this.$state;
@@ -63,33 +63,15 @@ class App extends Component {
 
     this.setState({ songIndex: newSongindex });
   }
-  setEvent() {
-    this.addEvent("click", "#play", () => {
-      const { isPlaying } = this.$state;
-      this.setState({ isPlaying: !isPlaying });
-    });
+  prevSong() {
+    const { songIndex, songs } = this.$state;
+    let newSongindex = songIndex - 1;
 
-    this.addEvent("click", "#next", () => {
-      const { songIndex, songs } = this.$state;
-      let newSongindex = songIndex + 1;
+    if (newSongindex < 0) {
+      newSongindex = songs.length - 1;
+    }
 
-      if (newSongindex > songs.length - 1) {
-        newSongindex = 0;
-      }
-
-      this.setState({ songIndex: newSongindex });
-    });
-
-    this.addEvent("click", "#prev", () => {
-      const { songIndex, songs } = this.$state;
-      let newSongindex = songIndex - 1;
-
-      if (newSongindex < 0) {
-        newSongindex = songs.length - 1;
-      }
-
-      this.setState({ songIndex: newSongindex });
-    });
+    this.setState({ songIndex: newSongindex });
   }
 }
 
