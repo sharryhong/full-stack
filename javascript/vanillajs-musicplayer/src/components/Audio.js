@@ -5,6 +5,7 @@ class Audio extends Component {
 
   template() {
     const { songs, songIndex } = this.$props;
+
     return `
       <div class="music-info">
         <h4 id="title">${songs[songIndex]}</h4>
@@ -17,7 +18,6 @@ class Audio extends Component {
   }
   mounted() {
     this.$audio = this.$target.querySelector("#audio");
-
     const { isPlaying } = this.$props;
 
     if (isPlaying) {
@@ -28,12 +28,27 @@ class Audio extends Component {
     this.$audio.play();
   }
   setEvent() {
+    const { nextSong } = this.$props;
+    const $audio = this.$target.querySelector("#audio");
     const $progress = this.$target.querySelector("#progress");
+    const $progressContainer = this.$target.querySelector(
+      "#progress-container"
+    );
 
-    this.$audio.addEventListener("timeupdate", (event) => {
+    $audio.addEventListener("timeupdate", (event) => {
       const { duration, currentTime } = event.srcElement;
       const progressPercent = (currentTime / duration) * 100;
       $progress.style.width = `${progressPercent}%`;
+    });
+
+    $audio.addEventListener("ended", nextSong);
+
+    $progressContainer.addEventListener("click", (event) => {
+      const width = $progressContainer.clientWidth;
+      const clickX = event.offsetX;
+      const duration = $audio.duration;
+
+      $audio.currentTime = (clickX / width) * duration;
     });
   }
 }

@@ -50,7 +50,18 @@ class App extends Component {
       songs,
       songIndex,
       isPlaying,
+      nextSong: this.nextSong.bind(this),
     });
+  }
+  nextSong() {
+    const { songIndex, songs } = this.$state;
+    let newSongindex = songIndex + 1;
+
+    if (newSongindex > songs.length - 1) {
+      newSongindex = 0;
+    }
+
+    this.setState({ songIndex: newSongindex });
   }
   setEvent() {
     this.addEvent("click", "#play", () => {
@@ -78,17 +89,6 @@ class App extends Component {
       }
 
       this.setState({ songIndex: newSongindex });
-    });
-
-    this.addEvent("click", "#progress-container", (event) => {
-      const width = this.$target.querySelector(
-        "#progress-container"
-      ).clientWidth;
-      const clickX = event.offsetX;
-      const duration = this.$target.querySelector("#audio").duration;
-
-      this.$target.querySelector("#audio").currentTime =
-        (clickX / width) * duration;
     });
   }
 }
