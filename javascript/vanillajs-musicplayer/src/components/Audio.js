@@ -7,12 +7,10 @@ class Audio extends Component {
     const { songs, songIndex } = this.$props;
 
     return `
-      <div class="music-info">
         <h4 id="title">${songs[songIndex]}</h4>
         <div class="progress-container" id="progress-container">
           <div class="progress" id="progress"></div>
         </div>
-      </div>
       <audio src="../src/assets/music/${songs[songIndex]}.mp3" id="audio"></audio>
     `;
   }

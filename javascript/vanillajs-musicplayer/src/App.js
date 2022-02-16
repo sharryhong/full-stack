@@ -4,15 +4,7 @@ import AudioControls from "./components/AudioControls.js";
 
 class App extends Component {
   setup() {
-    this.$state = {
-      songs: [
-        "Falling Slowly",
-        "Juice WRLD Ft Benny Blanco - Real Shit",
-        "Lil Baby, Lil Durk ft Rodwave - Rich Off Pain",
-      ],
-      songIndex: 0,
-      isPlaying: false,
-    };
+    this.$state = this.$props.presenter.$state;
   }
   template() {
     const { songs, songIndex, isPlaying } = this.$state;
@@ -30,6 +22,7 @@ class App extends Component {
     </div>`;
   }
   mounted() {
+    const { presenter } = this.$props;
     const { songs, songIndex, isPlaying } = this.$state;
     const $audio = this.$target.querySelector('[data-component="audio"]');
     const $audioControls = this.$target.querySelector(
@@ -40,38 +33,14 @@ class App extends Component {
       songs,
       songIndex,
       isPlaying,
-      nextSong: this.nextSong.bind(this),
+      nextSong: presenter.nextSong.bind(this),
     });
     new AudioControls($audioControls, {
       isPlaying,
-      togglePlay: this.togglePlay.bind(this),
-      nextSong: this.nextSong.bind(this),
-      prevSong: this.prevSong.bind(this),
+      togglePlay: presenter.togglePlay.bind(this),
+      nextSong: presenter.nextSong.bind(this),
+      prevSong: presenter.prevSong.bind(this),
     });
-  }
-  togglePlay() {
-    const { isPlaying } = this.$state;
-    this.setState({ isPlaying: !isPlaying });
-  }
-  nextSong() {
-    const { songIndex, songs } = this.$state;
-    let newSongindex = songIndex + 1;
-
-    if (newSongindex > songs.length - 1) {
-      newSongindex = 0;
-    }
-
-    this.setState({ songIndex: newSongindex });
-  }
-  prevSong() {
-    const { songIndex, songs } = this.$state;
-    let newSongindex = songIndex - 1;
-
-    if (newSongindex < 0) {
-      newSongindex = songs.length - 1;
-    }
-
-    this.setState({ songIndex: newSongindex });
   }
 }
 
