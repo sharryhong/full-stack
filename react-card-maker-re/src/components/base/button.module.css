@@ -1,0 +1,13 @@
+@value primaryColor, whiteColor from 'styles/colors.css';
+
+.button {
+  font-size: 1rem;
+  padding: 0.5em;
+  color: whiteColor;
+  background-color: primaryColor;
+  border-radius: 3px;
+}
+
+.button:hover {
+  opacity: 0.8;
+}
