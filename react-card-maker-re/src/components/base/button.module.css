@@ -1,13 +1,17 @@
-@value primaryColor, whiteColor from 'styles/colors.css';
+@value primaryColor, whiteColor, greyLightColor from 'styles/colors.css';
 
 .button {
+  width: 100%;
   font-size: 1rem;
   padding: 0.5em;
-  color: whiteColor;
-  background-color: primaryColor;
-  border-radius: 3px;
 }
 
 .button:hover {
-  opacity: 0.8;
+  background-color: greyLightColor;
+}
+
+.primary {
+  font-weight: bold;
+  border-radius: 1.2rem;
+  border: 0.2rem solid primaryColor;
 }

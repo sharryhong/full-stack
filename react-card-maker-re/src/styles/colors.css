@@ -2,5 +2,6 @@
 @value primaryLightColor: #abdbe3;
 @value primaryDarkColor: #125a57;
 @value secondaryColor: #f2c375;
-@value borderColor: #e1e1e1;
+@value greyColor: #e1e1e1;
+@value greyLightColor: rgba(225, 225, 225, 0.6);
 @value whiteColor: #fff;
