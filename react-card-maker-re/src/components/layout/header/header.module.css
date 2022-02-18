@@ -1,0 +1,47 @@
+@value whiteColor, primaryColor from 'styles/colors.css';
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: whiteColor;
+  height: 4em;
+  padding: 1em;
+}
+
+.title a {
+  font-size: 1.5rem;
+  color: primaryColor;
+}
+
+.auth {
+  border: 1px solid #aaa;
+  border-radius: 2em;
+  padding: 0.2em 0.5em 0.3em;
+}
+
+.auth a {
+  font-size: 0.8rem;
+}
+
+.nav {
+  display: flex;
+  height: 100%;
+  align-items: flex-end;
+}
+
+.navitem {
+  display: block;
+  position: relative;
+  height: 1.5rem;
+}
+.active:after {
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 100%;
+  height: 3px;
+  background-color: primaryColor;
+  transition: width 0.2s ease-in-out;
+  content: "";
+}

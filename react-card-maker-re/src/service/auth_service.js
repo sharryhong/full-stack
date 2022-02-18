@@ -12,18 +12,15 @@ class AuthService {
     this.GithubProvider = new GithubAuthProvider();
   }
   login(provider) {
-    return signInWithPopup(this.auth, this[`${provider}Provider`])
-      .then((result) => {
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        const token = credential.accessToken;
-        const user = result.user;
-        console.log(token, user);
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode, errorMessage);
-      });
+    signInWithPopup(this.auth, this[`${provider}Provider`]);
+  }
+  logout() {
+    this.auth.signOut();
+  }
+  onAuthStateChanged(onChangedUser) {
+    this.auth.onAuthStateChanged((user) => {
+      onChangedUser(user);
+    });
   }
 }
 

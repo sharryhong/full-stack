@@ -6,12 +6,13 @@
   padding: 0.5em;
 }
 
-.button:hover {
-  background-color: greyLightColor;
-}
-
 .primary {
   font-weight: bold;
   border-radius: 1.2rem;
   border: 0.2rem solid primaryColor;
+  background-color: whiteColor;
+}
+
+.primary:hover {
+  background-color: greyLightColor;
 }

@@ -1,15 +1,11 @@
 import React from "react";
-import Button from "components/base/Button";
+import Button from "components/base/button/Button";
 import styles from "./login.module.css";
 
-const Login = ({ authService }) => {
-  const onLogin = (event) => {
-    authService.login(event.target.innerText);
-  };
-
+const Login = ({ onLogin }) => {
   return (
     <section className={styles.login}>
-      <h2 className={styles.title}>Login</h2>
+      <h2 className={styles.title}>Login &#47; Join</h2>
       <ul className={styles.list}>
         <li className={styles.item}>
           <Button primary onClick={onLogin}>
