@@ -17,9 +17,17 @@
 
 5. router
 
-6. 쌤 코드와 비교
+6. Card, EditForm, AddForm 등
 
-7. state 관리 리팩토링 : useContext, useReducer 사용
+7. firebase realtime database
+
+8. cloudinary 이미지 업로드, 로딩 스피너
+
+9. 성능개선
+
+10. 쌤 코드와 비교
+
+11. state 관리 리팩토링 : useContext, useReducer 사용
 
 ### 강의와 차이점
 

@@ -2,6 +2,7 @@
 @value primaryLightColor: #abdbe3;
 @value primaryDarkColor: #125a57;
 @value secondaryColor: #f2c375;
-@value greyColor: #e1e1e1;
-@value greyLightColor: rgba(225, 225, 225, 0.6);
+@value grayColor: #e1e1e1;
+@value grayLightColor: rgba(225, 225, 225, 0.6);
 @value whiteColor: #fff;
+@value boxShadow: 3px 3px 4px 0px rgba(217, 217, 217,1);

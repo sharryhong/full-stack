@@ -1,25 +1,25 @@
-@value whiteColor, greyColor from 'styles/colors.css';
+@value whiteColor, grayColor, boxShadow from 'styles/colors.css';
 
 .login {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 25em;
-  padding: 1em;
+  padding: 1.5em;
   margin: 1em;
-  border-top: 2px solid greyColor;
-  border-bottom: 2px solid greyColor;
+  border: 1px solid grayColor;
+  box-shadow: boxShadow;
+  border-radius: 1em;
 }
 
 .title {
   font-size: 1.5rem;
-  margin: 1em;
+  margin: 1em 0 2em;
 }
 
 .list {
   display: flex;
   width: 100%;
-  margin: 1em 0;
   flex-direction: column;
   align-items: center;
 }

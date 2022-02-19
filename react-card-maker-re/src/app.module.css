@@ -1,4 +1,4 @@
-@value greyColor from 'styles/colors.css';
+@value grayColor from 'styles/colors.css';
 
 .app {
   display: flex;
