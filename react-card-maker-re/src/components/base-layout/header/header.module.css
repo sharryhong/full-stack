@@ -15,17 +15,14 @@
   color: primaryColor;
 }
 
-.auth {
+.auth a {
   display: flex;
   align-items: center;
   height: 2em;
   border: 1px solid #aaa;
   border-radius: 2em;
-  padding: 0.2em 0.5em 0.3em;
-}
-
-.auth a {
   font-size: 0.8rem;
+  padding: 0.2em 0.5em 0.3em;
 }
 
 .nav {

@@ -1,0 +1,5 @@
+@value grayColor from 'styles/colors.css';
+
+.card_edit {
+  margin: 1.5em 0;
+}

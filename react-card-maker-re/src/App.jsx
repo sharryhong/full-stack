@@ -4,7 +4,7 @@ import styles from "./app.module.css";
 import Login from "pages/login/Login";
 import Home from "pages/home/Home";
 import Maker from "pages/maker/Maker";
-import Header from "components/layout/header/Header";
+import Header from "components/base-layout/header/Header";
 
 function App({ authService }) {
   const navigate = useNavigate();

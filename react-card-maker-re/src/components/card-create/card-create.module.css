@@ -1,0 +1,6 @@
+@value grayColor from 'styles/colors.css';
+
+.card_create {
+  border-bottom: 1px solid grayColor;
+  padding-bottom: 1.5em;
+}

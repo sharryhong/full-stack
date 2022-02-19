@@ -2,17 +2,23 @@
 
 .button {
   width: 100%;
-  font-size: 1rem;
   padding: 0.5em;
-}
-
-.primary {
-  font-weight: bold;
+  font-size: 0.8rem;
   color: whiteColor;
-  border-radius: 1.2rem;
   background-color: primaryColor;
 }
 
-.primary:hover {
+.button:hover {
   background-color: primaryLightColor;
+}
+
+.primary {
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 1.2rem;
+}
+
+.secondary {
+  color: whiteColor;
+  background-color: primaryColor;
 }

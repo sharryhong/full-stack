@@ -5,19 +5,24 @@
 1. 템플릿 복사
    cp -R react-template-base react-card-maker-re
 
-2. firebase <br/>
-   postCSS @value <br/>
-   css em, rem 사용으로 반응형과 접근성에 좋게 해보기
+2. firebase install <br/>
+   styles/colors.css, size.css : 공통 postCSS @value <br/>
+   각 css : em, rem 단위 사용으로 반응형과 접근성에 좋게 해보기
 
-3. firebase login 설정
+3. .env, service/firebase.js, service/auth_service.js : auth 설정, 관련 서비스
 
-   - google, github 로그인
+   - index.js authService 의존성 주입(dependency injection)
 
-4. login UI
+4. pages/login/Login.jsx, login.module.css : 로그인 기능, UI, style
 
-5. router
+   - google, github login
 
-6. Card, EditForm, AddForm 등
+5. App.jsx, Header.jsx : router 설정 및 로그인, 로그아웃시 페이지 이동
+
+   - react-router-dom
+   - /, /login, /maker
+
+6. 전체 페이지 구조, UI, style
 
 7. firebase realtime database
 
@@ -34,5 +39,5 @@
 - header에 로그인, 로그아웃 위치
 - login 경로 기존 '/' -> '/login'로 변경
 - home 에서 로그인 하지 않고 서비스 사용해 볼 수 있는 기능 추가
-- firebase 버전
-- react-router-dom 버전
+- 최종 이미지 저장 기능 추가
+- firebase, react-router-dom 최신버전
