@@ -24,15 +24,15 @@
 
 6. 전체 페이지 구조, UI, style
 
-7. firebase realtime database
+7. state 관리 : useContext, useReducer
 
-8. cloudinary 이미지 업로드, 로딩 스피너
+8. firebase realtime database
 
-9. 성능개선
+9. cloudinary 이미지 업로드, 로딩 스피너
 
-10. 쌤 코드와 비교
+10. 성능개선
 
-11. state 관리 리팩토링 : useContext, useReducer 사용
+11. 쌤 코드와 비교
 
 ### 강의와 차이점
 

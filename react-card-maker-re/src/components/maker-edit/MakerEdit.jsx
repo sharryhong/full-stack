@@ -7,12 +7,12 @@ const MakerEdit = ({ cards }) => {
   return (
     <section className={styles.edit}>
       <h2 className={styles.title}>Card Maker</h2>
-      <CardCreate />
       <div>
         {Object.keys(cards).map((key) => (
           <CardEdit key={key} card={cards[key]} />
         ))}
       </div>
+      <CardCreate />
     </section>
   );
 };
