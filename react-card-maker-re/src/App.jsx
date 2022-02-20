@@ -32,32 +32,34 @@ function App({ authService }) {
   }, [authService]);
 
   return (
-    <MakerStore>
-      <div className={styles.app}>
-        <Header userId={userId} onLogout={onLogout} />
-        <main className={styles.main}>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route
-              path="/login"
-              element={<Login authService={authService} onLogin={onLogin} />}
-            />
-            <Route
-              path="/maker"
-              element={<Maker authService={authService} />}
-            />
-            <Route
-              path="*"
-              element={
-                <main style={{ padding: "1rem" }}>
-                  <p>There's nothing here!</p>
-                </main>
-              }
-            />
-          </Routes>
-        </main>
-      </div>
-    </MakerStore>
+    <div className={styles.app}>
+      <Header userId={userId} onLogout={onLogout} />
+      <main className={styles.main}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route
+            path="/login"
+            element={<Login authService={authService} onLogin={onLogin} />}
+          />
+          <Route
+            path="/maker"
+            element={
+              <MakerStore>
+                <Maker authService={authService} />
+              </MakerStore>
+            }
+          />
+          <Route
+            path="*"
+            element={
+              <main style={{ padding: "1rem" }}>
+                <p>There's nothing here!</p>
+              </main>
+            }
+          />
+        </Routes>
+      </main>
+    </div>
   );
 }
 

@@ -1,4 +1,4 @@
-@value primaryColor, primaryLightColor, whiteColor from 'styles/colors.css';
+@value primaryColor, primaryLightColor, primaryDarkColor, whiteColor, grayColor, fontColor from 'styles/colors.css';
 
 .button {
   width: 100%;
@@ -9,7 +9,7 @@
 }
 
 .button:hover {
-  background-color: primaryLightColor;
+  opacity: 0.8;
 }
 
 .primary {
@@ -19,6 +19,6 @@
 }
 
 .secondary {
-  color: whiteColor;
-  background-color: primaryColor;
+  color: fontColor;
+  background-color: grayColor;
 }

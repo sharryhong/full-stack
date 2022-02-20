@@ -5,7 +5,7 @@ import styles from "./card-edit.module.css";
 const CardEdit = ({ card }) => {
   return (
     <section className={styles.card_edit}>
-      <CardForm />
+      <CardForm card={card} editMode />
     </section>
   );
 };
