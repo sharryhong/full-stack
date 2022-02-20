@@ -1,4 +1,4 @@
-@value grayColor from 'styles/colors.css';
+@value grayColor, grayLightColor from 'styles/colors.css';
 
 .card {
   display: flex;
@@ -10,9 +10,12 @@
 }
 
 .profile {
-  width: 10em;
-  height: 10em;
-  padding: 1.5em;
+  width: 8em;
+  height: 8em;
+  margin: 1.5em;
+  border-radius: 50%;
+  box-shadow: 2px 1px 1px grayLightColor;
+  object-fit: cover;
 }
 
 .info {

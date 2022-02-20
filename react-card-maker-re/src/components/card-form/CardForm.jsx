@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { MakerContext } from "store/maker_store";
 import Button from "components/base/button/Button";
 import styles from "./card-form.module.css";
@@ -13,6 +13,7 @@ const CardForm = ({ card, editMode }) => {
   const titleRef = useRef(null);
   const emailRef = useRef(null);
   const messageRef = useRef(null);
+  const [imageFile, setImageFile] = useState();
 
   const onAdd = (event) => {
     event.preventDefault();
@@ -24,11 +25,12 @@ const CardForm = ({ card, editMode }) => {
       title: titleRef.current.value || "",
       email: emailRef.current.value || "",
       message: messageRef.current.value || "",
-      fileName: "",
-      fileURL: "",
+      fileName: imageFile.fileName || "",
+      fileURL: imageFile.fileURL || "",
     };
     dispatch({ type: "UPDATE", payload: card });
     formRef.current.reset();
+    setImageFile({ fileName: "", fileURL: "" });
   };
 
   const onChange = (event) => {
@@ -43,6 +45,24 @@ const CardForm = ({ card, editMode }) => {
   const onDelete = (event) => {
     event.preventDefault();
     dispatch({ type: "DELETE", payload: card.id });
+  };
+
+  const onImageChangeEditMode = ({ fileName, fileURL }) => {
+    const updated = {
+      ...card,
+      fileName,
+      fileURL,
+    };
+    dispatch({ type: "UPDATE", payload: updated });
+  };
+
+  const onImageChangeAddMode = (file) => {
+    setImageFile(file);
+  };
+
+  const onImageChange = (file) => {
+    if (editMode) onImageChangeEditMode(file);
+    onImageChangeAddMode(file);
   };
 
   return (
@@ -104,7 +124,10 @@ const CardForm = ({ card, editMode }) => {
         onChange={onChange}
       />
       <div className={styles.buttons}>
-        <ImageFileInput fileName={card?.fileName} />
+        <ImageFileInput
+          fileName={editMode ? card?.fileName : imageFile?.fileName}
+          onImageChange={onImageChange}
+        />
         {editMode && (
           <Button dark onClick={onDelete}>
             Delete

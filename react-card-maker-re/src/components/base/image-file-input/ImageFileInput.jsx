@@ -3,7 +3,7 @@ import { ImageUploaderContext } from "App";
 import Button from "../button/Button";
 import styles from "./image-file-input.module.css";
 
-const ImageFileInput = ({ fileName }) => {
+const ImageFileInput = ({ fileName, onImageChange }) => {
   const { imageUploader } = useContext(ImageUploaderContext);
   const inputRef = useRef();
 
@@ -14,7 +14,10 @@ const ImageFileInput = ({ fileName }) => {
 
   const onChange = async (event) => {
     const result = await imageUploader.upload(event.currentTarget.files[0]);
-    console.log(result.original_filename, result.url);
+    onImageChange({
+      fileName: result.original_filename,
+      fileURL: result.url,
+    });
   };
 
   return (

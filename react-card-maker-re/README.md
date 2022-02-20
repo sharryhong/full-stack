@@ -31,6 +31,8 @@
 
 8. cloudinary 이미지 업로드, 로딩 스피너
 
+   - service/image_uploader.js : cloudinary image upload rest api
+
 9. firebase realtime database
 
 10. 성능개선
@@ -39,8 +41,9 @@
 
 ### 강의와 차이점
 
-- header에 로그인, 로그아웃 위치
-- login 경로 기존 '/' -> '/login'로 변경
+- [v] firebase, react-router-dom 최신버전
+- [v] header에 로그인, 로그아웃 위치
+- [v] login 경로 기존 '/' -> '/login'로 변경
+- [v] state 관리 : useContext, useReducer
 - home 에서 로그인 하지 않고 서비스 사용해 볼 수 있는 기능 추가
 - 최종 이미지 저장 기능 추가
-- firebase, react-router-dom 최신버전
