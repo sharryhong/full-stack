@@ -1,0 +1,9 @@
+@value secondaryColor, grayColor from 'styles/colors.css';
+
+.image_file_input {
+  display: flex;
+}
+
+.input {
+  display: none;
+}

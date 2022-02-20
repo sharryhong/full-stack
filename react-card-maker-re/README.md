@@ -29,9 +29,9 @@
    - store/maker_store.js, maker_reducer.js 분리하여 관리
    - maker_reducer.js : 이전 state와 action을 받아 새 state를 return
 
-8. firebase realtime database
+8. cloudinary 이미지 업로드, 로딩 스피너
 
-9. cloudinary 이미지 업로드, 로딩 스피너
+9. firebase realtime database
 
 10. 성능개선
 

@@ -13,7 +13,8 @@ const initState = {
     email: "sharryhong15@gmail.com",
     message: "Hello :)",
     fileName: "test",
-    fileURL: "http://test.com",
+    fileURL:
+      "https://blog.kakaocdn.net/dn/6XCV7/btq0Yh1Filw/1NKlaKjEegSKkJH75oltw1/img.png",
   },
   id2: {
     id: "id2",

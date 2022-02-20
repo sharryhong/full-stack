@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, createContext } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import styles from "./app.module.css";
 import Login from "pages/login/Login";
@@ -7,7 +7,9 @@ import Maker from "pages/maker/Maker";
 import Header from "components/base-layout/header/Header";
 import MakerStore from "store/maker_store";
 
-function App({ authService }) {
+export const ImageUploaderContext = createContext();
+
+function App({ authService, imageUploader }) {
   const navigate = useNavigate();
   const [userId, setUserId] = useState();
 
@@ -45,7 +47,9 @@ function App({ authService }) {
             path="/maker"
             element={
               <MakerStore>
-                <Maker authService={authService} />
+                <ImageUploaderContext.Provider value={{ imageUploader }}>
+                  <Maker authService={authService} />
+                </ImageUploaderContext.Provider>
               </MakerStore>
             }
           />

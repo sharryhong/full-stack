@@ -8,12 +8,12 @@ const Login = ({ onLogin }) => {
       <h2 className={styles.title}>Login &#47; Join</h2>
       <ul className={styles.list}>
         <li className={styles.item}>
-          <Button primary onClick={onLogin}>
+          <Button primary round onClick={onLogin}>
             Google
           </Button>
         </li>
         <li className={styles.item}>
-          <Button primary onClick={onLogin}>
+          <Button primary round onClick={onLogin}>
             Github
           </Button>
         </li>

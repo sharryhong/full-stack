@@ -1,11 +1,10 @@
-@value primaryColor, primaryLightColor, primaryDarkColor, whiteColor, grayColor, fontColor from 'styles/colors.css';
+@value primaryColor, secondaryColor, whiteColor, grayColor, grayDarkColor, fontColor from 'styles/colors.css';
 
 .button {
   width: 100%;
   padding: 0.5em;
   font-size: 0.8rem;
-  color: whiteColor;
-  background-color: primaryColor;
+  background-color: grayColor;
 }
 
 .button:hover {
@@ -13,12 +12,22 @@
 }
 
 .primary {
-  font-size: 1rem;
-  font-weight: bold;
-  border-radius: 1.2rem;
+  color: whiteColor;
+  background-color: primaryColor;
 }
 
 .secondary {
   color: fontColor;
-  background-color: grayColor;
+  background-color: secondaryColor;
+}
+
+.dark {
+  color: whiteColor;
+  background-color: grayDarkColor;
+}
+
+.round {
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 1.2rem;
 }

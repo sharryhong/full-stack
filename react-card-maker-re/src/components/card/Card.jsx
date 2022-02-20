@@ -1,12 +1,16 @@
 import React from "react";
 import styles from "./card.module.css";
 
-const Card = ({ card: { name, company, theme, title, email, message } }) => {
+const DEFAULT_IMAGE = "/images/default_logo.png";
+
+const Card = ({
+  card: { name, company, theme, title, email, message, fileURL },
+}) => {
   return (
     <div className={styles.card}>
       <img
         className={styles.profile}
-        src="/images/default_logo.png"
+        src={fileURL || DEFAULT_IMAGE}
         alt="profile"
       />
       <div className={styles.info}>

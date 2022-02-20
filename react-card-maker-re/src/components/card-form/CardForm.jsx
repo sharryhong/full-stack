@@ -2,6 +2,7 @@ import React, { useContext, useRef } from "react";
 import { MakerContext } from "store/maker_store";
 import Button from "components/base/button/Button";
 import styles from "./card-form.module.css";
+import ImageFileInput from "components/base/image-file-input/ImageFileInput";
 
 const CardForm = ({ card, editMode }) => {
   const { dispatch } = useContext(MakerContext);
@@ -103,13 +104,17 @@ const CardForm = ({ card, editMode }) => {
         onChange={onChange}
       />
       <div className={styles.buttons}>
-        <input type="file" />
+        <ImageFileInput fileName={card?.fileName} />
         {editMode && (
-          <Button secondary onClick={onDelete}>
+          <Button dark onClick={onDelete}>
             Delete
           </Button>
         )}
-        {!editMode && <Button onClick={onAdd}>Add</Button>}
+        {!editMode && (
+          <Button primary onClick={onAdd}>
+            Add
+          </Button>
+        )}
       </div>
     </form>
   );
