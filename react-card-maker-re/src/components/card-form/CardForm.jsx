@@ -13,7 +13,7 @@ const CardForm = ({ card, editMode }) => {
   const emailRef = useRef(null);
   const messageRef = useRef(null);
 
-  const handleAdd = (event) => {
+  const onAdd = (event) => {
     event.preventDefault();
     const card = {
       id: Date.now(),
@@ -26,8 +26,17 @@ const CardForm = ({ card, editMode }) => {
       fileName: "",
       fileURL: "",
     };
-    dispatch({ type: "ADD", payload: card });
+    dispatch({ type: "UPDATE", payload: card });
     formRef.current.reset();
+  };
+
+  const onChange = (event) => {
+    if (!editMode) return;
+    const updated = {
+      ...card,
+      [event.currentTarget.name]: event.currentTarget.value,
+    };
+    dispatch({ type: "UPDATE", payload: updated });
   };
 
   const onDelete = (event) => {
@@ -44,6 +53,7 @@ const CardForm = ({ card, editMode }) => {
         name="name"
         placeholder="name"
         defaultValue={card?.name}
+        onChange={onChange}
       />
       <input
         ref={companyRef}
@@ -52,6 +62,7 @@ const CardForm = ({ card, editMode }) => {
         name="company"
         placeholder="company"
         defaultValue={card?.company}
+        onChange={onChange}
       />
       <select
         ref={themeRef}
@@ -59,6 +70,7 @@ const CardForm = ({ card, editMode }) => {
         name="theme"
         placeholder="theme"
         defaultValue={card?.theme}
+        onChange={onChange}
       >
         <option value="light">Light</option>
         <option value="dark">Dark</option>
@@ -71,6 +83,7 @@ const CardForm = ({ card, editMode }) => {
         name="title"
         placeholder="title"
         defaultValue={card?.title}
+        onChange={onChange}
       />
       <input
         ref={emailRef}
@@ -79,6 +92,7 @@ const CardForm = ({ card, editMode }) => {
         name="email"
         placeholder="email"
         defaultValue={card?.email}
+        onChange={onChange}
       />
       <textarea
         ref={messageRef}
@@ -86,6 +100,7 @@ const CardForm = ({ card, editMode }) => {
         name="message"
         placeholder="message"
         defaultValue={card?.message}
+        onChange={onChange}
       />
       <div className={styles.buttons}>
         <input type="file" />
@@ -94,7 +109,7 @@ const CardForm = ({ card, editMode }) => {
             Delete
           </Button>
         )}
-        {!editMode && <Button onClick={handleAdd}>Add</Button>}
+        {!editMode && <Button onClick={onAdd}>Add</Button>}
       </div>
     </form>
   );

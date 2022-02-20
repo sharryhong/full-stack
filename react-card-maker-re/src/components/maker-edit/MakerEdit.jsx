@@ -1,20 +1,21 @@
 import React, { useContext } from "react";
 import { MakerContext } from "store/maker_store";
-import CardCreate from "components/card-create/CardCreate";
-import CardEdit from "components/card-edit/CardEdit";
 import styles from "./maker-edit.module.css";
+import CardForm from "components/card-form/CardForm";
 
 const MakerEdit = () => {
   const { cards } = useContext(MakerContext);
   return (
     <section className={styles.edit}>
       <h2 className={styles.title}>Card Maker</h2>
-      <div>
+      <div className={styles.card_edit}>
         {Object.keys(cards).map((key) => (
-          <CardEdit key={key} card={cards[key]} />
+          <CardForm key={key} card={cards[key]} editMode />
         ))}
       </div>
-      <CardCreate />
+      <div className={styles.card_create}>
+        <CardForm />
+      </div>
     </section>
   );
 };

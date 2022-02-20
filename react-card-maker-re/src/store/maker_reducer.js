@@ -1,6 +1,6 @@
 export const MakerReducer = (cards, { type, payload }) => {
   switch (type) {
-    case "ADD": {
+    case "UPDATE": {
       return { ...cards, [payload.id]: payload };
     }
     case "DELETE": {
