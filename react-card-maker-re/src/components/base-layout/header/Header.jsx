@@ -1,14 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import styles from "./header.module.css";
+import { SessionContext } from "store/session_check.js";
 
-const Header = ({ userId, onLogout }) => {
+const Header = ({ onLogout }) => {
+  const { isLoggedIn } = useContext(SessionContext);
+
   return (
     <header className={styles.header}>
       <h1 className={styles.title}>
         <Link to="/">Card Maker</Link>
       </h1>
-      {userId && (
+      {isLoggedIn && (
         <nav className={styles.nav}>
           <NavLink
             to="maker"
@@ -21,12 +24,12 @@ const Header = ({ userId, onLogout }) => {
         </nav>
       )}
       <div className={styles.auth}>
-        {!userId && (
+        {!isLoggedIn && (
           <Link className={styles.link} to="/login">
             Login &#47; Join
           </Link>
         )}
-        {userId && <button onClick={onLogout}>Logout</button>}
+        {isLoggedIn && <button onClick={onLogout}>Logout</button>}
       </div>
     </header>
   );

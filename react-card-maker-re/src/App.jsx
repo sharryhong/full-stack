@@ -1,4 +1,4 @@
-import React, { useEffect, useState, createContext } from "react";
+import React, { createContext } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import styles from "./app.module.css";
 import Login from "pages/login/Login";
@@ -11,7 +11,6 @@ export const ImageUploaderContext = createContext();
 
 function App({ authService, imageUploader }) {
   const navigate = useNavigate();
-  const [userId, setUserId] = useState();
 
   const onLogin = (event) => {
     authService.login(event.target.innerText);
@@ -22,20 +21,9 @@ function App({ authService, imageUploader }) {
     navigate("/");
   };
 
-  const goToMaker = (userId) => {
-    navigate("/maker");
-  };
-
-  useEffect(() => {
-    authService.onAuthStateChanged((user) => {
-      user && goToMaker(user.uid);
-      setUserId(user?.uid);
-    });
-  }, [authService]);
-
   return (
     <div className={styles.app}>
-      <Header userId={userId} onLogout={onLogout} />
+      <Header onLogout={onLogout} />
       <main className={styles.main}>
         <Routes>
           <Route path="/" element={<Home />} />

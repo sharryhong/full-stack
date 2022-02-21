@@ -35,6 +35,8 @@
 
 9. login check 추가
 
+   - session_check.js : login 하지 않고 /maker path 접근시 login 페이지 이동 등
+
 10. firebase realtime database
 
 11. 성능개선
