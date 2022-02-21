@@ -7,4 +7,5 @@
 @value grayDarkColor: #777;
 @value whiteColor: #fff;
 @value fontColor: #333;
+@value errorColor: red;
 @value boxShadow: 3px 3px 4px 0px rgba(217, 217, 217,1);

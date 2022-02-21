@@ -1,17 +1,24 @@
-@value grayColor from 'styles/colors.css';
+@value grayColor, errorColor from 'styles/colors.css';
 
 .form {
+  margin-bottom: 2em;
+}
+
+.list {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  margin-bottom: 0.8em;
   border-top: 1px solid grayColor;
   border-left: 1px solid grayColor;
 }
 
-.input,
-.select {
+.item {
+  position: relative;
   flex: 1 1 30%;
+}
+
+.item_half {
+  flex: 1 1 50%;
 }
 
 .textarea {
@@ -21,10 +28,12 @@
 .input,
 .select,
 .textarea {
+  position: relative;
   font-size: 0.8rem;
   width: 100%;
-  padding: 0.5em;
+  padding: 0.6em;
   border: none;
+  outline: none;
   border-right: 1px solid grayColor;
   border-bottom: 1px solid grayColor;
 }
@@ -32,5 +41,20 @@
 .buttons {
   display: flex;
   flex: 1 1 50%;
-  border-bottom: 1px solid grayColor;
+  border: 1px solid grayColor;
+  border-top: none;
+}
+
+.error {
+  border: 2px solid errorColor;
+}
+
+.valid {
+  position: absolute;
+  z-index: 10;
+  width: max-content;
+  left: 0px;
+  top: -18px;
+  font-size: 0.8rem;
+  color: errorColor;
 }

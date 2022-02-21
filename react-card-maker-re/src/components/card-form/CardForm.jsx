@@ -1,8 +1,11 @@
 import React, { useContext, useRef, useState } from "react";
+import classNames from "classnames/bind";
 import { MakerContext } from "store/maker_store";
 import Button from "components/base/button/Button";
 import styles from "./card-form.module.css";
 import ImageFileInput from "components/base/image-file-input/ImageFileInput";
+
+const cx = classNames.bind(styles);
 
 const CardForm = ({ card, editMode }) => {
   const { dispatch } = useContext(MakerContext);
@@ -13,7 +16,8 @@ const CardForm = ({ card, editMode }) => {
   const titleRef = useRef(null);
   const emailRef = useRef(null);
   const messageRef = useRef(null);
-  const [imageFile, setImageFile] = useState();
+  const [imageFile, setImageFile] = useState({});
+  const [valid, setValid] = useState({});
 
   const onAdd = (event) => {
     event.preventDefault();
@@ -25,19 +29,44 @@ const CardForm = ({ card, editMode }) => {
       title: titleRef.current.value || "",
       email: emailRef.current.value || "",
       message: messageRef.current.value || "",
-      fileName: imageFile.fileName || "",
-      fileURL: imageFile.fileURL || "",
+      fileName: imageFile?.fileName || "",
+      fileURL: imageFile?.fileURL || "",
     };
+
+    const isValid = checkValid("name", nameRef.current.value);
+    if (isValid) return;
+
     dispatch({ type: "UPDATE", payload: card });
     formRef.current.reset();
     setImageFile({ fileName: "", fileURL: "" });
   };
 
+  const checkValid = (key, value) => {
+    switch (key) {
+      case "name": {
+        if (value.length < 2) {
+          setValid({ ...valid, name: "2자 이상 입력해주세요." });
+          nameRef.current.focus();
+          return true;
+        }
+        return setValid({ ...valid, name: "" });
+      }
+      default:
+        return;
+    }
+  };
+
   const onChange = (event) => {
+    const key = event.currentTarget.name;
+    const value = event.currentTarget.value;
+
+    checkValid(key, value);
+
     if (!editMode) return;
+
     const updated = {
       ...card,
-      [event.currentTarget.name]: event.currentTarget.value,
+      [key]: value,
     };
     dispatch({ type: "UPDATE", payload: updated });
   };
@@ -67,62 +96,77 @@ const CardForm = ({ card, editMode }) => {
 
   return (
     <form ref={formRef} className={styles.form}>
-      <input
-        ref={nameRef}
-        type="text"
-        className={styles.input}
-        name="name"
-        placeholder="name"
-        defaultValue={card?.name}
-        onChange={onChange}
-      />
-      <input
-        ref={companyRef}
-        type="text"
-        className={styles.input}
-        name="company"
-        placeholder="company"
-        defaultValue={card?.company}
-        onChange={onChange}
-      />
-      <select
-        ref={themeRef}
-        className={styles.select}
-        name="theme"
-        placeholder="theme"
-        defaultValue={card?.theme}
-        onChange={onChange}
-      >
-        <option value="light">Light</option>
-        <option value="dark">Dark</option>
-        <option value="colorful">Colorful</option>
-      </select>
-      <input
-        ref={titleRef}
-        type="text"
-        className={styles.input}
-        name="title"
-        placeholder="title"
-        defaultValue={card?.title}
-        onChange={onChange}
-      />
-      <input
-        ref={emailRef}
-        type="text"
-        className={styles.input}
-        name="email"
-        placeholder="email"
-        defaultValue={card?.email}
-        onChange={onChange}
-      />
-      <textarea
-        ref={messageRef}
-        className={styles.textarea}
-        name="message"
-        placeholder="message"
-        defaultValue={card?.message}
-        onChange={onChange}
-      />
+      <ul className={styles.list}>
+        <li className={styles.item}>
+          <input
+            ref={nameRef}
+            type="text"
+            className={cx({ input: true, error: valid.name })}
+            name="name"
+            placeholder="name"
+            defaultValue={card?.name}
+            onChange={onChange}
+          />
+          <span className={styles.valid}>{valid.name}</span>
+        </li>
+        <li className={styles.item}>
+          <input
+            ref={companyRef}
+            type="text"
+            className={styles.input}
+            name="company"
+            placeholder="company"
+            defaultValue={card?.company}
+            onChange={onChange}
+          />
+        </li>
+        <li className={styles.item}>
+          <select
+            ref={themeRef}
+            className={styles.select}
+            name="theme"
+            placeholder="theme"
+            defaultValue={card?.theme}
+            onChange={onChange}
+          >
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+            <option value="colorful">Colorful</option>
+          </select>
+        </li>
+        <li className={styles.item_half}>
+          <input
+            ref={titleRef}
+            type="text"
+            className={styles.input}
+            name="title"
+            placeholder="title"
+            defaultValue={card?.title}
+            onChange={onChange}
+          />
+        </li>
+        <li className={styles.item_half}>
+          <input
+            ref={emailRef}
+            type="text"
+            className={styles.input}
+            name="email"
+            placeholder="email"
+            defaultValue={card?.email}
+            onChange={onChange}
+          />
+        </li>
+        <li className={styles.item_half}>
+          <textarea
+            ref={messageRef}
+            className={styles.textarea}
+            name="message"
+            placeholder="message"
+            defaultValue={card?.message}
+            onChange={onChange}
+          />
+        </li>
+      </ul>
       <div className={styles.buttons}>
         <ImageFileInput
           fileName={editMode ? card?.fileName : imageFile?.fileName}

@@ -37,11 +37,13 @@
 
    - session_check.js : login 하지 않고 /maker path 접근시 login 페이지 이동 등
 
-10. firebase realtime database
+10. Validation 추가
 
-11. 성능개선
+11. firebase realtime database
 
-12. 쌤 코드와 비교
+12. 성능개선
+
+13. 쌤 코드와 비교
 
 ### 강의와 차이점
 
@@ -50,6 +52,7 @@
 - [v] header에 로그인, 로그아웃 위치
 - [v] login 경로 기존 '/' -> '/login'로 변경
 - [v] state 관리 : useContext, useReducer
-- login check 추가
+- [v]login check 추가
+- Validation 추가
 - home 에서 로그인 하지 않고 서비스 사용해 볼 수 있는 기능 추가
 - 최종 이미지 저장 기능 추가

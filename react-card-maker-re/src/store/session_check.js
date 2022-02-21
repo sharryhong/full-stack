@@ -1,3 +1,4 @@
+import LoadingSpinner from "components/base/loading-spinner/LoadingSpinner";
 import React, { createContext, useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 
@@ -10,6 +11,7 @@ const initState = {
 
 const SessionCheck = ({ authService, children }) => {
   const [session, setSession] = useState(initState);
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -28,6 +30,7 @@ const SessionCheck = ({ authService, children }) => {
       } else {
         setSession({ isLoggedIn: false, id: undefined });
       }
+      setIsLoading(true);
     });
   }, [authService]);
 
@@ -37,9 +40,21 @@ const SessionCheck = ({ authService, children }) => {
     }
   }, [location.pathname]);
 
+  const style = {
+    display: "flex",
+    height: "100vh",
+    justifyContent: "center",
+    alignItems: "center",
+  };
+
   return (
     <SessionContext.Provider value={session}>
-      {children}
+      {!isLoading && (
+        <div style={style}>
+          <LoadingSpinner />
+        </div>
+      )}
+      {isLoading && children}
     </SessionContext.Provider>
   );
 };
