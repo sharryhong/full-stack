@@ -39,9 +39,9 @@
 
 10. Validation 추가
 
-11. firebase realtime database
+11. 성능개선
 
-12. 성능개선
+12. firebase realtime database
 
 13. 쌤 코드와 비교
 
@@ -52,7 +52,7 @@
 - [v] header에 로그인, 로그아웃 위치
 - [v] login 경로 기존 '/' -> '/login'로 변경
 - [v] state 관리 : useContext, useReducer
-- [v]login check 추가
-- Validation 추가
+- [v] login check 추가
+- [v] Validation 추가
 - home 에서 로그인 하지 않고 서비스 사용해 볼 수 있는 기능 추가
 - 최종 이미지 저장 기능 추가

@@ -1,9 +1,10 @@
-import React, { useContext } from "react";
+import React, { memo, useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import styles from "./header.module.css";
 import { SessionContext } from "store/session_check.js";
 
-const Header = ({ onLogout }) => {
+const Header = memo(({ onLogout }) => {
+  console.log("Header");
   const { isLoggedIn } = useContext(SessionContext);
 
   return (
@@ -33,6 +34,6 @@ const Header = ({ onLogout }) => {
       </div>
     </header>
   );
-};
+});
 
 export default Header;

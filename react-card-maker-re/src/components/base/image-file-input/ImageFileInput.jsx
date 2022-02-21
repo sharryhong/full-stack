@@ -1,19 +1,19 @@
-import React, { useRef, useContext } from "react";
+import React, { useState, memo, useCallback, useRef, useContext } from "react";
 import { ImageUploaderContext } from "App";
 import Button from "../button/Button";
 import styles from "./image-file-input.module.css";
 import LoadingSpinner from "../loading-spinner/LoadingSpinner";
-import { useState } from "react";
 
-const ImageFileInput = ({ fileName, onImageChange }) => {
+const ImageFileInput = memo(({ fileName, onImageChange }) => {
+  console.log("ImageFileInput");
   const { imageUploader } = useContext(ImageUploaderContext);
   const inputRef = useRef();
   const [isLoading, setIsLoading] = useState(false);
 
-  const onClick = (event) => {
+  const onClick = useCallback((event) => {
     event.preventDefault();
     inputRef.current.click();
-  };
+  }, []);
 
   const onChange = async (event) => {
     setIsLoading(true);
@@ -42,6 +42,6 @@ const ImageFileInput = ({ fileName, onImageChange }) => {
       {isLoading && <LoadingSpinner />}
     </div>
   );
-};
+});
 
 export default ImageFileInput;

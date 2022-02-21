@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { memo, useCallback, useContext, useRef, useState } from "react";
 import classNames from "classnames/bind";
 import { MakerContext } from "store/maker_store";
 import Button from "components/base/button/Button";
@@ -7,7 +7,8 @@ import ImageFileInput from "components/base/image-file-input/ImageFileInput";
 
 const cx = classNames.bind(styles);
 
-const CardForm = ({ card, editMode }) => {
+const CardForm = memo(({ card, editMode }) => {
+  console.log("CardForm");
   const { dispatch } = useContext(MakerContext);
   const formRef = useRef(null);
   const nameRef = useRef(null);
@@ -19,27 +20,30 @@ const CardForm = ({ card, editMode }) => {
   const [imageFile, setImageFile] = useState({});
   const [valid, setValid] = useState({});
 
-  const onAdd = (event) => {
-    event.preventDefault();
-    const card = {
-      id: Date.now(),
-      name: nameRef.current.value || "",
-      company: companyRef.current.value || "",
-      theme: themeRef.current.value || "",
-      title: titleRef.current.value || "",
-      email: emailRef.current.value || "",
-      message: messageRef.current.value || "",
-      fileName: imageFile?.fileName || "",
-      fileURL: imageFile?.fileURL || "",
-    };
+  const onAdd = useCallback(
+    (event) => {
+      event.preventDefault();
+      const card = {
+        id: Date.now(),
+        name: nameRef.current.value || "",
+        company: companyRef.current.value || "",
+        theme: themeRef.current.value || "",
+        title: titleRef.current.value || "",
+        email: emailRef.current.value || "",
+        message: messageRef.current.value || "",
+        fileName: imageFile?.fileName || "",
+        fileURL: imageFile?.fileURL || "",
+      };
 
-    const isValid = checkValid("name", nameRef.current.value);
-    if (isValid) return;
+      const isValid = checkValid("name", nameRef.current.value);
+      if (isValid) return;
 
-    dispatch({ type: "UPDATE", payload: card });
-    formRef.current.reset();
-    setImageFile({ fileName: "", fileURL: "" });
-  };
+      dispatch({ type: "UPDATE", payload: card });
+      formRef.current.reset();
+      setImageFile({ fileName: "", fileURL: "" });
+    },
+    [dispatch, imageFile?.fileName, imageFile?.fileURL]
+  );
 
   const checkValid = (key, value) => {
     switch (key) {
@@ -71,28 +75,37 @@ const CardForm = ({ card, editMode }) => {
     dispatch({ type: "UPDATE", payload: updated });
   };
 
-  const onDelete = (event) => {
-    event.preventDefault();
-    dispatch({ type: "DELETE", payload: card.id });
-  };
+  const onDelete = useCallback(
+    (event) => {
+      event.preventDefault();
+      dispatch({ type: "DELETE", payload: card.id });
+    },
+    [card?.id, dispatch]
+  );
 
-  const onImageChangeEditMode = ({ fileName, fileURL }) => {
-    const updated = {
-      ...card,
-      fileName,
-      fileURL,
-    };
-    dispatch({ type: "UPDATE", payload: updated });
-  };
+  const onImageChangeEditMode = useCallback(
+    ({ fileName, fileURL }) => {
+      const updated = {
+        ...card,
+        fileName,
+        fileURL,
+      };
+      dispatch({ type: "UPDATE", payload: updated });
+    },
+    [card, dispatch]
+  );
 
-  const onImageChangeAddMode = (file) => {
+  const onImageChangeAddMode = useCallback((file) => {
     setImageFile(file);
-  };
+  }, []);
 
-  const onImageChange = (file) => {
-    if (editMode) onImageChangeEditMode(file);
-    onImageChangeAddMode(file);
-  };
+  const onImageChange = useCallback(
+    (file) => {
+      if (editMode) onImageChangeEditMode(file);
+      onImageChangeAddMode(file);
+    },
+    [editMode]
+  );
 
   return (
     <form ref={formRef} className={styles.form}>
@@ -185,6 +198,6 @@ const CardForm = ({ card, editMode }) => {
       </div>
     </form>
   );
-};
+});
 
 export default CardForm;

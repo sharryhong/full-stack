@@ -1,4 +1,4 @@
-import React, { createContext } from "react";
+import React, { createContext, useCallback } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import styles from "./app.module.css";
 import Login from "pages/login/Login";
@@ -16,10 +16,10 @@ function App({ authService, imageUploader }) {
     authService.login(event.target.innerText);
   };
 
-  const onLogout = () => {
+  const onLogout = useCallback(() => {
     authService.logout();
     navigate("/");
-  };
+  }, [authService]);
 
   return (
     <div className={styles.app}>
