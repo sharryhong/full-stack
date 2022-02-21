@@ -1,0 +1,19 @@
+@value grayLightColor, primaryLightColor from 'styles/colors.css';
+
+.loading {
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 50%;
+  border: 2px solid grayLightColor;
+  border-top: 2px solid primaryLightColor;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

@@ -1,15 +1,13 @@
 import React from "react";
+import classNames from "classnames/bind";
 import styles from "./button.module.css";
 
+const cx = classNames.bind(styles);
+
 const Button = ({ children, primary, secondary, dark, round, onClick }) => {
+  const classes = cx({ button: true, primary, secondary, dark, round });
   return (
-    <button
-      className={`${styles.button} ${primary && styles.primary} 
-      ${secondary && styles.secondary} ${dark && styles.dark} ${
-        round && styles.round
-      }`}
-      onClick={onClick}
-    >
+    <button className={classes} onClick={onClick}>
       {children}
     </button>
   );

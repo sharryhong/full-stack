@@ -34,7 +34,3 @@
   flex: 1 1 50%;
   border-bottom: 1px solid grayColor;
 }
-
-.buttons * {
-  flex: 1 1 50%;
-}
