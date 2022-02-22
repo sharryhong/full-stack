@@ -6,7 +6,6 @@ const cx = classNames.bind(styles);
 
 const Button = memo(
   ({ children, primary, secondary, dark, round, onClick }) => {
-    console.log("button");
     const classes = cx({ button: true, primary, secondary, dark, round });
     return (
       <button className={classes} onClick={onClick}>

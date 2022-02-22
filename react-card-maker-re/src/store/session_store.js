@@ -9,7 +9,7 @@ const initState = {
   id: undefined,
 };
 
-const SessionCheck = ({ authService, children }) => {
+const SessionStore = ({ authService, children }) => {
   const [session, setSession] = useState(initState);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
@@ -59,4 +59,4 @@ const SessionCheck = ({ authService, children }) => {
   );
 };
 
-export default SessionCheck;
+export default SessionStore;

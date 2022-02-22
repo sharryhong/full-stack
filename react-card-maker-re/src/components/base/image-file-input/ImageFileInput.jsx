@@ -5,7 +5,6 @@ import styles from "./image-file-input.module.css";
 import LoadingSpinner from "../loading-spinner/LoadingSpinner";
 
 const ImageFileInput = memo(({ fileName, onImageChange }) => {
-  console.log("ImageFileInput");
   const { imageUploader } = useContext(ImageUploaderContext);
   const inputRef = useRef();
   const [isLoading, setIsLoading] = useState(false);

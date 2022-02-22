@@ -1,10 +1,9 @@
 import React, { memo, useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import styles from "./header.module.css";
-import { SessionContext } from "store/session_check.js";
+import { SessionContext } from "store/session_store.js";
 
 const Header = memo(({ onLogout }) => {
-  console.log("Header");
   const { isLoggedIn } = useContext(SessionContext);
 
   return (

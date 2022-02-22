@@ -8,7 +8,6 @@ import ImageFileInput from "components/base/image-file-input/ImageFileInput";
 const cx = classNames.bind(styles);
 
 const CardForm = memo(({ card, editMode }) => {
-  console.log("CardForm");
   const { dispatch } = useContext(MakerContext);
   const formRef = useRef(null);
   const nameRef = useRef(null);
