@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
-import { MakerContext } from "store/maker_store";
+import { MakerStateContext } from "store/maker_store";
 import styles from "./maker-edit.module.css";
 import CardForm from "components/card-form/CardForm";
 
 const MakerEdit = () => {
-  const { cards } = useContext(MakerContext);
+  const cards = useContext(MakerStateContext);
   return (
     <section className={styles.edit}>
       <h2 className={styles.title}>Card Maker</h2>

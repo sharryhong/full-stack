@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
-import { MakerContext } from "store/maker_store";
+import { MakerStateContext } from "store/maker_store";
 import Card from "components/card/Card";
 import styles from "./maker-view.module.css";
 
 const MakerView = () => {
-  const { cards } = useContext(MakerContext);
+  const cards = useContext(MakerStateContext);
   return (
     <section className={styles.view}>
       <h2 className={styles.title}>Card Preview</h2>

@@ -1,6 +1,6 @@
 import React, { memo, useCallback, useContext, useRef, useState } from "react";
 import classNames from "classnames/bind";
-import { MakerContext } from "store/maker_store";
+import { MakerDispatchContext } from "store/maker_store";
 import Button from "components/base/button/Button";
 import styles from "./card-form.module.css";
 import ImageFileInput from "components/base/image-file-input/ImageFileInput";
@@ -8,7 +8,7 @@ import ImageFileInput from "components/base/image-file-input/ImageFileInput";
 const cx = classNames.bind(styles);
 
 const CardForm = memo(({ card, editMode }) => {
-  const { dispatch } = useContext(MakerContext);
+  const dispatch = useContext(MakerDispatchContext);
   const formRef = useRef(null);
   const nameRef = useRef(null);
   const companyRef = useRef(null);

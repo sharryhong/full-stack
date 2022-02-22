@@ -1,7 +1,8 @@
 import React, { createContext, useReducer } from "react";
 import { MakerReducer } from "./maker_reducer";
 
-export const MakerContext = createContext();
+export const MakerStateContext = createContext();
+export const MakerDispatchContext = createContext();
 
 const initState = {
   id1: {
@@ -33,9 +34,11 @@ const MakerStore = ({ children }) => {
   const [cards, dispatch] = useReducer(MakerReducer, initState);
 
   return (
-    <MakerContext.Provider value={{ cards, dispatch }}>
-      {children}
-    </MakerContext.Provider>
+    <MakerDispatchContext.Provider value={dispatch}>
+      <MakerStateContext.Provider value={cards}>
+        {children}
+      </MakerStateContext.Provider>
+    </MakerDispatchContext.Provider>
   );
 };
 
