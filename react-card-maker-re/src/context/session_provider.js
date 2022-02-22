@@ -6,7 +6,7 @@ export const SessionContext = createContext();
 
 const initState = {
   isLoggedIn: false,
-  id: undefined,
+  userId: undefined,
 };
 
 const SessionProvider = ({ authService, children }) => {
@@ -25,10 +25,10 @@ const SessionProvider = ({ authService, children }) => {
   useEffect(() => {
     authService.onAuthStateChanged((user) => {
       if (user) {
-        setSession({ isLoggedIn: true, id: user.uid });
+        setSession({ isLoggedIn: true, userId: user.uid });
         navigate("/maker");
       } else {
-        setSession({ isLoggedIn: false, id: undefined });
+        setSession({ isLoggedIn: false, userId: undefined });
       }
       setIsLoading(true);
     });

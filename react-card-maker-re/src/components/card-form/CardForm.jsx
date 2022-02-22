@@ -4,11 +4,14 @@ import { MakerDispatchContext } from "store/maker_store";
 import Button from "components/base/button/Button";
 import styles from "./card-form.module.css";
 import ImageFileInput from "components/base/image-file-input/ImageFileInput";
+import * as cardApi from "service/card_service";
+import { SessionContext } from "context/session_provider.js";
 
 const cx = classNames.bind(styles);
 
 const CardForm = memo(({ card, editMode }) => {
   const dispatch = useContext(MakerDispatchContext);
+  const { userId } = useContext(SessionContext);
   const formRef = useRef(null);
   const nameRef = useRef(null);
   const companyRef = useRef(null);
@@ -38,6 +41,7 @@ const CardForm = memo(({ card, editMode }) => {
       if (isValid) return;
 
       dispatch({ type: "UPDATE", payload: card });
+      userId && cardApi.saveCard(userId, card);
       formRef.current.reset();
       setImageFile({ fileName: "", fileURL: "" });
     },

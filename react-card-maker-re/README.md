@@ -39,7 +39,9 @@
 
 10. Validation 추가
 
-11. 성능개선
+11. 성능개선 : memo, useCallback, useContext rerender 이슈해결
+
+- 블로그 정리 : https://sharryhong.gitbook.io/front-end/front-end-dev/react/usecontext-rerender-issue
 
 12. firebase realtime database
 

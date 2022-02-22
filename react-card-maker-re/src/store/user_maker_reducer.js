@@ -1,7 +1,9 @@
 export const UserMakerReducer = (cards, { type, payload }) => {
   switch (type) {
     case "UPDATE": {
-      return;
+      const updated = { ...cards };
+      updated[payload.id] = payload;
+      return updated;
     }
     case "DELETE": {
       return;
