@@ -17,7 +17,7 @@ const initState = {
     title: "Web Front End Engineer",
     email: "sharryhong15@gmail.com",
     message: "Hello :)",
-    fileName: "test",
+    fileName: "snoopy",
     fileURL:
       "https://blog.kakaocdn.net/dn/6XCV7/btq0Yh1Filw/1NKlaKjEegSKkJH75oltw1/img.png",
   },

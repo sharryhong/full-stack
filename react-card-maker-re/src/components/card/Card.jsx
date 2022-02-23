@@ -1,12 +1,15 @@
 import React, { memo } from "react";
+import classNames from "classnames/bind";
 import styles from "./card.module.css";
 
+const cx = classNames.bind(styles);
 const DEFAULT_IMAGE = "/images/default.jpeg";
 
 const Card = memo(
   ({ card: { name, company, theme, title, email, message, fileURL } }) => {
+    const classes = cx({ card: true, [theme]: theme });
     return (
-      <div className={styles.card}>
+      <div className={classes}>
         <div className={styles.image_container}>
           <img
             className={styles.profile}

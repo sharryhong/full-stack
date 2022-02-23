@@ -94,7 +94,8 @@ const CardForm = memo(({ card, editMode }) => {
     const key = event.currentTarget.name;
     const value = event.currentTarget.value;
 
-    checkValid(key, value);
+    const isValid = checkValid(key, value);
+    if (isValid) return;
 
     if (!editMode) return;
 
@@ -104,8 +105,8 @@ const CardForm = memo(({ card, editMode }) => {
     };
 
     if (isUserDataPage && userId) {
-      cardApi.saveCard(userId, updated, () => {
-        dispatch({ type: "UPDATE", payload: updated });
+      cardApi.saveCard(userId, updated, (card) => {
+        dispatch({ type: "UPDATE", payload: card });
       });
       return;
     }
@@ -117,7 +118,7 @@ const CardForm = memo(({ card, editMode }) => {
       event.preventDefault();
 
       if (isUserDataPage && userId) {
-        cardApi.deleteCard(userId, card, () => {
+        cardApi.deleteCard(userId, card, (card) => {
           dispatch({ type: "DELETE", payload: card });
           return;
         });

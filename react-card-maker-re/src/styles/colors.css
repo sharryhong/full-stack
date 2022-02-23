@@ -4,6 +4,7 @@
 @value secondaryColor: #fde9be;
 @value grayColor: #e1e1e1;
 @value grayLightColor: rgba(225, 225, 225, 0.6);
+@value Colorful: linear-gradient(135deg, primaryLightColor 60%, primaryColor);
 @value grayDarkColor: #777;
 @value whiteColor: #fff;
 @value fontColor: #333;

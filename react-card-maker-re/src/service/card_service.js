@@ -8,13 +8,13 @@ export const saveCard = (userId, card, onUpdate) => {
   set(ref(database, url), {
     ...card,
   });
-  onUpdate();
+  onUpdate(card);
 };
 
 export const deleteCard = (userId, card, onUpdate) => {
   const url = `${userId}/cards/${card.id}`;
   remove(ref(database, url));
-  onUpdate();
+  onUpdate(card);
 };
 
 export const syncCard = (userId, onUpdate) => {
