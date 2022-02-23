@@ -3,16 +3,18 @@ import { getDatabase, ref, set, onValue, remove } from "firebase/database";
 
 const database = getDatabase(firebaseApp);
 
-export const saveCard = (userId, card) => {
+export const saveCard = (userId, card, onUpdate) => {
   const url = `${userId}/cards/${card.id}`;
   set(ref(database, url), {
     ...card,
   });
+  onUpdate();
 };
 
-export const deleteCard = (userId, id) => {
-  const url = `${userId}/cards/${id}`;
+export const deleteCard = (userId, card, onUpdate) => {
+  const url = `${userId}/cards/${card.id}`;
   remove(ref(database, url));
+  onUpdate();
 };
 
 export const syncCard = (userId, onUpdate) => {

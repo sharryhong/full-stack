@@ -2,6 +2,7 @@ import React, { createContext, useCallback } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import styles from "./app.module.css";
 import Login from "components/pages/login/Login";
+import Home from "components/pages/home/Home";
 import Maker from "components/pages/maker/Maker";
 import Header from "components/base-layout/header/Header";
 import MakerStore from "store/maker_store";
@@ -27,15 +28,9 @@ function App({ authService, imageUploader }) {
         <MakerStore>
           <ImageUploaderContext.Provider value={imageUploader}>
             <Routes>
-              <Route path="/" element={<Maker authService={authService} />} />
-              <Route
-                path="/login"
-                element={<Login authService={authService} onLogin={onLogin} />}
-              />
-              <Route
-                path="/maker"
-                element={<Maker authService={authService} />}
-              />
+              <Route path="/" element={<Home />} />
+              <Route path="/login" element={<Login onLogin={onLogin} />} />
+              <Route path="/maker" element={<Maker />} />
               <Route
                 path="*"
                 element={

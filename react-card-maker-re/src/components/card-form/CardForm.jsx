@@ -33,6 +33,24 @@ const CardForm = memo(({ card, editMode }) => {
   const [imageFile, setImageFile] = useState({});
   const [valid, setValid] = useState({});
 
+  const checkValid = useCallback(
+    (key, value) => {
+      switch (key) {
+        case "name": {
+          if (value.length < 2) {
+            setValid({ ...valid, name: "2자 이상 입력해주세요." });
+            nameRef.current.focus();
+            return true;
+          }
+          return setValid({ ...valid, name: "" });
+        }
+        default:
+          return;
+      }
+    },
+    [valid]
+  );
+
   const onAdd = useCallback(
     (event) => {
       event.preventDefault();
@@ -51,28 +69,26 @@ const CardForm = memo(({ card, editMode }) => {
       const isValid = checkValid("name", nameRef.current.value);
       if (isValid) return;
 
-      dispatch({ type: "UPDATE", payload: card });
-      isUserDataPage && userId && cardApi.saveCard(userId, card);
       formRef.current.reset();
       setImageFile({ fileName: "", fileURL: "" });
-    },
-    [dispatch, imageFile?.fileName, imageFile?.fileURL]
-  );
 
-  const checkValid = (key, value) => {
-    switch (key) {
-      case "name": {
-        if (value.length < 2) {
-          setValid({ ...valid, name: "2자 이상 입력해주세요." });
-          nameRef.current.focus();
-          return true;
-        }
-        return setValid({ ...valid, name: "" });
-      }
-      default:
+      if (isUserDataPage && userId) {
+        cardApi.saveCard(userId, card, () => {
+          dispatch({ type: "UPDATE", payload: card });
+        });
         return;
-    }
-  };
+      }
+      dispatch({ type: "UPDATE", payload: card });
+    },
+    [
+      checkValid,
+      dispatch,
+      imageFile?.fileName,
+      imageFile?.fileURL,
+      isUserDataPage,
+      userId,
+    ]
+  );
 
   const onChange = (event) => {
     const key = event.currentTarget.name;
@@ -86,17 +102,29 @@ const CardForm = memo(({ card, editMode }) => {
       ...card,
       [key]: value,
     };
+
+    if (isUserDataPage && userId) {
+      cardApi.saveCard(userId, updated, () => {
+        dispatch({ type: "UPDATE", payload: updated });
+      });
+      return;
+    }
     dispatch({ type: "UPDATE", payload: updated });
-    isUserDataPage && userId && cardApi.saveCard(userId, updated);
   };
 
   const onDelete = useCallback(
     (event) => {
       event.preventDefault();
+
+      if (isUserDataPage && userId) {
+        cardApi.deleteCard(userId, card, () => {
+          dispatch({ type: "DELETE", payload: card });
+          return;
+        });
+      }
       dispatch({ type: "DELETE", payload: card.id });
-      isUserDataPage && userId && cardApi.deleteCard(userId, card.id);
     },
-    [card?.id, dispatch]
+    [card, isUserDataPage, userId]
   );
 
   const onImageChangeEditMode = useCallback(
@@ -108,7 +136,7 @@ const CardForm = memo(({ card, editMode }) => {
       };
       dispatch({ type: "UPDATE", payload: updated });
     },
-    [card, dispatch]
+    [card]
   );
 
   const onImageChangeAddMode = useCallback((file) => {
@@ -120,7 +148,7 @@ const CardForm = memo(({ card, editMode }) => {
       if (editMode) onImageChangeEditMode(file);
       onImageChangeAddMode(file);
     },
-    [editMode]
+    [editMode, onImageChangeAddMode, onImageChangeEditMode]
   );
 
   useEffect(() => {
