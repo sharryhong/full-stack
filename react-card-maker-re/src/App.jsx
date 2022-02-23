@@ -24,40 +24,29 @@ function App({ authService, imageUploader }) {
     <div className={styles.app}>
       <Header onLogout={onLogout} />
       <main className={styles.main}>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <MakerStore>
-                <ImageUploaderContext.Provider value={imageUploader}>
-                  <Maker authService={authService} />
-                </ImageUploaderContext.Provider>
-              </MakerStore>
-            }
-          />
-          <Route
-            path="/login"
-            element={<Login authService={authService} onLogin={onLogin} />}
-          />
-          <Route
-            path="/maker"
-            element={
-              <MakerStore>
-                <ImageUploaderContext.Provider value={imageUploader}>
-                  <Maker authService={authService} />
-                </ImageUploaderContext.Provider>
-              </MakerStore>
-            }
-          />
-          <Route
-            path="*"
-            element={
-              <main style={{ padding: "1rem" }}>
-                <p>There's nothing here!</p>
-              </main>
-            }
-          />
-        </Routes>
+        <MakerStore>
+          <ImageUploaderContext.Provider value={imageUploader}>
+            <Routes>
+              <Route path="/" element={<Maker authService={authService} />} />
+              <Route
+                path="/login"
+                element={<Login authService={authService} onLogin={onLogin} />}
+              />
+              <Route
+                path="/maker"
+                element={<Maker authService={authService} />}
+              />
+              <Route
+                path="*"
+                element={
+                  <main style={{ padding: "1rem" }}>
+                    <p>There's nothing here!</p>
+                  </main>
+                }
+              />
+            </Routes>
+          </ImageUploaderContext.Provider>
+        </MakerStore>
       </main>
     </div>
   );

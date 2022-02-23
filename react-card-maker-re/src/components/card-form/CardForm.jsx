@@ -1,4 +1,11 @@
-import React, { memo, useCallback, useContext, useRef, useState } from "react";
+import React, {
+  memo,
+  useCallback,
+  useContext,
+  useRef,
+  useState,
+  useEffect,
+} from "react";
 import classNames from "classnames/bind";
 import { MakerDispatchContext } from "store/maker_store";
 import Button from "components/base/button/Button";
@@ -6,12 +13,16 @@ import styles from "./card-form.module.css";
 import ImageFileInput from "components/base/image-file-input/ImageFileInput";
 import * as cardApi from "service/card_service";
 import { SessionContext } from "context/session_provider.js";
+import { useLocation } from "react-router-dom";
 
 const cx = classNames.bind(styles);
 
 const CardForm = memo(({ card, editMode }) => {
   const dispatch = useContext(MakerDispatchContext);
   const { userId } = useContext(SessionContext);
+  const location = useLocation();
+  const [isUserDataPage, setIsUserDataPage] = useState(false);
+
   const formRef = useRef(null);
   const nameRef = useRef(null);
   const companyRef = useRef(null);
@@ -41,7 +52,7 @@ const CardForm = memo(({ card, editMode }) => {
       if (isValid) return;
 
       dispatch({ type: "UPDATE", payload: card });
-      userId && cardApi.saveCard(userId, card);
+      isUserDataPage && userId && cardApi.saveCard(userId, card);
       formRef.current.reset();
       setImageFile({ fileName: "", fileURL: "" });
     },
@@ -76,12 +87,14 @@ const CardForm = memo(({ card, editMode }) => {
       [key]: value,
     };
     dispatch({ type: "UPDATE", payload: updated });
+    isUserDataPage && userId && cardApi.saveCard(userId, updated);
   };
 
   const onDelete = useCallback(
     (event) => {
       event.preventDefault();
       dispatch({ type: "DELETE", payload: card.id });
+      isUserDataPage && userId && cardApi.deleteCard(userId, card.id);
     },
     [card?.id, dispatch]
   );
@@ -109,6 +122,10 @@ const CardForm = memo(({ card, editMode }) => {
     },
     [editMode]
   );
+
+  useEffect(() => {
+    setIsUserDataPage(location.pathname.includes("maker"));
+  }, [location.pathname]);
 
   return (
     <form ref={formRef} className={styles.form}>

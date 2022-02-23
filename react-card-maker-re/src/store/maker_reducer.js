@@ -1,5 +1,8 @@
 export const MakerReducer = (cards, { type, payload }) => {
   switch (type) {
+    case "SYNC": {
+      return payload;
+    }
     case "UPDATE": {
       const updated = { ...cards };
       updated[payload.id] = payload;
