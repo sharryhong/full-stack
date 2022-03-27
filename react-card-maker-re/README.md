@@ -45,7 +45,8 @@
 
 12. firebase realtime database
 
-13. 쌤 코드와 비교
+- /maker 경로에서는 database 데이터 state
+- / 홈에서는 서비스 사용해 볼 수 있는 임시 데이터 state
 
 ### 강의와 차이점
 
@@ -56,5 +57,5 @@
 - [v] state 관리 : useContext, useReducer
 - [v] login check 추가
 - [v] Validation 추가
-- home 에서 로그인 하지 않고 서비스 사용해 볼 수 있는 기능 추가
+- [v] home 에서 로그인 하지 않고 서비스 사용해 볼 수 있는 기능 추가
 - 최종 이미지 저장 기능 추가
